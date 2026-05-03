@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="color-scheme" content="light" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wer wir sind – EFG Allendorf</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .wws-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      margin-bottom: 56px;
+    }
+    @media (max-width: 700px) {
+      .wws-intro { grid-template-columns: 1fr; gap: 28px; }
+    }
+    .wws-intro img {
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: block;
+    }
+    .wws-intro-text p {
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .wws-intro-text .badge {
+      display: inline-block;
+      background: var(--blau-sehr-hell);
+      color: var(--blau);
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    .wws-sections {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 700px) {
+      .wws-sections { grid-template-columns: 1fr; }
+    }
+
+    .wws-card {
+      background: #fff;
+      border: 1px solid #e0e5ef;
+      border-radius: var(--radius);
+      padding: 28px 28px 24px;
+      box-shadow: 0 2px 12px rgba(30,75,138,.06);
+    }
+    .wws-card h2 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--blau);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .wws-card h2 .icon {
+      width: 34px; height: 34px;
+      background: var(--blau-sehr-hell);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .wws-card ul {
+      list-style: none;
+      padding: 0; margin: 0;
+    }
+    .wws-card ul li {
+      font-size: .9rem;
+      color: var(--text);
+      line-height: 1.65;
+      padding: 7px 0;
+      border-bottom: 1px solid #f0f2f7;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .wws-card ul li:last-child { border-bottom: none; }
+    .wws-card ul li::before {
+      content: '';
+      display: block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--blau-hell);
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    .wws-glauben {
+      background: linear-gradient(135deg, #1e4b8a 0%, #2d6cc0 100%);
+      border-radius: var(--radius);
+      padding: 36px 36px 32px;
+      margin-bottom: 24px;
+      color: #fff;
+    }
+    .wws-glauben h2 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .wws-glauben ul {
+      list-style: none;
+      padding: 0; margin: 0 0 20px;
+      columns: 2;
+      column-gap: 32px;
+    }
+    @media (max-width: 600px) { .wws-glauben ul { columns: 1; } }
+    .wws-glauben ul li {
+      font-size: .9rem;
+      color: rgba(255,255,255,.9);
+      line-height: 1.65;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      break-inside: avoid;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .wws-glauben ul li:last-child { border-bottom: none; }
+    .wws-glauben ul li::before {
+      content: '';
+      display: block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.6);
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+    .wws-glauben .darum {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      background: rgba(255,255,255,.12);
+      border-radius: 8px;
+      padding: 12px 18px;
+      margin-top: 4px;
+    }
+
+    .history-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--blau-sehr-hell);
+      border-radius: var(--radius);
+      padding: 18px 24px;
+      margin-bottom: 40px;
+      border-left: 3px solid var(--blau);
+    }
+    .history-year {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--blau);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .history-bar p {
+      font-size: .9rem;
+      color: var(--text);
+      line-height: 1.6;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+<header id="site-header"></header>
+
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Startseite</a>
+    <span>›</span>
+    <span>Wer wir sind</span>
+  </div>
+</div>
+
+<div class="page-hero" style="background: linear-gradient(135deg, #1e4b8a 0%, #2d6cc0 100%);">
+  <div class="page-hero-inner">
+    <div class="page-hero-badge">🏠 Unsere Gemeinde</div>
+    <h1>Wer wir sind</h1>
+    <p>Eine Gemeinschaft von Menschen, die nach Gott fragen – seit 1884 in Allendorf.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+
+    <!-- Intro mit Bild -->
+    <div class="wws-intro">
+      <img src="gemeinde_2016_2.jpg" alt="Gemeinde EFG Allendorf" />
+      <div class="wws-intro-text">
+        <span class="badge">Seit 1884</span>
+        <p>
+          Die Evangelische Freie Gemeinde Allendorf ist eine freie christliche Gemeinde, die ihre Wurzeln in der Gemeinschaftsbewegung hat und seit <strong>1884</strong> besteht.
+        </p>
+        <p>
+          Wir sind eine Gruppe von Menschen aller Altersgruppen mit unterschiedlichen Hintergründen, Berufen und Lebensstilen, die nach Gott fragen und in einer persönlichen Beziehung zu Jesus Christus leben wollen.
+        </p>
+        <p>
+          Im Glauben an Jesus Christus sehen wir die Antwort auf die Frage nach dem Sinn und Ziel unseres Lebens.
+        </p>
+      </div>
+    </div>
+
+    <!-- Gründungsjahr-Leiste -->
+    <div class="history-bar">
+      <div class="history-year">1884</div>
+      <p>Seit über 140 Jahren ist die Evangelische Freie Gemeinde Allendorf ein fester Teil der Gemeinschaft in Greifenstein-Allendorf. Was als Gemeinschaftsbewegung begann, ist heute eine lebendige Ortsgemeinde mit Menschen aus der ganzen Region.</p>
+    </div>
+
+    <!-- Wir glauben -->
+    <div class="wws-glauben">
+      <h2>✝ Wir glauben …</h2>
+      <ul>
+        <li>dass die Bibel Gottes Wort ist</li>
+        <li>dass die Erde Gottes Schöpfung ist</li>
+        <li>dass Gott in Jesus Mensch geworden ist</li>
+        <li>dass Jesus für die Sünden der Menschen am Kreuz gestorben ist</li>
+        <li>dass Jesus von den Toten auferweckt wurde</li>
+        <li>dass Jesus Christus alle Macht in der sichtbaren und unsichtbaren Welt von seinem Vater übergeben wurde</li>
+        <li>dass alles unter seiner Kontrolle ist</li>
+        <li>dass allein der Glaube an Jesus Zugang zu Gott ermöglicht</li>
+        <li>dass Gott uns seinen Heiligen Geist gibt</li>
+        <li>dass die Gemeinschaft mit Gott unser Leben verändert</li>
+        <li>dass Jesus uns Leben über den Tod hinaus schenkt</li>
+        <li>dass Jesus wiederkommt und seine Herrschaft für alle Menschen sichtbar wird</li>
+      </ul>
+      <div class="darum">Darum gehen wir hoffnungsvoll in die Zukunft!</div>
+    </div>
+
+    <!-- Drei Karten -->
+    <div class="wws-sections">
+
+      <div class="wws-card">
+        <h2><span class="icon">🤝</span>Wir möchten …</h2>
+        <ul>
+          <li>dass alle Menschen durch Jesus Christus Versöhnung mit Gott finden</li>
+          <li>Gott anbeten</li>
+          <li>miteinander lernen, ein Leben nach den Maßstäben der Bibel zu führen</li>
+          <li>einander lieben, wie Gott uns liebt</li>
+          <li>unseren Mitmenschen dienen</li>
+        </ul>
+      </div>
+
+      <div class="wws-card">
+        <h2><span class="icon">🙏</span>Wir treffen uns …</h2>
+        <ul>
+          <li>um Gott in gemeinsamen Liedern und Gebeten zu loben</li>
+          <li>um mit Gott im Gebet auch über unsere Alltagssorgen zu sprechen</li>
+          <li>um Gemeinschaft miteinander zu haben</li>
+          <li>um die Bibel besser kennen zu lernen</li>
+          <li>um in der Predigt Orientierung und aktuelle Lebenshilfe zu bekommen</li>
+          <li>in besonderen Stunden, um das Abendmahl zu feiern</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Kommen zusammen in -->
+    <div class="wws-card" style="margin-bottom: 0;">
+      <h2><span class="icon">📍</span>Wir kommen zusammen in …</h2>
+      <ul style="columns: 2; column-gap: 32px;">
+        <li>Gottesdiensten</li>
+        <li>Bibelgesprächskreisen</li>
+        <li>Gebetskreisen</li>
+        <li>Hauskreisen</li>
+        <li>Jungscharen und Jugendkreisen</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<script src="nav.js"></script>
+<script>renderNav('wer', 0); renderFooter(0);</script>
+</body>
+</html>

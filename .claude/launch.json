@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "EFG Allendorf",
+      "runtimeExecutable": "/usr/bin/ruby",
+      "runtimeArgs": ["/Users/levi/Desktop/Claude/Websites/EFG Allendorf/serve.rb"],
+      "port": 3001
+    }
+  ]
+}
