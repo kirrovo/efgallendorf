@@ -16,10 +16,61 @@ function renderNav(activePage, depth) {
         <a href="${r}wer-wir-sind.html" ${activePage==='wer'?'class="active"':''}>Wer wir sind</a>
         <a href="${r}gruppen.html" ${activePage==='gruppen'?'class="active"':''}>Gruppen</a>
         <a href="${r}gottesdienst-live.html" ${activePage==='live'?'class="active"':''} style="color:#e53935;font-weight:700;">🔴 Live</a>
+        <a href="${r}index.html#kalender" ${activePage==='kalender'?'class="active"':''}>Kalender</a>
         <a href="${r}intern.html" class="nav-intern">🔒 Intern</a>
       </nav>
     </div>`;
+  // Decode obfuscated contacts after nav render
+  decodeContacts();
 }
+
+/* ── Webcrawler-Schutz für E-Mails & Telefonnummern ──────────────────────
+   Kontaktdaten werden als base64-kodierte data-Attribute gespeichert und
+   erst per JS zusammengesetzt – unsichtbar für automatische Crawler.
+   Verwendung im HTML:
+     E-Mail:  <a class="ob-email" data-em="base64..."></a>
+     Telefon: <a class="ob-tel"   data-tel="base64..."></a>
+     Text:    <span class="ob-email" data-em="base64..."></span>
+              <span class="ob-tel"   data-tel="base64..."></span>
+──────────────────────────────────────────────────────────────────────── */
+function decodeContacts() {
+  document.querySelectorAll('.ob-email').forEach(el => {
+    try {
+      const addr = atob(el.dataset.em);
+      if (el.tagName === 'A') {
+        el.href = 'mailto:' + addr;
+        // If element has child nodes (e.g. SVG icon), append text after them
+        if (el.childNodes.length > 0) {
+          // Remove any existing text nodes first
+          el.childNodes.forEach(n => { if (n.nodeType === 3) n.remove(); });
+          el.appendChild(document.createTextNode(' ' + addr));
+        } else {
+          el.textContent = addr;
+        }
+      } else {
+        el.textContent = addr;
+      }
+    } catch(e) {}
+  });
+  document.querySelectorAll('.ob-tel').forEach(el => {
+    try {
+      const num = atob(el.dataset.tel);
+      if (el.tagName === 'A') {
+        el.href = 'tel:' + num.replace(/[\s\/]/g, '');
+        if (el.childNodes.length > 0) {
+          el.childNodes.forEach(n => { if (n.nodeType === 3) n.remove(); });
+          el.appendChild(document.createTextNode(' ' + num));
+        } else {
+          el.textContent = num;
+        }
+      } else {
+        el.textContent = num;
+      }
+    } catch(e) {}
+  });
+}
+// Also decode on DOMContentLoaded for inline scripts that call decodeContacts early
+document.addEventListener('DOMContentLoaded', decodeContacts);
 
 function renderFooter(depth) {
   const r = getRelPath(depth);
