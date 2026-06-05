@@ -208,11 +208,11 @@ function efga_seed_content() {
 			if ( $wer ) { wp_update_nav_menu_item( $menu_id, 0, array( 'menu-item-title' => 'Wer wir sind', 'menu-item-object' => 'page', 'menu-item-object-id' => $wer->ID, 'menu-item-type' => 'post_type', 'menu-item-status' => 'publish' ) ); }
 			wp_update_nav_menu_item( $menu_id, 0, array( 'menu-item-title' => 'Gruppen', 'menu-item-url' => get_post_type_archive_link( 'gruppe' ), 'menu-item-status' => 'publish' ) );
 			$live = get_page_by_path( 'gottesdienst-live' );
-			if ( $live ) { wp_update_nav_menu_item( $menu_id, 0, array( 'menu-item-title' => '🔴 Live', 'menu-item-object' => 'page', 'menu-item-object-id' => $live->ID, 'menu-item-type' => 'post_type', 'menu-item-status' => 'publish' ) ); }
+			if ( $live ) { wp_update_nav_menu_item( $menu_id, 0, array( 'menu-item-title' => '🔴 Live', 'menu-item-object' => 'page', 'menu-item-object-id' => $live->ID, 'menu-item-type' => 'post_type', 'menu-item-status' => 'publish', 'menu-item-classes' => 'nav-live' ) ); }
 			$kal = get_page_by_path( 'kalender' );
 			if ( $kal ) { wp_update_nav_menu_item( $menu_id, 0, array( 'menu-item-title' => 'Kalender', 'menu-item-object' => 'page', 'menu-item-object-id' => $kal->ID, 'menu-item-type' => 'post_type', 'menu-item-status' => 'publish' ) ); }
 			$intern = get_page_by_path( 'intern' );
-			if ( $intern ) { wp_update_nav_menu_item( $menu_id, 0, array( 'menu-item-title' => '🔒 Intern', 'menu-item-object' => 'page', 'menu-item-object-id' => $intern->ID, 'menu-item-type' => 'post_type', 'menu-item-status' => 'publish' ) ); }
+			if ( $intern ) { wp_update_nav_menu_item( $menu_id, 0, array( 'menu-item-title' => '🔒 Intern', 'menu-item-object' => 'page', 'menu-item-object-id' => $intern->ID, 'menu-item-type' => 'post_type', 'menu-item-status' => 'publish', 'menu-item-classes' => 'nav-intern' ) ); }
 
 			$locations            = get_theme_mod( 'nav_menu_locations' );
 			$locations['primary'] = $menu_id;

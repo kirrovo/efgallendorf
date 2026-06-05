@@ -37,8 +37,8 @@
 			wp_nav_menu( array(
 				'theme_location' => 'primary',
 				'container'      => 'nav',
-				'menu_class'     => '',
-				'items_wrap'     => '<nav>%3$s</nav>',
+				'menu_class'     => 'primary-menu',
+				'items_wrap'     => '<ul class="%2$s">%3$s</ul>',
 				'fallback_cb'    => 'efga_default_menu',
 				'depth'          => 1,
 			) );

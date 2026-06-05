@@ -666,3 +666,27 @@ footer {
 
 /* ─── Logo-Bild in der Navigation ────────────────── */
 .logo img { height: 44px; width: auto; display: block; }
+
+/* ─── WordPress-Menü (wp_nav_menu) Anpassung ─────── */
+nav ul.primary-menu {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; gap: 4px; align-items: center;
+}
+nav ul.primary-menu li { list-style: none; margin: 0; padding: 0; }
+nav ul.primary-menu li a {
+  display: inline-block;
+  padding: 6px 13px; border-radius: 6px;
+  font-size: .88rem; font-weight: 500; color: var(--text);
+  transition: background .15s, color .15s;
+}
+nav ul.primary-menu li a:hover { background: var(--blau-sehr-hell); color: var(--blau); }
+nav ul.primary-menu li.current-menu-item a,
+nav ul.primary-menu li.current_page_item a { color: var(--blau); font-weight: 600; background: var(--blau-sehr-hell); }
+
+/* Sonder-Styling für Live (rot) & Intern (Button) via Menü-CSS-Klassen */
+nav ul.primary-menu li.nav-live a { color: #e53935; font-weight: 700; }
+nav ul.primary-menu li.nav-live a:hover { background: rgba(229,57,53,.08); color: #e53935; }
+nav ul.primary-menu li.nav-intern a {
+  background: var(--blau); color: #fff; font-weight: 600; margin-left: 8px;
+}
+nav ul.primary-menu li.nav-intern a:hover { background: var(--blau-hell); color: #fff; }

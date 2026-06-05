@@ -225,6 +225,20 @@ function efga_get( $key, $default = '', $post_id = null ) {
 }
 
 /* ════════════════════════════════════════════════════════
+   6b. ARCHIV-SORTIERUNG (Gruppen & Veranstaltungen nach menu_order)
+   ════════════════════════════════════════════════════════ */
+function efga_archive_order( $query ) {
+	if ( is_admin() || ! $query->is_main_query() ) {
+		return;
+	}
+	if ( $query->is_post_type_archive( array( 'gruppe', 'veranstaltung' ) ) ) {
+		$query->set( 'orderby', array( 'menu_order' => 'ASC', 'title' => 'ASC' ) );
+		$query->set( 'posts_per_page', -1 );
+	}
+}
+add_action( 'pre_get_posts', 'efga_archive_order' );
+
+/* ════════════════════════════════════════════════════════
    7. FALLBACK-NAVIGATION (wenn kein Menü zugewiesen ist)
    ════════════════════════════════════════════════════════ */
 function efga_default_menu() {
