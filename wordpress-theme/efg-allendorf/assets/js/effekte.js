@@ -248,9 +248,52 @@
   // Die statische Navigation wird per JS gerendert, daher auch nachziehen
   window.efgaNavGleiten = navGleitenStarten;
 
+  /* ── Konturschriftzug im Footer ───────────────────────────────────
+     Die farbige Kontur wird durch eine radiale Maske sichtbar, deren
+     Mittelpunkt dem Zeiger folgt. Die Vorlage nutzt dafür motion und
+     einen Regenbogen; hier reicht das Setzen zweier SVG-Attribute,
+     und die Farben bleiben im Blau der Seite.
+  ──────────────────────────────────────────────────────────────── */
+  function schriftzugStarten() {
+    var wurzel = document.querySelector('[data-schriftzug]');
+    if (!wurzel || wenigerBewegung.matches) return;
+    if (!window.matchMedia('(hover: hover)').matches) return;
+
+    var svg = wurzel.querySelector('svg');
+    var verlauf = wurzel.querySelector('#ft-maske-verlauf');
+    var spur = wurzel.querySelector('.ft-spur');
+    if (!svg || !verlauf || !spur) return;
+
+    var geplant = false, letztes = null;
+    spur.style.opacity = '0';
+    spur.style.transition = 'opacity .3s ease';
+
+    function anwenden() {
+      geplant = false;
+      if (!letztes) return;
+      var r = svg.getBoundingClientRect();
+      // Bildschirmkoordinaten in das viewBox-System 300x100 umrechnen
+      verlauf.setAttribute('cx', ((letztes.x - r.left) / r.width) * 300);
+      verlauf.setAttribute('cy', ((letztes.y - r.top) / r.height) * 100);
+    }
+
+    svg.addEventListener('pointermove', function (e) {
+      letztes = { x: e.clientX, y: e.clientY };
+      spur.style.opacity = '1';
+      if (!geplant) { geplant = true; requestAnimationFrame(anwenden); }
+    }, { passive: true });
+
+    svg.addEventListener('pointerleave', function () { spur.style.opacity = '0'; });
+  }
+
+  // Der statische Footer wird per JS gerendert, daher nachziehbar halten
+  window.efgaSchriftzug = schriftzugStarten;
+
   document.addEventListener('DOMContentLoaded', function () {
     navGleitenStarten();
     setTimeout(navGleitenStarten, 0);
+    schriftzugStarten();
+    setTimeout(schriftzugStarten, 0);
     document.querySelectorAll('[data-faecher]').forEach(function (el) {
       if (!wenigerBewegung.matches) faecherStarten(el);
     });

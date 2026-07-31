@@ -126,6 +126,11 @@ function decodeContacts() {
       const addr = atob(el.dataset.em);
       if (el.tagName === 'A') {
         el.href = 'mailto:' + addr;
+        // Nur-Icon-Links bekommen die Adresse als Beschriftung, nicht als Text
+        if (el.hasAttribute('data-nur-icon')) {
+          if (!el.getAttribute('aria-label')) el.setAttribute('aria-label', 'E-Mail an ' + addr);
+          return;
+        }
         // If element has child nodes (e.g. SVG icon), append text after them
         if (el.childNodes.length > 0) {
           // Remove any existing text nodes first
@@ -162,40 +167,89 @@ document.addEventListener('DOMContentLoaded', decodeContacts);
 function renderFooter(depth) {
   const r = getRelPath(depth);
   document.getElementById('site-footer').innerHTML = `
-    <div class="footer-inner">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <strong>Evangelische Freie Gemeinde Allendorf</strong>
-          <p>Eine Gemeinschaft von Menschen, die Gott suchen und füreinander da sind, in Allendorf und Umgebung.</p>
+    <div class="footer-karte">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-brand-kopf">
+              ${ico('kirche')}
+              <strong>EFG Allendorf</strong>
+            </div>
+            <p>Eine Gemeinschaft von Menschen, die Gott suchen und füreinander da sind, in Allendorf und Umgebung.</p>
+          </div>
+
+          <div class="footer-col">
+            <h4>Gemeinde</h4>
+            <a href="${r}wer-wir-sind.html">Wer wir sind</a>
+            <a href="${r}wer-wir-sind.html#glaube">Glaubensbekenntnis</a>
+            <a href="${r}wer-wir-sind.html#leitbild">Leitbild</a>
+            <a href="${r}wer-wir-sind.html#chronik">Chronik</a>
+          </div>
+
+          <div class="footer-col">
+            <h4>Angebote</h4>
+            <a href="${r}index.html#veranstaltungen">Veranstaltungen</a>
+            <a href="${r}gruppen.html">Gruppen</a>
+            <a href="${r}index.html#predigten">Predigten</a>
+            <a href="${r}index.html#kalender">Kalender</a>
+          </div>
+
+          <div class="footer-col">
+            <h4>Kontakt</h4>
+            <ul class="footer-kontakt">
+              <li>${ico('ort')}<span>Heimlingstraße 3<br />35753 Greifenstein-Allendorf</span></li>
+              <li>${ico('mail')}<a href="#" class="ob-email" data-em="aW5mb0BlZy1hbGxlbmRvcmYuZGU=" rel="nofollow"></a></li>
+              <li>${ico('uhr')}<span>Sonntags 10:00 Uhr</span></li>
+            </ul>
+          </div>
         </div>
-        <div class="footer-col">
-          <h4>Gemeinde</h4>
-          <a href="${r}wer-wir-sind.html">Wer wir sind</a>
-          <a href="${r}wer-wir-sind.html#glaube">Glaubensbekenntnis</a>
-          <a href="${r}wer-wir-sind.html#leitbild">Leitbild</a>
-          <a href="${r}wer-wir-sind.html#chronik">Chronik</a>
-        </div>
-        <div class="footer-col">
-          <h4>Angebote</h4>
-          <a href="${r}index.html#veranstaltungen">Veranstaltungen</a>
-          <a href="${r}gruppen.html">Gruppen</a>
-          <a href="${r}index.html#predigten">Predigten</a>
-          <a href="${r}index.html#kalender">Kalender</a>
-        </div>
-        <div class="footer-col">
-          <h4>Mehr</h4>
-          <a href="${r}index.html#kontakt">Kontakt</a>
-          <a href="${r}intern.html">Interner Bereich</a>
-          <a href="${r}impressum.html">Impressum</a>
-          <a href="${r}datenschutz.html">Datenschutz</a>
+
+        <hr class="footer-trenner" />
+
+        <div class="footer-bottom">
+          <div class="footer-social">
+            <a href="https://www.youtube.com/@efgallendorf" target="_blank" rel="noopener noreferrer" aria-label="Gemeinde auf YouTube">${ico('youtube')}</a>
+            <a href="#" class="ob-email" data-nur-icon data-em="aW5mb0BlZy1hbGxlbmRvcmYuZGU=" rel="nofollow" aria-label="E-Mail an die Gemeinde">${ico('mail')}</a>
+          </div>
+          <span>© ${new Date().getFullYear()} Evangelische Freie Gemeinde Allendorf</span>
+          <div class="footer-rechtliches">
+            <a href="${r}intern.html">Interner Bereich</a>
+            <a href="${r}impressum.html">Impressum</a>
+            <a href="${r}datenschutz.html">Datenschutzerklärung</a>
+          </div>
         </div>
       </div>
-      <div class="footer-bottom">
-        <span>© ${new Date().getFullYear()} Evangelische Freie Gemeinde Allendorf</span>
-        <div style="display:flex;gap:18px;">
-          <a href="${r}impressum.html">Impressum</a>
-          <a href="${r}datenschutz.html">Datenschutzerklärung</a>
-        </div>
-      </div>
+
+      ${schriftzug('EFG ALLENDORF')}
     </div>`;
+
+  decodeContacts();
+  if (window.efgaSchriftzug) window.efgaSchriftzug();
+}
+
+/* Großer Konturschriftzug. Die farbige Kontur wird über eine Maske nur
+   dort sichtbar, wo der Zeiger steht. Reines SVG, kein Framework. */
+function schriftzug(text) {
+  return `
+      <div class="footer-schriftzug" data-schriftzug aria-hidden="true">
+        <svg viewBox="0 0 300 100" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ft-farbe" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="300" y2="0">
+              <stop offset="0%" stop-color="#1e5aa8" />
+              <stop offset="50%" stop-color="#2f76cc" />
+              <stop offset="100%" stop-color="#8fb8f5" />
+            </linearGradient>
+            <radialGradient id="ft-maske-verlauf" gradientUnits="userSpaceOnUse" r="46" cx="150" cy="50">
+              <stop offset="0%" stop-color="white" />
+              <stop offset="100%" stop-color="black" />
+            </radialGradient>
+            <mask id="ft-maske">
+              <rect x="0" y="0" width="300" height="100" fill="url(#ft-maske-verlauf)" />
+            </mask>
+          </defs>
+          <text class="ft-basis" x="150" y="50" text-anchor="middle" dominant-baseline="middle">${text}</text>
+          <text class="ft-linie" x="150" y="50" text-anchor="middle" dominant-baseline="middle">${text}</text>
+          <text class="ft-spur" x="150" y="50" text-anchor="middle" dominant-baseline="middle" mask="url(#ft-maske)">${text}</text>
+        </svg>
+      </div>`;
 }

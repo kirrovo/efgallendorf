@@ -1588,38 +1588,113 @@ a.predigt-row:hover .predigt-play { background: var(--blau); border-color: var(-
 }
 .legal-address p, .legal-highlight p { margin: 0; color: var(--text); }
 
-/* ─── Fußzeile ───────────────────────────────────── */
-footer#site-footer {
-  background: var(--flaeche-2);
-  border-top: 1px solid var(--linie);
-  padding: 56px 24px 32px;
+/* ─── Fußzeile ───────────────────────────────────────
+   Abgerundete Karte mit weichem Verlauf, vier Spalten und einem
+   großen Schriftzug, dessen Kontur dem Zeiger folgt. Farben bleiben
+   im Blau der Seite, statt des Regenbogens der Vorlage.
+*/
+footer#site-footer { padding: 0 24px 24px; }
+
+.footer-karte {
+  position: relative;
+  overflow: hidden;
+  max-width: 1400px;
+  margin: 0 auto;
+  border: 1px solid var(--linie);
+  border-radius: 28px;
+  background:
+    radial-gradient(125% 125% at 50% 8%, var(--flaeche) 46%, color-mix(in srgb, var(--blau) 14%, transparent) 100%),
+    var(--flaeche-2);
 }
-.footer-inner { max-width: var(--breite); margin: 0 auto; }
+.footer-inner {
+  position: relative; z-index: 2;
+  max-width: var(--breite);
+  margin: 0 auto;
+  padding: 56px 32px 28px;
+}
 .footer-grid {
-  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 40px; margin-bottom: 44px;
+  display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+  gap: 40px; margin-bottom: 40px;
 }
 @media (max-width: 860px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; } }
 @media (max-width: 520px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; } }
 
-.footer-brand strong { display: block; font-size: 1.05rem; font-weight: 650; margin-bottom: 10px; }
-.footer-brand p { font-size: .95rem; color: var(--text-leise); max-width: 40ch; }
-.footer-col h4 { font-size: .95rem; font-weight: 650; margin-bottom: 14px; }
+.footer-brand-kopf { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.footer-brand-kopf .ico { color: var(--akzent); width: 1.5rem; height: 1.5rem; }
+.footer-brand strong { display: block; font-size: 1.15rem; font-weight: 700; }
+.footer-brand p { font-size: .95rem; color: var(--text-leise); max-width: 36ch; }
+
+.footer-col h4 { font-size: 1.02rem; font-weight: 650; margin-bottom: 16px; }
 .footer-col a {
-  display: block; margin-bottom: 9px;
+  display: block; margin-bottom: 10px;
   font-size: .95rem; color: var(--text-leise);
+  transition: color .2s;
 }
-.footer-col a:hover { color: var(--akzent); text-decoration: underline; text-underline-offset: 3px; }
+.footer-col a:hover { color: var(--akzent); }
+
+.footer-kontakt { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.footer-kontakt li { display: flex; align-items: flex-start; gap: 10px; font-size: .95rem; color: var(--text-leise); }
+.footer-kontakt .ico { color: var(--akzent); margin-top: 3px; }
+.footer-kontakt a { color: var(--text-leise); transition: color .2s; }
+.footer-kontakt a:hover { color: var(--akzent); }
+
+.footer-trenner { border: none; border-top: 1px solid var(--linie); margin: 0 0 24px; }
 
 .footer-bottom {
-  border-top: 1px solid var(--linie);
-  padding-top: 22px;
   display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 12px;
+  flex-wrap: wrap; gap: 16px;
   font-size: .92rem; color: var(--text-leise);
 }
-.footer-bottom a { color: var(--text-leise); }
-.footer-bottom a:hover { color: var(--akzent); text-decoration: underline; text-underline-offset: 3px; }
+.footer-bottom a { color: var(--text-leise); transition: color .2s; }
+.footer-bottom a:hover { color: var(--akzent); }
+.footer-social { display: flex; align-items: center; gap: 18px; }
+.footer-social a { display: flex; color: var(--text-leise); }
+.footer-social a:hover { color: var(--akzent); }
+.footer-social .ico { width: 1.35rem; height: 1.35rem; }
+.footer-rechtliches { display: flex; gap: 18px; flex-wrap: wrap; }
+
+/* Großer Schriftzug mit Zeigerspur */
+.footer-schriftzug {
+  position: relative; z-index: 1;
+  display: none;
+  margin: -12px 0 -6px;
+  padding: 0 16px;
+}
+@media (min-width: 1024px) { .footer-schriftzug { display: block; } }
+
+.footer-schriftzug svg {
+  width: 100%; height: 190px;
+  display: block;
+  user-select: none;
+}
+.footer-schriftzug text {
+  font-family: inherit;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  fill: transparent;
+  stroke-width: .6;
+}
+/* ruhende Kontur */
+.ft-basis { stroke: var(--linie-stark); opacity: .85; }
+/* einmalig gezeichnete Linie beim Laden */
+.ft-linie { stroke: color-mix(in srgb, var(--blau) 45%, transparent); }
+@media (prefers-reduced-motion: no-preference) {
+  .ft-linie {
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
+    animation: ft-zeichnen 4s ease-in-out forwards;
+  }
+}
+@keyframes ft-zeichnen { to { stroke-dashoffset: 0; } }
+/* farbige Kontur, nur im Umkreis des Zeigers sichtbar */
+.ft-spur { stroke: url(#ft-farbe); }
+
+@media (max-width: 700px) {
+  footer#site-footer { padding: 0 16px 16px; }
+  .footer-karte { border-radius: 22px; }
+  .footer-inner { padding: 44px 22px 24px; }
+}
 
 /* ─── Bewegung reduzieren ────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
