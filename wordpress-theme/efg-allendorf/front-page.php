@@ -353,10 +353,6 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 <!-- ══════════════════ KONTAKT ═══════════════════════ -->
 <section class="section" id="kontakt">
 	<div class="section-inner">
-		<div class="section-header">
-			<h2>Kontakt und Anfahrt</h2>
-			<p>Schreib uns eine Nachricht, ruf bei der Gemeindeleitung an oder komm sonntags einfach vorbei.</p>
-		</div>
 		<?php get_template_part( 'template-parts/kontakt' ); ?>
 	</div>
 </section>

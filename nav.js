@@ -20,6 +20,7 @@ const EFGA_ICON_SPRITE = `
     <symbol id="i-buch" viewBox="0 0 24 24"><path d="M12 7.4C10.5 5.9 8 5.4 4 5.4V19c4 0 6.5.5 8 2 1.5-1.5 4-2 8-2V5.4c-4 0-6.5.5-8 2z"/><line x1="12" y1="7.4" x2="12" y2="21"/></symbol>
     <symbol id="i-herz" viewBox="0 0 24 24"><path d="M12 20.6 4.6 13.2a4.6 4.6 0 0 1 6.5-6.5l.9.9.9-.9a4.6 4.6 0 0 1 6.5 6.5z"/></symbol>
     <symbol id="i-personen" viewBox="0 0 24 24"><circle cx="9.2" cy="8" r="3.5"/><path d="M2.7 20a6.5 6.5 0 0 1 13 0"/><path d="M16.4 5.3a3.5 3.5 0 0 1 0 5.4"/><path d="M17.6 14.4a6.5 6.5 0 0 1 3.8 5.6"/></symbol>
+    <symbol id="i-person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></symbol>
     <symbol id="i-chronik" viewBox="0 0 24 24"><polyline points="3 4.5 3 9.5 8 9.5"/><path d="M4.3 15.2a9 9 0 1 0 .9-7"/><polyline points="12 7.6 12 12 15.4 14"/></symbol>
     <symbol id="i-schloss" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
     <symbol id="i-play" viewBox="0 0 24 24"><path d="M9 6.4 18 12l-9 5.6z"/></symbol>

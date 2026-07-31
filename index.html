@@ -358,12 +358,63 @@
 <!-- ══════════════════ KONTAKT ═══════════════════════ -->
 <section class="section" id="kontakt">
   <div class="section-inner">
-    <div class="section-header">
-      <h2>Kontakt und Anfahrt</h2>
-      <p>Schreib uns eine Nachricht, ruf bei der Gemeindeleitung an oder komm sonntags einfach vorbei.</p>
+
+    <div class="kontakt-block">
+      <span class="eyebrow">Kontakt</span>
+      <h2>Schreib uns</h2>
+      <p>
+        Oder melde dich direkt bei uns unter
+        <a href="#" class="ob-email" data-em="aW5mb0BlZy1hbGxlbmRvcmYuZGU=" rel="nofollow"></a>
+      </p>
+
+      <form class="kontakt-form" action="#" method="post">
+        <div class="feld">
+          <label for="k-name">Name</label>
+          <div class="feld-icon">
+            <svg class="ico" aria-hidden="true"><use href="#i-person"></use></svg>
+            <input type="text" id="k-name" name="name" autocomplete="name"
+                   placeholder="Dein vollständiger Name" required />
+          </div>
+        </div>
+
+        <div class="feld">
+          <label for="k-mail">E-Mail-Adresse</label>
+          <div class="feld-icon">
+            <svg class="ico" aria-hidden="true"><use href="#i-mail"></use></svg>
+            <input type="email" id="k-mail" name="email" autocomplete="email"
+                   placeholder="Deine E-Mail-Adresse" required />
+          </div>
+          <span class="hilfe">Damit wir dir antworten können.</span>
+        </div>
+
+        <div class="feld">
+          <label for="k-betreff">Betreff</label>
+          <div class="feld-icon">
+            <svg class="ico" aria-hidden="true"><use href="#i-notiz"></use></svg>
+            <select id="k-betreff" name="betreff">
+              <option>Allgemeine Anfrage</option>
+              <option>Besuch und Anfahrt</option>
+              <option>Gruppen und Kreise</option>
+              <option>Veranstaltungen</option>
+              <option>Mitgliedschaft</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="feld">
+          <label for="k-nachricht">Nachricht</label>
+          <textarea id="k-nachricht" name="nachricht" rows="4"
+                    placeholder="Deine Nachricht an uns" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-blau btn-absenden">
+          Nachricht senden
+          <svg class="ico ico-sm" aria-hidden="true"><use href="#i-pfeil-rechts"></use></svg>
+        </button>
+      </form>
     </div>
 
-    <div class="kontakt-grid">
+    <div class="kontakt-daten">
       <div class="kontakt-karte">
         <h3>Gemeinde-Informationen</h3>
 
@@ -388,9 +439,11 @@
             Jeden Sonntag, 10:00 Uhr
           </div>
         </div>
+      </div>
 
-        <div class="leitung-liste" id="leitung">
-          <h4>Gemeindeleitung</h4>
+      <div class="kontakt-karte" id="leitung">
+        <h3>Gemeindeleitung</h3>
+        <div class="leitung-liste" style="margin-top: 0; padding-top: 0; border-top: none;">
           <div class="person">
             <span class="person-avatar" aria-hidden="true">TE</span>
             <div class="person-info">
@@ -414,37 +467,8 @@
           </div>
         </div>
       </div>
-
-      <div class="kontakt-karte">
-        <h3>Nachricht senden</h3>
-        <form class="kontakt-form" action="#" method="post">
-          <div class="feld">
-            <label for="k-name">Name</label>
-            <input type="text" id="k-name" name="name" autocomplete="name" required />
-          </div>
-          <div class="feld">
-            <label for="k-mail">E-Mail</label>
-            <input type="email" id="k-mail" name="email" autocomplete="email" required />
-            <span class="hilfe">Damit wir dir antworten können.</span>
-          </div>
-          <div class="feld">
-            <label for="k-betreff">Betreff</label>
-            <select id="k-betreff" name="betreff">
-              <option>Allgemeine Anfrage</option>
-              <option>Besuch und Anfahrt</option>
-              <option>Gruppen und Kreise</option>
-              <option>Veranstaltungen</option>
-              <option>Mitgliedschaft</option>
-            </select>
-          </div>
-          <div class="feld">
-            <label for="k-nachricht">Nachricht</label>
-            <textarea id="k-nachricht" name="nachricht" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-blau">Nachricht senden</button>
-        </form>
-      </div>
     </div>
+
   </div>
 </section>
 

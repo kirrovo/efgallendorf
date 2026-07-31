@@ -17,7 +17,7 @@ get_template_part( 'template-parts/page-hero', null, array(
 
 <section class="section">
 	<div class="section-inner">
-		<?php get_template_part( 'template-parts/kontakt' ); ?>
+		<?php get_template_part( 'template-parts/kontakt', null, array( 'kopf' => false ) ); ?>
 	</div>
 </section>
 

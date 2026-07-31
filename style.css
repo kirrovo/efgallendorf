@@ -785,33 +785,96 @@ a.predigt-row:hover .predigt-play { background: var(--blau); border-color: var(-
 .person-info a { color: var(--akzent); }
 .person-info a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-/* Formular */
+/* ─── Kontaktformular ────────────────────────────────
+   Formularspalte mittig, Eingabefelder als Pillen mit Icon,
+   Absenden über die volle Breite. Innerhalb des Formulars gilt
+   bewusst eine eigene Radienregel: Ein- und Ausgabefelder sowie
+   der Button sind Pillen, das Textfeld nutzt den Kartenradius.
+*/
+.kontakt-block {
+  max-width: 520px;
+  margin: 0 auto 56px;
+  text-align: center;
+}
+.kontakt-block .eyebrow {
+  display: inline-block;
+  background: var(--flaeche-3); color: var(--akzent);
+  border-radius: var(--r-pille);
+  padding: 4px 14px;
+  font-size: .88rem; font-weight: 650;
+  margin-bottom: 16px;
+}
+.kontakt-block h2 { margin-bottom: 12px; }
+.kontakt-block > p { color: var(--text-leise); margin-bottom: 36px; }
+.kontakt-block > p a { color: var(--akzent); font-weight: 600; }
+.kontakt-block > p a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.kontakt-form { text-align: left; }
 .kontakt-form .feld { margin-bottom: 18px; }
 .kontakt-form label {
-  display: block; margin-bottom: 6px;
+  display: block; margin-bottom: 8px;
   font-size: .95rem; font-weight: 600;
 }
-.kontakt-form input,
-.kontakt-form select,
-.kontakt-form textarea {
-  width: 100%;
-  padding: 12px 14px;
+
+/* Feld mit vorangestelltem Icon */
+.feld-icon {
+  display: flex; align-items: center; gap: 4px;
+  height: 48px;
+  padding-left: 16px;
   background: var(--flaeche);
   border: 1px solid var(--linie-stark);
-  border-radius: var(--r-feld);
-  font-size: 1rem;
+  border-radius: var(--r-pille);
+  overflow: hidden;
   transition: border-color .15s, box-shadow .15s;
 }
-.kontakt-form input:focus,
-.kontakt-form select:focus,
+.feld-icon .ico { color: var(--text-leise); flex-shrink: 0; }
+.feld-icon:focus-within {
+  border-color: var(--akzent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--akzent) 22%, transparent);
+}
+.feld-icon:focus-within .ico { color: var(--akzent); }
+.feld-icon input,
+.feld-icon select {
+  height: 100%; width: 100%;
+  padding: 0 16px 0 10px;
+  border: none; background: transparent;
+  font-size: 1rem;
+  outline: none;
+}
+
+.kontakt-form textarea {
+  width: 100%;
+  min-height: 130px;
+  padding: 14px 16px;
+  background: var(--flaeche);
+  border: 1px solid var(--linie-stark);
+  border-radius: var(--r-karte);
+  font-size: 1rem;
+  resize: vertical;
+  transition: border-color .15s, box-shadow .15s;
+}
 .kontakt-form textarea:focus {
   outline: none;
   border-color: var(--akzent);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--akzent) 22%, transparent);
 }
-.kontakt-form textarea { min-height: 130px; resize: vertical; }
-.kontakt-form .hilfe { display: block; margin-top: 6px; font-size: .88rem; color: var(--text-leise); }
-.kontakt-form .btn-blau { width: 100%; }
+.kontakt-form .hilfe { display: block; margin-top: 8px; font-size: .88rem; color: var(--text-leise); }
+
+.kontakt-form .btn-absenden {
+  width: 100%;
+  margin-top: 10px;
+  border-radius: var(--r-pille);
+  padding: 14px 24px;
+}
+.kontakt-form .btn-absenden .ico { transition: transform .2s; }
+.kontakt-form .btn-absenden:hover .ico { transform: translateX(3px); }
+
+/* Kontaktdaten unter dem Formular */
+.kontakt-daten {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  max-width: var(--breite); margin: 0 auto;
+}
+@media (max-width: 860px) { .kontakt-daten { grid-template-columns: 1fr; } }
 
 /* ─── Breadcrumb & Seitenkopf (Unterseiten) ──────── */
 .breadcrumb { border-bottom: 1px solid var(--linie); background: var(--flaeche); }

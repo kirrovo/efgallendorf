@@ -62,6 +62,7 @@ function efga_icon_namen() {
 		'haus'      => 'Haus (Hauskreise)',
 		'herz'      => 'Herz (Gebet, Leitbild)',
 		'personen'  => 'Personen (Gruppen, Leitung)',
+		'person'    => 'Einzelperson (Formular)',
 		'tasse'     => 'Tasse (Frühstück, Kaffee)',
 		'sonne'     => 'Sonne (Senioren)',
 		'note'      => 'Note (Kindergottesdienst, Musik)',
