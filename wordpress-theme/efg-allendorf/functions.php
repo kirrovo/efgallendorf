@@ -257,6 +257,7 @@ function efga_gruppe_meta_cb( $post ) {
 	efga_field( $post->ID, 'efga_audience', 'Für wen', 'Alle Erwachsenen' );
 	efga_field( $post->ID, 'efga_hero_subtitle', 'Hero-Untertitel', 'Kurzbeschreibung im Seitenkopf' );
 	efga_field( $post->ID, 'efga_short', 'Kurztext (für Karte)', 'Eine Zeile für die Übersicht' );
+	efga_field( $post->ID, 'efga_bild_alt', 'Bildbeschreibung (Alt-Text)', 'Was ist auf dem Bild zu sehen?', 'Für Screenreader und Suchmaschinen. Leer lassen übernimmt den Titel.' );
 	echo '</div><hr><strong>Ansprechperson</strong>';
 	echo '<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 24px;margin-top:8px;">';
 	efga_field( $post->ID, 'efga_leader_name', 'Name', 'Simon Droß' );
@@ -282,7 +283,7 @@ function efga_save_meta( $post_id ) {
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) { return; }
 	if ( ! current_user_can( 'edit_post', $post_id ) ) { return; }
 
-	$gruppe_keys = array( 'efga_icon', 'efga_bereich', 'efga_badge', 'efga_schedule', 'efga_location', 'efga_audience', 'efga_hero_subtitle', 'efga_short', 'efga_leader_name', 'efga_leader_initials', 'efga_leader_phone', 'efga_leader_email' );
+	$gruppe_keys = array( 'efga_icon', 'efga_bereich', 'efga_badge', 'efga_schedule', 'efga_location', 'efga_audience', 'efga_hero_subtitle', 'efga_short', 'efga_bild_alt', 'efga_leader_name', 'efga_leader_initials', 'efga_leader_phone', 'efga_leader_email' );
 	if ( isset( $_POST['efga_gruppe_nonce'] ) && wp_verify_nonce( $_POST['efga_gruppe_nonce'], 'efga_gruppe_meta' ) ) {
 		foreach ( $gruppe_keys as $k ) {
 			if ( isset( $_POST[ $k ] ) ) {

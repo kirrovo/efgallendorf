@@ -32,7 +32,32 @@ while ( have_posts() ) :
 			array( 'label' => get_the_title() ),
 		),
 	) );
+
+	/*
+	 * Stimmungsbild: Beitragsbild der Gruppe hat Vorrang. Ist keins gesetzt,
+	 * greift das mitgelieferte Stockfoto aus assets/img/angebote/<slug>.jpg.
+	 * Die Bilder liegen lokal im Theme, es wird nichts von Pexels nachgeladen.
+	 */
+	$bild_alt  = efga_get( 'efga_bild_alt', get_the_title() );
+	$fallback  = get_template_directory() . '/assets/img/angebote/' . get_post_field( 'post_name' ) . '.jpg';
+	$fallback_url = get_template_directory_uri() . '/assets/img/angebote/' . get_post_field( 'post_name' ) . '.jpg';
 	?>
+
+	<?php if ( has_post_thumbnail() || file_exists( $fallback ) ) : ?>
+	<div class="angebot-bild">
+		<?php
+		if ( has_post_thumbnail() ) {
+			the_post_thumbnail( 'large', array( 'loading' => 'lazy', 'alt' => esc_attr( $bild_alt ) ) );
+		} else {
+			printf(
+				'<img src="%s" width="1400" height="790" loading="lazy" alt="%s" />',
+				esc_url( $fallback_url ),
+				esc_attr( $bild_alt )
+			);
+		}
+		?>
+	</div>
+	<?php endif; ?>
 
 	<section class="section">
 		<div class="section-inner">

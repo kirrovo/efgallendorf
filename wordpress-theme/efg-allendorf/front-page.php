@@ -15,33 +15,48 @@ $kal_url     = ( $p = get_page_by_path( 'kalender' ) ) ? get_permalink( $p ) : '
 ?>
 
 <!-- ══════════════════ HERO ══════════════════════════ -->
+<?php
+$gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_permalink( $p ) : '#veranstaltungen';
+?>
 <section class="hero">
-	<div class="hero-grid">
-		<div class="hero-copy">
-			<h1><?php echo esc_html( get_bloginfo( 'name' ) ?: 'Evangelische Freie Gemeinde Allendorf' ); ?></h1>
-			<p class="lead">Wir sind eine christliche Gemeinschaft in Allendorf. Menschen verschiedener Generationen, verbunden durch den Glauben.</p>
-			<div class="hero-ctas">
-				<a href="#veranstaltungen" class="btn btn-blau">Nächste Veranstaltungen</a>
-				<a href="<?php echo esc_url( $wer_url ); ?>" class="btn btn-sekundaer">Wer wir sind</a>
-			</div>
+	<div class="hero-inner hero-auftritt">
+		<a href="<?php echo esc_url( $gd_url ); ?>" class="hero-pille">
+			<span>Gottesdienst sonntags um 10:00 Uhr</span>
+			<span class="hero-pille-trenner" aria-hidden="true"></span>
+			<span class="hero-pille-kreis" aria-hidden="true">
+				<span class="hero-pille-spur">
+					<span><?php efga_ico( 'pfeil-rechts' ); ?></span>
+					<span><?php efga_ico( 'pfeil-rechts' ); ?></span>
+				</span>
+			</span>
+		</a>
+
+		<h1><?php echo esc_html( get_bloginfo( 'name' ) ?: 'Evangelische Freie Gemeinde Allendorf' ); ?></h1>
+
+		<p class="lead">Eine christliche Gemeinschaft in Allendorf. Menschen verschiedener Generationen, verbunden durch den Glauben.</p>
+
+		<div class="hero-ctas">
+			<a href="#veranstaltungen" class="btn btn-blau">Nächste Veranstaltungen</a>
+			<a href="<?php echo esc_url( $wer_url ); ?>" class="btn btn-sekundaer">Wer wir sind</a>
 		</div>
-		<div class="hero-media">
-			<?php
-			// Beitragsbild der Startseite nutzen, sonst das mitgelieferte Gemeindefoto.
-			if ( has_post_thumbnail() ) {
-				the_post_thumbnail( 'large', array(
-					'fetchpriority' => 'high',
-					'alt'           => 'Die Gemeinde Allendorf beim gemeinsamen Gottesdienst',
-				) );
-			} else {
-				printf(
-					'<img src="%s" width="1200" height="900" fetchpriority="high" alt="%s" />',
-					esc_url( get_template_directory_uri() . '/assets/img/gemeinde.jpg' ),
-					esc_attr( 'Die Gemeinde Allendorf beim gemeinsamen Gottesdienst' )
-				);
-			}
-			?>
-		</div>
+	</div>
+
+	<div class="hero-rahmen">
+		<?php
+		// Beitragsbild der Startseite nutzen, sonst das mitgelieferte Gemeindefoto.
+		if ( has_post_thumbnail() ) {
+			the_post_thumbnail( 'full', array(
+				'fetchpriority' => 'high',
+				'alt'           => 'Menschen der Gemeinde Allendorf beim gemeinsamen Gruppenfoto',
+			) );
+		} else {
+			printf(
+				'<img src="%s" width="1200" height="675" fetchpriority="high" alt="%s" />',
+				esc_url( get_template_directory_uri() . '/assets/img/gemeinde.jpg' ),
+				esc_attr( 'Menschen der Gemeinde Allendorf beim gemeinsamen Gruppenfoto' )
+			);
+		}
+		?>
 	</div>
 </section>
 

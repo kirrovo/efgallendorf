@@ -17,7 +17,7 @@ function efga_seed_content() {
 	$gruppen = array(
 		array(
 			'title'    => 'Gottesdienst',
-			'slug'     => 'gottesdienst',
+			'slug'     => 'gottesdienst', 'bild_alt' => 'Leere Holzstühle in einem hellen Gemeindesaal',
 			'short'    => 'Das Herzstück unseres Gemeindelebens: Lieder, Gebet und Gottes Wort. Einmal im Monat mit Abendmahl.',
 			'content'  => '<p>Der wöchentliche Gottesdienst ist das Herzstück unseres Gemeindelebens. Hier kommen wir als Glaubensgeschwister zusammen, um gemeinsam zur Ruhe zu kommen, auf Gottes Wort zu hören und ihm in Form von Liedern und Gebeten zu antworten und ihn anzubeten.</p>
 
@@ -32,7 +32,7 @@ function efga_seed_content() {
 		),
 		array(
 			'title'    => 'Hauskreise',
-			'slug'     => 'hauskreise',
+			'slug'     => 'hauskreise', 'bild_alt' => 'Menschen sitzen abends bei Kerzenlicht um einen Esstisch',
 			'short'    => 'Bunt gemischte Kleingruppen unter der Woche. Leben teilen, Nachfolge leben, im Glauben wachsen.',
 			'content'  => '<p>Unsere Hauskreise sind verschiedene, bunt gemischte Kleingruppen, die sich regelmäßig unter der Woche treffen. Im Vordergrund steht der persönliche Austausch, ob über den normalen Alltag, über Glaubensfragen oder persönliche Anliegen.</p>
 
@@ -47,7 +47,7 @@ function efga_seed_content() {
 		),
 		array(
 			'title'    => 'GLV: Glauben, Leben, Verstehen',
-			'slug'     => 'glv',
+			'slug'     => 'glv', 'bild_alt' => 'Hände machen Notizen neben aufgeschlagenen Büchern und einer Tasse Kaffee',
 			'short'    => 'Alle vierzehn Tage denken wir über Glaubensfragen nach, mit Raum für Diskussion und Austausch.',
 			'content'  => '<p>Als gesamte Gemeinde treffen wir uns neben dem Gottesdienst alle vierzehn Tage zur GLV, um über verschiedene Glaubensfragen intensiv nachzudenken und unseren Glauben aktiv zu leben. Gemeinsam wollen wir Glauben leben und verstehen.</p>
 
@@ -62,7 +62,7 @@ function efga_seed_content() {
 		),
 		array(
 			'title'    => 'Bibelstunde',
-			'slug'     => 'bibelstunde',
+			'slug'     => 'bibelstunde', 'bild_alt' => 'Aufgeschlagene Bibel mit lesbaren Textseiten',
 			'short'    => 'Gemeinsam singen, in der Bibel lesen und die Botschaft in den Alltag übertragen.',
 			'content'  => '<p>Die Bibelstunde trifft sich regelmäßig, um gemeinsam zu singen, in der Bibel zu lesen und sich zusammen über das Wort Gottes auszutauschen.</p>
 
@@ -78,7 +78,7 @@ function efga_seed_content() {
 		),
 		array(
 			'title'    => 'Seniorenarbeit',
-			'slug'     => 'seniorenarbeit',
+			'slug'     => 'seniorenarbeit', 'bild_alt' => 'Mehrere Hände unterschiedlicher Generationen liegen übereinander',
 			'short'    => 'Besuchsdienst und Seniorenkaffee mit Andacht, Gemeinschaft und Begleitung im Alltag.',
 			'content'  => '<p>Die Seniorenarbeit bietet neben dem Besuchsdienst mit dem Seniorenkaffee dreimal im Jahr einen vielfältigen Treffpunkt für Menschen im und um das Ruhestandsalter an.</p>
 
@@ -94,7 +94,7 @@ function efga_seed_content() {
 		),
 		array(
 			'title'    => 'Kaffee und Müsli',
-			'slug'     => 'kaffee-und-muesli',
+			'slug'     => 'kaffee-und-muesli', 'bild_alt' => 'Müslischale mit Beeren, Kaffee und Blüten auf einem hellen Tisch',
 			'short'    => 'Das Frauenfrühstück der Gemeinde, mit Lobpreis, biblischem Impuls und persönlichem Austausch.',
 			'content'  => '<p>Kaffee und Müsli ist ein regelmäßiges Frauenfrühstück für Frauen der Gemeinde. In gemütlicher Atmosphäre genießen wir gemeinsam ein Frühstück und haben Zeit für Lobpreis, einen biblischen Impuls, Gebet und persönlichen Austausch.</p>
 
@@ -109,7 +109,7 @@ function efga_seed_content() {
 		),
 		array(
 			'title'    => 'Frauengebetskreis',
-			'slug'     => 'frauengebetskreis',
+			'slug'     => 'frauengebetskreis', 'bild_alt' => 'Gefaltete Hände auf einem hellen Tisch',
 			'short'    => 'Wir beten für Anliegen von Gemeinde und Mission, singen, lesen in der Bibel und tauschen uns aus.',
 			'content'  => '<p>Der Name ist Programm. Wir treffen uns als Frauen der Gemeinde, um für Anliegen von Gemeinde und Mission zu beten, getreu Philipper 4,6: „Bringt alle eure Anliegen im Gebet mit Bitte und Danksagung vor Gott.“</p>
 
@@ -122,7 +122,7 @@ function efga_seed_content() {
 		),
 		array(
 			'title'    => 'Männertreffen',
-			'slug'     => 'maennertreffen',
+			'slug'     => 'maennertreffen', 'bild_alt' => 'Lagerfeuer im Wald bei Tageslicht',
 			'short'    => 'Mehrmals im Jahr: gutes Essen, Sport, Gespräche und Themen, die uns als Männer betreffen.',
 			'content'  => '<p>Als Männer der Gemeinde wollen wir in allen Altersstufen miteinander verbunden sein. Dazu treffen wir uns mehrmals im Jahr, um bei ungezwungenem Zusammensein, gutem Essen, Sport sowie Gesprächen und Diskussionen echte Männergemeinschaft zu erleben.</p>
 
@@ -140,7 +140,7 @@ function efga_seed_content() {
 		),
 		array(
 			'title'    => 'Crossroad',
-			'slug'     => 'crossroad',
+			'slug'     => 'crossroad', 'bild_alt' => 'Zwei Jugendliche sitzen bei Sonnenuntergang auf einer Mauer',
 			'short'    => 'Unser Teen- und Jugendkreis. Alltag teilen, Freundschaft leben, über Gott nachdenken.',
 			'content'  => '<p>Der Crossroad ist unser wöchentlicher Teen- und Jugendkreis. Hier geht es um echte Gemeinschaft unter jungen Menschen, ob bei lockerem Zusammensein, bei Spiel und Spaß oder verschiedenen Aktionen. Wir wollen unseren Alltag miteinander teilen und echte Freundschaften leben.</p>
 
@@ -155,7 +155,7 @@ function efga_seed_content() {
 		),
 		array(
 			'title'    => 'Wilde Füchse: Jungschar',
-			'slug'     => 'wilde-fuechse',
+			'slug'     => 'wilde-fuechse', 'bild_alt' => 'Zwei Kinder mit Rucksäcken laufen über einen Waldweg',
 			'short'    => 'Musik, Spiele, Ausflüge und biblische Geschichten. Jährliches Highlight ist die Kinderfreizeit.',
 			'content'  => '<p>Wir sind Kinder, die in die 4. bis 7. Klasse gehen. Jeden Dienstag treffen wir uns, um gemeinsam Musik zu machen, zu singen, uns zu bewegen, zu spielen, gemeinsam zu essen, Ausflüge zu machen und jede Menge Spaß zu haben.</p>
 
@@ -173,7 +173,7 @@ function efga_seed_content() {
 		),
 		array(
 			'title'    => 'Knallerbsen: Jungschar',
-			'slug'     => 'knallerbsen',
+			'slug'     => 'knallerbsen', 'bild_alt' => 'Kinderhände malen mit Wachsmalstiften ein Bild',
 			'short'    => 'Spannende Geschichten aus der Bibel, singen, spielen, basteln und backen.',
 			'content'  => '<p>Die Knallerbsen sind eine Jungschargruppe für Kinder ab 5 Jahren. Jede Woche hören wir spannende Geschichten aus der Bibel und entdecken darin, wie sehr Gott uns liebt.</p>
 
@@ -188,7 +188,7 @@ function efga_seed_content() {
 		),
 		array(
 			'title'    => 'Kindergottesdienst',
-			'slug'     => 'kindergottesdienst',
+			'slug'     => 'kindergottesdienst', 'bild_alt' => 'Kind malt mit einem Pinsel auf einem Blatt Papier',
 			'short'    => 'Fröhliche Lieder, Geschichten aus der Bibel und ein erlebnisreiches Bastel- und Spieleprogramm.',
 			'content'  => '<p>Wir sind eine bunt gemischte Gruppe, die gemeinsam wertvolle Zeit verbringt.</p>
 
@@ -204,7 +204,7 @@ function efga_seed_content() {
 		),
 		array(
 			'title'    => 'Biblischer Unterricht',
-			'slug'     => 'biblischer-unterricht',
+			'slug'     => 'biblischer-unterricht', 'bild_alt' => 'Aufgeschlagenes Buch mit Notizheften und Stiften auf einem Tisch',
 			'short'    => 'Eineinhalb Jahre in fester Gruppe auf der Suche: Was ist die Bibel? Wer ist Gott?',
 			'content'  => '<p>Im biblischen Unterricht treffen wir uns für eineinhalb Jahre in einer festen Gruppe, um gemeinsam auf die Suche zu gehen: Was ist die Bibel? Wer ist Gott? Wer sind wir Menschen? Warum gibt es die Gemeinde?</p>
 
@@ -253,6 +253,7 @@ function efga_seed_content() {
 			update_post_meta( $id, 'efga_audience', $g['audience'] );
 			update_post_meta( $id, 'efga_hero_subtitle', $g['subtitle'] );
 			update_post_meta( $id, 'efga_short', $g['short'] );
+			if ( ! empty( $g['bild_alt'] ) ) { update_post_meta( $id, 'efga_bild_alt', $g['bild_alt'] ); }
 			update_post_meta( $id, 'efga_leader_name', $g['name'] );
 			update_post_meta( $id, 'efga_leader_initials', $g['initials'] );
 			update_post_meta( $id, 'efga_leader_phone', $g['phone'] );

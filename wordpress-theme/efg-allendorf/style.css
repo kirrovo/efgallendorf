@@ -302,35 +302,140 @@ nav ul.primary-menu li.nav-intern a:hover { background: var(--blau-hell); color:
   .section { padding: 56px 20px; }
 }
 
-/* ─── Startseite: Hero (asymmetrisch, echtes Bild) ─ */
+/* ─── Startseite: Hero (mittig, gerahmtes Bild darunter) ─
+   Aufbau nach dem gewünschten Vorbild: Ankündigungs-Pille, große
+   Headline, Unterzeile, zwei CTAs, gerahmtes Bild. Umgesetzt in
+   nativem CSS, weil das Projekt keinen Build-Schritt hat.
+*/
 .hero {
-  background: var(--flaeche-2);
-  border-bottom: 1px solid var(--linie);
-  padding: 64px 24px 72px;
-}
-.hero-grid {
-  max-width: var(--breite); margin: 0 auto;
-  display: grid; grid-template-columns: 1.05fr .95fr;
-  gap: 56px; align-items: center;
-}
-.hero-copy h1 { margin-bottom: 18px; }
-.hero-copy .lead { margin-bottom: 28px; }
-.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
-
-.hero-media {
   position: relative;
-  border-radius: var(--r-karte);
   overflow: hidden;
-  box-shadow: var(--schatten-hoch);
-  background: var(--flaeche-3);
+  padding: 72px 24px 0;
+  background: var(--flaeche);
+  border-bottom: 1px solid var(--linie);
 }
-.hero-media img { width: 100%; height: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+
+/* Weicher Lichtschein hinter dem Textblock, ersetzt die radialen Blobs */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: -20% 0 auto;
+  height: 620px;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 55% at 50% 30%, color-mix(in srgb, var(--blau) 12%, transparent) 0%, transparent 70%),
+    radial-gradient(40% 40% at 78% 12%, color-mix(in srgb, var(--blau) 7%, transparent) 0%, transparent 70%);
+}
+
+.hero-inner {
+  position: relative;
+  max-width: 880px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Ankündigungs-Pille mit wanderndem Pfeil */
+.hero-pille {
+  display: inline-flex; align-items: center; gap: 14px;
+  padding: 5px 6px 5px 18px;
+  margin-bottom: 28px;
+  background: var(--flaeche);
+  border: 1px solid var(--linie-stark);
+  border-radius: var(--r-pille);
+  box-shadow: var(--schatten);
+  font-size: .95rem; font-weight: 500;
+  color: var(--text);
+  transition: border-color .2s, box-shadow .2s;
+}
+.hero-pille:hover { border-color: var(--akzent); box-shadow: var(--schatten-hoch); }
+.hero-pille-trenner {
+  width: 1px; height: 18px;
+  background: var(--linie-stark);
+}
+.hero-pille-kreis {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--flaeche-3);
+  color: var(--akzent);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.hero-pille-spur {
+  display: flex; width: 52px;
+  transform: translateX(-50%);
+  transition: transform .5s ease-in-out;
+}
+.hero-pille:hover .hero-pille-spur { transform: translateX(0); }
+.hero-pille-spur span {
+  width: 26px; height: 26px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.hero-pille-spur .ico { width: 15px; height: 15px; }
+
+.hero-inner h1 {
+  font-size: clamp(2.4rem, 1.3rem + 4.4vw, 4.4rem);
+  line-height: 1.05;
+  max-width: 16ch;
+  margin: 0 auto 22px;
+}
+.hero-inner .lead {
+  max-width: 46ch;
+  margin: 0 auto 34px;
+  font-size: clamp(1.1rem, 1rem + .5vw, 1.25rem);
+}
+.hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.hero-ctas .btn { padding: 14px 28px; }
+
+/* Gerahmtes Bild unter dem Text */
+.hero-rahmen {
+  position: relative;
+  max-width: 1000px;
+  margin: 56px auto 0;
+  padding: 10px;
+  background: var(--flaeche);
+  border: 1px solid var(--linie);
+  border-radius: 22px;
+  box-shadow: var(--schatten-hoch);
+}
+.hero-rahmen img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+}
+/* Bild läuft nach unten weich in die nächste Sektion aus */
+.hero-rahmen::after {
+  content: '';
+  position: absolute; inset: auto 0 0 0;
+  height: 42%;
+  border-radius: 0 0 22px 22px;
+  background: linear-gradient(to bottom, transparent 0%, var(--flaeche) 92%);
+  pointer-events: none;
+}
 
 @media (max-width: 900px) {
-  .hero { padding: 44px 20px 48px; }
-  .hero-grid { grid-template-columns: 1fr; gap: 32px; }
-  .hero-media { order: -1; }
-  .hero-media img { aspect-ratio: 16 / 10; }
+  .hero { padding: 44px 20px 0; }
+  .hero-pille { font-size: .88rem; padding-left: 14px; gap: 10px; }
+  .hero-rahmen { margin-top: 36px; padding: 7px; border-radius: 18px; }
+  .hero-rahmen img { aspect-ratio: 4 / 3; border-radius: 12px; }
+}
+
+/* Gestaffeltes Einblenden, ersetzt AnimatedGroup */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-auftritt > * {
+    animation: hero-rein .9s cubic-bezier(.16, 1, .3, 1) both;
+  }
+  .hero-auftritt > *:nth-child(1) { animation-delay: .05s; }
+  .hero-auftritt > *:nth-child(2) { animation-delay: .15s; }
+  .hero-auftritt > *:nth-child(3) { animation-delay: .25s; }
+  .hero-auftritt > *:nth-child(4) { animation-delay: .35s; }
+  .hero-rahmen { animation: hero-rein 1.1s cubic-bezier(.16, 1, .3, 1) .45s both; }
+}
+@keyframes hero-rein {
+  from { opacity: 0; transform: translateY(14px); filter: blur(8px); }
+  to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
 }
 
 /* ─── Besuchsinfo-Leiste ─────────────────────────── */
@@ -504,7 +609,7 @@ a.karte:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
 
 /* ─── Wochenrhythmus ─────────────────────────────── */
 .woche-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
   margin-bottom: 28px;
 }
 @media (max-width: 900px) { .woche-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -731,6 +836,28 @@ a.predigt-row:hover .predigt-play { background: var(--blau); border-color: var(-
 @media (max-width: 700px) {
   .page-hero { padding: 36px 20px 40px; }
 }
+
+/* ─── Stimmungsbild auf Angebotsseiten ───────────── */
+.angebot-bild {
+  max-width: var(--breite);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.angebot-bild img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--r-karte);
+  margin-top: -40px;            /* schiebt das Bild leicht in den Seitenkopf */
+  box-shadow: var(--schatten-hoch);
+}
+@media (max-width: 700px) {
+  .angebot-bild { padding: 0 20px; }
+  .angebot-bild img { margin-top: -24px; aspect-ratio: 3 / 2; }
+}
+
+/* Der Abschnitt darunter braucht dann weniger Luft nach oben. */
+.angebot-bild + .section { padding-top: 48px; }
 
 /* ─── Detailseiten (Gruppen) ─────────────────────── */
 .detail-grid {
