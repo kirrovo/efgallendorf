@@ -10,7 +10,7 @@ get_header();
 get_template_part( 'template-parts/page-hero', null, array(
 	'title'    => 'Gemeinde-Kalender',
 	'subtitle' => 'Alle Termine der Gemeinde übersichtlich im Kalender.',
-	'badge'    => '📅 Termine',
+	'badge'    => 'Termine',
 	'crumbs'   => array( array( 'label' => 'Kalender' ) ),
 ) );
 ?>

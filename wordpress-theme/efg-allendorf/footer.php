@@ -21,19 +21,21 @@ $kal_url     = $kal ? get_permalink( $kal ) : '#';
 $gruppen_url = get_post_type_archive_link( 'gruppe' );
 ?>
 
+</main>
+
 <footer id="site-footer">
 	<div class="footer-inner">
 		<div class="footer-grid">
 			<div class="footer-brand">
 				<strong><?php echo esc_html( get_bloginfo( 'name' ) ?: 'Evangelische Freie Gemeinde Allendorf' ); ?></strong>
-				<p>Eine Gemeinschaft von Menschen, die Gott suchen und füreinander da sind – in Allendorf und Umgebung.</p>
+				<p>Eine Gemeinschaft von Menschen, die Gott suchen und füreinander da sind, in Allendorf und Umgebung.</p>
 			</div>
 			<div class="footer-col">
 				<h4>Gemeinde</h4>
 				<a href="<?php echo esc_url( $wer_url ); ?>">Wer wir sind</a>
-				<a href="<?php echo esc_url( $wer_url ); ?>">Glaubensbekenntnis</a>
-				<a href="<?php echo esc_url( $wer_url ); ?>">Leitbild</a>
-				<a href="<?php echo esc_url( $wer_url ); ?>">Chronik</a>
+				<a href="<?php echo esc_url( $wer_url ); ?>#glaube">Glaubensbekenntnis</a>
+				<a href="<?php echo esc_url( $wer_url ); ?>#leitbild">Leitbild</a>
+				<a href="<?php echo esc_url( $wer_url ); ?>#chronik">Chronik</a>
 			</div>
 			<div class="footer-col">
 				<h4>Angebote</h4>

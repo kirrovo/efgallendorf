@@ -10,7 +10,7 @@ get_header();
 get_template_part( 'template-parts/page-hero', null, array(
 	'title'    => 'Impressum',
 	'subtitle' => 'Internetauftritt der Evangelischen Freien Gemeinde Allendorf',
-	'badge'    => '⚖️ Rechtliches',
+	'badge'    => 'Rechtliches',
 	'crumbs'   => array( array( 'label' => 'Impressum' ) ),
 ) );
 ?>

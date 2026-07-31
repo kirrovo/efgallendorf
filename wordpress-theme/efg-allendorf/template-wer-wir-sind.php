@@ -9,8 +9,8 @@ get_header();
 
 get_template_part( 'template-parts/page-hero', null, array(
 	'title'    => 'Wer wir sind',
-	'subtitle' => 'Eine Gemeinschaft von Menschen, die nach Gott fragen – seit 1884 in Allendorf.',
-	'badge'    => '🏠 Unsere Gemeinde',
+	'subtitle' => 'Eine Gemeinschaft von Menschen, die nach Gott fragen, seit 1884 in Allendorf.',
+	'badge'    => 'Unsere Gemeinde',
 	'crumbs'   => array( array( 'label' => 'Wer wir sind' ) ),
 ) );
 
@@ -36,7 +36,7 @@ $photo = get_template_directory_uri() . '/assets/img/gemeinde.jpg';
 		</div>
 
 		<div class="wws-glauben">
-			<h2>✝ Wir glauben …</h2>
+			<h2><?php efga_ico( 'buch' ); ?> Wir glauben</h2>
 			<ul>
 				<li>dass die Bibel Gottes Wort ist</li>
 				<li>dass die Erde Gottes Schöpfung ist</li>
@@ -56,7 +56,7 @@ $photo = get_template_directory_uri() . '/assets/img/gemeinde.jpg';
 
 		<div class="wws-sections">
 			<div class="wws-card">
-				<h2><span class="icon">🤝</span>Wir möchten …</h2>
+				<h2><?php efga_ico( 'herz' ); ?>Wir möchten …</h2>
 				<ul>
 					<li>dass alle Menschen durch Jesus Christus Versöhnung mit Gott finden</li>
 					<li>Gott anbeten</li>
@@ -66,7 +66,7 @@ $photo = get_template_directory_uri() . '/assets/img/gemeinde.jpg';
 				</ul>
 			</div>
 			<div class="wws-card">
-				<h2><span class="icon">🙏</span>Wir treffen uns …</h2>
+				<h2><?php efga_ico( 'personen' ); ?>Wir treffen uns …</h2>
 				<ul>
 					<li>um Gott in gemeinsamen Liedern und Gebeten zu loben</li>
 					<li>um mit Gott im Gebet auch über unsere Alltagssorgen zu sprechen</li>
@@ -79,7 +79,7 @@ $photo = get_template_directory_uri() . '/assets/img/gemeinde.jpg';
 		</div>
 
 		<div class="wws-card" style="margin-bottom: 0;">
-			<h2><span class="icon">📍</span>Wir kommen zusammen in …</h2>
+			<h2><?php efga_ico( 'ort' ); ?>Wir kommen zusammen in …</h2>
 			<ul style="columns: 2; column-gap: 32px;">
 				<li>Gottesdiensten</li>
 				<li>Bibelgesprächskreisen</li>

@@ -10,7 +10,7 @@ get_header();
 get_template_part( 'template-parts/page-hero', null, array(
 	'title'    => 'Kontakt & Anfahrt',
 	'subtitle' => 'Wir freuen uns, von dir zu hören.',
-	'badge'    => '✉️ Kontakt',
+	'badge'    => 'Kontakt',
 	'crumbs'   => array( array( 'label' => 'Kontakt' ) ),
 ) );
 ?>

@@ -1,6 +1,6 @@
 <?php
 /**
- * 404 – Seite nicht gefunden.
+ * 404, Seite nicht gefunden.
  *
  * @package EFG_Allendorf
  */
@@ -17,8 +17,8 @@ get_template_part( 'template-parts/page-hero', null, array(
 
 <section class="section">
 	<div class="section-inner" style="text-align:center;">
-		<p style="color:var(--grau-mittel);margin-bottom:24px;">Vielleicht hilft dir die Startseite weiter?</p>
-		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn-blau">Zur Startseite →</a>
+		<p style="color:var(--text-leise);margin-bottom:24px;">Vielleicht hilft dir die Startseite weiter?</p>
+		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn btn-blau">Zur Startseite</a>
 	</div>
 </section>
 

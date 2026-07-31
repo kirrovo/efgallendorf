@@ -9,9 +9,8 @@ get_header();
 
 get_template_part( 'template-parts/page-hero', null, array(
 	'title'    => 'Interner Bereich',
-	'subtitle' => 'Formulare, Protokolle, Predigten-Archiv und mehr – nur für angemeldete Mitglieder.',
-	'badge'    => '🔒 Für Gemeindeglieder',
-	'gradient' => 'linear-gradient(135deg, #1a1a2e 0%, #1e4b8a 100%)',
+	'subtitle' => 'Formulare, Protokolle, Predigten-Archiv und mehr, nur für angemeldete Mitglieder.',
+	'badge'    => 'Für Gemeindeglieder',
 	'crumbs'   => array( array( 'label' => 'Interner Bereich' ) ),
 ) );
 ?>
@@ -28,15 +27,15 @@ get_template_part( 'template-parts/page-hero', null, array(
 					endwhile;
 				endif;
 				?>
-				<p style="text-align:center;margin-top:24px;"><a href="<?php echo esc_url( wp_logout_url( home_url() ) ); ?>" class="btn-blau">Abmelden</a></p>
+				<p style="text-align:center;margin-top:24px;"><a href="<?php echo esc_url( wp_logout_url( home_url() ) ); ?>" class="btn btn-blau">Abmelden</a></p>
 			</div>
 		<?php else : ?>
 			<div class="intern-banner">
-				<div class="intern-icon-big">🔒</div>
+				<?php efga_ico( 'schloss' ); ?>
 				<div class="intern-text">
 					<h3>Mitglieder-Login</h3>
 					<p>Im internen Bereich findest du Predigten-Archiv, Gemeindeformulare, Protokolle und passwortgeschützte Inhalte.</p>
-					<a href="<?php echo esc_url( wp_login_url( get_permalink() ) ); ?>" class="btn btn-white" style="width:fit-content;">Zum Login →</a>
+					<a href="<?php echo esc_url( wp_login_url( get_permalink() ) ); ?>" class="btn btn-blau">Zum Login</a>
 				</div>
 			</div>
 		<?php endif; ?>

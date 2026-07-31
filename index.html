@@ -2,222 +2,33 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="color-scheme" content="light" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Evangelische Freie Gemeinde Allendorf</title>
+  <meta name="description" content="Christliche Gemeinde in Greifenstein-Allendorf. Gottesdienst sonntags um 10:00 Uhr, Gruppen für jedes Alter, Predigten und Termine." />
   <link rel="stylesheet" href="style.css" />
-  <style>
-    /* ─── Nur für index.html ────────────────────────── */
-
-    /* Info-Bar */
-    .info-bar { background: var(--blau-sehr-hell); border-bottom: 1px solid #d0ddf0; }
-    .info-bar-inner {
-      max-width: 1160px; margin: 0 auto; padding: 14px 24px;
-      display: flex; align-items: center; justify-content: center;
-      gap: 40px; flex-wrap: wrap;
-    }
-    .info-item { display: flex; align-items: center; gap: 10px; font-size: .9rem; }
-    .info-icon {
-      width: 36px; height: 36px; background: var(--blau);
-      border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .info-icon svg { fill: #fff; }
-    .info-item strong { display: block; font-weight: 700; color: var(--blau); font-size: .88rem; }
-    .info-item span { font-size: .8rem; color: var(--grau-mittel); }
-
-    /* Hero */
-    .hero {
-      background: linear-gradient(135deg, var(--blau) 0%, #2d6cc0 60%, #4a90d9 100%);
-      color: #fff; padding: 80px 24px 90px;
-      text-align: center; position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
-    .hero-inner { position: relative; max-width: 700px; margin: 0 auto; }
-    .hero-badge {
-      display: inline-block; background: rgba(255,255,255,.18);
-      border: 1px solid rgba(255,255,255,.3); border-radius: 50px;
-      padding: 4px 16px; font-size: .8rem; letter-spacing: .05em;
-      text-transform: uppercase; font-weight: 600; margin-bottom: 20px;
-    }
-    .hero h1 {
-      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800;
-      line-height: 1.2; margin-bottom: 18px; letter-spacing: -.01em;
-    }
-    .hero p { font-size: 1.1rem; opacity: .88; max-width: 520px; margin: 0 auto 32px; }
-    .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-
-    /* Events */
-    .events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
-    .event-card {
-      background: #fff; border-radius: var(--radius); box-shadow: var(--shadow);
-      overflow: hidden; display: flex; flex-direction: column;
-      transition: transform .15s, box-shadow .15s;
-    }
-    .event-card:hover { transform: translateY(-3px); box-shadow: 0 10px 36px rgba(30,75,138,.14); }
-    .event-date-bar {
-      background: var(--blau); color: #fff;
-      padding: 12px 20px; display: flex; align-items: center; gap: 12px;
-    }
-    .event-date-box {
-      background: rgba(255,255,255,.18); border-radius: 6px;
-      padding: 4px 10px; text-align: center; line-height: 1.1; flex-shrink: 0;
-    }
-    .event-date-box .day { font-size: 1.4rem; font-weight: 800; }
-    .event-date-box .month { font-size: .7rem; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; opacity: .85; }
-    .event-title-bar { flex: 1; }
-    .event-title-bar strong { font-size: .95rem; font-weight: 700; }
-    .event-title-bar span { font-size: .78rem; opacity: .8; display: block; }
-    .event-body { padding: 18px 20px; flex: 1; display: flex; flex-direction: column; gap: 12px; }
-    .event-body p { font-size: .88rem; color: var(--text); }
-    .event-tag {
-      display: inline-block; background: var(--blau-sehr-hell); color: var(--blau);
-      font-size: .72rem; font-weight: 700; padding: 3px 10px; border-radius: 50px; letter-spacing: .03em;
-    }
-    .event-link {
-      font-size: .83rem; font-weight: 600; color: var(--blau-hell);
-      margin-top: auto; display: flex; align-items: center; gap: 4px;
-    }
-    .event-link:hover { color: var(--blau); }
-
-    /* Wer wir sind */
-    .wer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-    @media (max-width: 760px) { .wer-grid { grid-template-columns: 1fr; } }
-    .wer-text h2 {
-      font-size: clamp(1.4rem, 2.5vw, 1.9rem); font-weight: 800;
-      color: var(--blau); margin-bottom: 16px; letter-spacing: -.01em;
-    }
-    .wer-text p { color: var(--text); font-size: .95rem; margin-bottom: 14px; }
-    .wer-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .wer-card {
-      background: var(--blau-sehr-hell); border-radius: var(--radius);
-      padding: 20px 16px; border-left: 3px solid var(--blau);
-      text-decoration: none; display: block;
-      transition: box-shadow .18s, transform .18s;
-    }
-    .wer-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
-    .wer-card-icon { font-size: 1.4rem; margin-bottom: 8px; }
-    .wer-card h4 { font-size: .88rem; font-weight: 700; color: var(--blau); margin-bottom: 4px; }
-    .wer-card p { font-size: .8rem; color: var(--text); }
-
-    /* Predigten */
-    .predigten-list { display: flex; flex-direction: column; gap: 14px; max-width: 720px; margin: 0 auto; }
-    .predigt-row {
-      background: #fff; border-radius: var(--radius); padding: 18px 20px;
-      box-shadow: var(--shadow); display: flex; align-items: center; gap: 16px;
-    }
-    .predigt-row:hover { box-shadow: 0 6px 24px rgba(30,75,138,.14); }
-    .predigt-play {
-      width: 44px; height: 44px; background: var(--blau); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; cursor: pointer; transition: background .15s;
-    }
-    .predigt-play:hover { background: var(--blau-hell); }
-    .predigt-play svg { fill: #fff; margin-left: 2px; }
-    .predigt-info { flex: 1; }
-    .predigt-info strong { font-size: .93rem; font-weight: 700; color: var(--text); display: block; }
-    .predigt-info span { font-size: .78rem; color: var(--grau-mittel); }
-    .predigt-meta { font-size: .78rem; color: var(--grau-mittel); text-align: right; flex-shrink: 0; }
-    .predigt-meta strong { color: var(--blau); font-size: .8rem; display: block; }
-    .predigt-lock {
-      font-size: .75rem; color: var(--grau-mittel); background: var(--grau-hell);
-      border-radius: 4px; padding: 2px 8px; font-style: italic;
-    }
-
-    /* Kalender */
-    .kalender-placeholder {
-      background: #fff; border-radius: var(--radius); box-shadow: var(--shadow);
-      overflow: hidden; max-width: 780px; margin: 0 auto;
-    }
-    .kalender-header {
-      background: var(--blau); color: #fff; padding: 16px 24px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .kalender-header h3 { font-size: 1rem; font-weight: 700; }
-    .kalender-nav { display: flex; gap: 8px; }
-    .kalender-nav button {
-      background: rgba(255,255,255,.2); border: none; color: #fff;
-      width: 30px; height: 30px; border-radius: 6px; cursor: pointer; font-size: 1rem;
-    }
-    .kalender-wochentage { display: grid; grid-template-columns: repeat(7, 1fr); background: var(--blau-sehr-hell); }
-    .kalender-wochentage span {
-      text-align: center; padding: 8px; font-size: .72rem; font-weight: 700;
-      color: var(--blau); text-transform: uppercase; letter-spacing: .05em;
-    }
-    .kalender-tage { display: grid; grid-template-columns: repeat(7, 1fr); border-top: 1px solid #e8ecf5; }
-    .kalender-tag {
-      text-align: center; padding: 12px 6px; font-size: .85rem;
-      border-right: 1px solid #f0f2f8; border-bottom: 1px solid #f0f2f8; position: relative;
-    }
-    .kalender-tag.leer { background: #fafbfd; color: #c0c8d8; }
-    .kalender-tag.heute { background: var(--blau); color: #fff; font-weight: 700; }
-    .kalender-tag.event::after {
-      content: ''; position: absolute; bottom: 4px; left: 50%;
-      transform: translateX(-50%); width: 5px; height: 5px;
-      background: var(--blau-hell); border-radius: 50%;
-    }
-    .kalender-tag.event.heute::after { background: #fff; }
-
-    /* Intern */
-    .intern-banner {
-      background: linear-gradient(135deg, #1a1a2e 0%, var(--blau) 100%);
-      color: #fff; border-radius: var(--radius); padding: 40px 36px;
-      display: flex; align-items: center; gap: 32px;
-      max-width: 720px; margin: 0 auto; box-shadow: var(--shadow);
-    }
-    @media (max-width: 600px) { .intern-banner { flex-direction: column; text-align: center; } }
-    .intern-icon-big { font-size: 3rem; flex-shrink: 0; }
-    .intern-text h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 8px; }
-    .intern-text p { font-size: .88rem; opacity: .85; margin-bottom: 18px; }
-
-    /* Kontakt */
-    .kontakt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
-    @media (max-width: 700px) { .kontakt-grid { grid-template-columns: 1fr; } }
-    .kontakt-karte {
-      background: #fff; border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow);
-    }
-    .kontakt-karte h3 {
-      font-size: 1rem; font-weight: 700; color: var(--blau);
-      margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid #e8ecf5;
-    }
-    .kontakt-zeile { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
-    .kontakt-zeile-icon {
-      width: 34px; height: 34px; background: var(--blau-sehr-hell);
-      border-radius: 7px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .kontakt-zeile-icon svg { fill: var(--blau); }
-    .kontakt-zeile-text { font-size: .88rem; line-height: 1.4; }
-    .kontakt-zeile-text strong {
-      display: block; font-size: .78rem; font-weight: 600; color: var(--grau-mittel);
-      text-transform: uppercase; letter-spacing: .04em; margin-bottom: 1px;
-    }
-    .kontakt-form label { font-size: .82rem; font-weight: 600; color: var(--text); display: block; margin-bottom: 4px; }
-    .kontakt-form input, .kontakt-form textarea, .kontakt-form select {
-      width: 100%; padding: 10px 12px; border: 1.5px solid #d0d8ea;
-      border-radius: 7px; font-size: .88rem; font-family: inherit;
-      margin-bottom: 14px; color: var(--text); background: #fafbfd;
-      transition: border-color .15s; outline: none;
-    }
-    .kontakt-form input:focus, .kontakt-form textarea:focus { border-color: var(--blau); background: #fff; }
-    .kontakt-form textarea { min-height: 100px; resize: vertical; }
-    .kontakt-form .btn-blau { width: 100%; justify-content: center; }
-  </style>
 </head>
 <body>
 
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
 <header id="site-header"></header>
+
+<main id="inhalt">
 
 <!-- ══════════════════ HERO ══════════════════════════ -->
 <section class="hero">
-  <div class="hero-inner">
-    <div class="hero-badge">Willkommen in unserer Gemeinde</div>
-    <h1>Evangelische Freie Gemeinde Allendorf</h1>
-    <p>Wir sind eine christliche Gemeinschaft in Allendorf – Menschen verschiedener Generationen, verbunden durch den Glauben.</p>
-    <div class="hero-ctas">
-      <a href="#veranstaltungen" class="btn btn-white">Nächste Veranstaltungen</a>
-      <a href="wer-wir-sind.html" class="btn btn-outline">Wer wir sind</a>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <h1>Evangelische Freie Gemeinde Allendorf</h1>
+      <p class="lead">Wir sind eine christliche Gemeinschaft in Allendorf. Menschen verschiedener Generationen, verbunden durch den Glauben.</p>
+      <div class="hero-ctas">
+        <a href="#veranstaltungen" class="btn btn-blau">Nächste Veranstaltungen</a>
+        <a href="wer-wir-sind.html" class="btn btn-sekundaer">Wer wir sind</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <img src="gemeinde_2016_2.jpg" width="1200" height="900"
+           alt="Menschen der Gemeinde Allendorf beim gemeinsamen Gottesdienst" fetchpriority="high" />
     </div>
   </div>
 </section>
@@ -226,16 +37,16 @@
 <div class="info-bar">
   <div class="info-bar-inner">
     <div class="info-item">
-      <div class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg></div>
-      <div><strong>Gottesdienst</strong><span>Sonntag · 10:00 Uhr</span></div>
+      <svg class="ico" aria-hidden="true"><use href="#i-uhr"></use></svg>
+      <div><strong>Gottesdienst</strong><span>Sonntag, 10:00 Uhr</span></div>
     </div>
     <div class="info-item">
-      <div class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+      <svg class="ico" aria-hidden="true"><use href="#i-ort"></use></svg>
       <div><strong>Adresse</strong><span>Heimlingstraße 3, Greifenstein</span></div>
     </div>
     <div class="info-item">
-      <div class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
-      <div><strong>Kontakt</strong><span><span class="ob-email" data-em="aW5mb0BlZy1hbGxlbmRvcmYuZGU="></span></span></div>
+      <svg class="ico" aria-hidden="true"><use href="#i-mail"></use></svg>
+      <div><strong>Kontakt</strong><span class="ob-email" data-em="aW5mb0BlZy1hbGxlbmRvcmYuZGU="></span></div>
     </div>
   </div>
 </div>
@@ -243,45 +54,58 @@
 <!-- ══════════════════ VERANSTALTUNGEN ═══════════════ -->
 <section class="section" id="veranstaltungen">
   <div class="section-inner">
-    <div class="section-header">
-      <div class="section-kicker">Aktuell &amp; Bald</div>
-      <h2>Veranstaltungen</h2>
-      <p>Was bei uns gerade los ist – Gottesdienste, Bibeltage, Gemeindeabende und mehr.</p>
+    <div class="section-kopf-reihe">
+      <div>
+        <h2>Veranstaltungen</h2>
+        <p>Was bei uns gerade ansteht: Gottesdienste, Bibeltage und Gemeindeabende.</p>
+      </div>
+      <a href="#kalender" class="text-link">Alle Termine
+        <svg class="ico ico-sm" aria-hidden="true"><use href="#i-pfeil-rechts"></use></svg>
+      </a>
     </div>
+
     <div class="events-grid">
-      <div class="event-card">
+      <article class="event-card">
         <div class="event-date-bar">
-          <div class="event-date-box"><div class="day">03</div><div class="month">Mai</div></div>
-          <div class="event-title-bar"><strong>Bibeltage 2026</strong><span>So–Mi · 10:00 / 19:30 Uhr</span></div>
+          <div class="event-date-box"><span class="day">03</span><span class="month">Mai</span></div>
+          <div class="event-title-bar"><strong>Bibeltage 2026</strong><span>Sonntag bis Mittwoch, 10:00 und 19:30 Uhr</span></div>
         </div>
         <div class="event-body">
           <span class="event-tag">Bibeltage</span>
-          <p>„Auf und nieder, immer wieder" – vier Abende aus dem Leben Davids. Referent: Markus Wäsch.</p>
-          <a href="#" class="event-link">Mehr erfahren →</a>
+          <p>„Auf und nieder, immer wieder“: vier Abende aus dem Leben Davids. Referent: Markus Wäsch.</p>
+          <a href="#kalender" class="event-link">Im Kalender ansehen
+            <svg class="ico ico-sm" aria-hidden="true"><use href="#i-pfeil-rechts"></use></svg>
+          </a>
         </div>
-      </div>
-      <div class="event-card">
+      </article>
+
+      <article class="event-card">
         <div class="event-date-bar">
-          <div class="event-date-box"><div class="day">11</div><div class="month">Mai</div></div>
-          <div class="event-title-bar"><strong>Sonntagsgottesdienst</strong><span>Sonntag · 10:00 Uhr</span></div>
+          <div class="event-date-box"><span class="day">11</span><span class="month">Mai</span></div>
+          <div class="event-title-bar"><strong>Sonntagsgottesdienst</strong><span>Sonntag, 10:00 Uhr</span></div>
         </div>
         <div class="event-body">
           <span class="event-tag">Gottesdienst</span>
-          <p>Wöchentlicher Gottesdienst mit Predigt, Lobpreis und Gemeinschaft. Kinder- und Jugendprogramm parallel.</p>
-          <a href="#" class="event-link">Mehr erfahren →</a>
+          <p>Gottesdienst mit Predigt, Lobpreis und Gemeinschaft. Kinder- und Jugendprogramm läuft parallel.</p>
+          <a href="gottesdienst-live.html" class="event-link">Live mitfeiern
+            <svg class="ico ico-sm" aria-hidden="true"><use href="#i-pfeil-rechts"></use></svg>
+          </a>
         </div>
-      </div>
-      <div class="event-card">
-        <div class="event-date-bar" style="background:#2d6cc0;">
-          <div class="event-date-box"><div class="day">17</div><div class="month">Mai</div></div>
-          <div class="event-title-bar"><strong>Gemeindeabend</strong><span>Samstag · 19:00 Uhr</span></div>
+      </article>
+
+      <article class="event-card">
+        <div class="event-date-bar">
+          <div class="event-date-box"><span class="day">17</span><span class="month">Mai</span></div>
+          <div class="event-title-bar"><strong>Gemeindeabend</strong><span>Samstag, 19:00 Uhr</span></div>
         </div>
         <div class="event-body">
           <span class="event-tag">Gemeinschaft</span>
-          <p>Ein Abend zum Miteinander – Austausch, Gebet und gemeinsames Essen. Alle sind herzlich willkommen.</p>
-          <a href="#kalender" class="event-link">Im Kalender ansehen →</a>
+          <p>Ein Abend zum Miteinander: Austausch, Gebet und gemeinsames Essen. Alle sind herzlich willkommen.</p>
+          <a href="#kalender" class="event-link">Im Kalender ansehen
+            <svg class="ico ico-sm" aria-hidden="true"><use href="#i-pfeil-rechts"></use></svg>
+          </a>
         </div>
-      </div>
+      </article>
     </div>
   </div>
 </section>
@@ -291,17 +115,32 @@
   <div class="section-inner">
     <div class="wer-grid">
       <div class="wer-text">
-        <div class="section-kicker">Unsere Gemeinde</div>
         <h2>Wer wir sind</h2>
-        <p>Die Evangelische Freie Gemeinde Allendorf ist eine christliche Gemeinschaft, die sich seit vielen Jahrzehnten in Allendorf und Umgebung verankert hat.</p>
-        <p>Wir glauben an die Bibel als Gottes Wort und leben Gemeinschaft über alle Altersgruppen hinweg – von den Kleinsten bis zu den Ältesten.</p>
-        <a href="wer-wir-sind.html" class="btn-blau" style="margin-top:8px;">Mehr erfahren →</a>
+        <p>Die Evangelische Freie Gemeinde Allendorf ist eine christliche Gemeinschaft, die seit vielen Jahrzehnten in Allendorf und Umgebung verwurzelt ist.</p>
+        <p>Wir glauben an die Bibel als Gottes Wort und leben Gemeinschaft über alle Altersgruppen hinweg, von den Kleinsten bis zu den Ältesten.</p>
+        <a href="wer-wir-sind.html" class="btn btn-blau">Mehr über uns</a>
       </div>
       <div class="wer-cards">
-        <a href="wer-wir-sind.html" class="wer-card"><div class="wer-card-icon">📖</div><h4>Glaubensbekenntnis</h4><p>Was wir glauben und warum</p></a>
-        <a href="wer-wir-sind.html" class="wer-card"><div class="wer-card-icon">🕊</div><h4>Leitbild &amp; Werte</h4><p>Unsere Grundsätze und Vision</p></a>
-        <a href="wer-wir-sind.html" class="wer-card"><div class="wer-card-icon">📅</div><h4>Chronik</h4><p>Unsere Geschichte als Zeitstrahl</p></a>
-        <a href="wer-wir-sind.html" class="wer-card"><div class="wer-card-icon">👥</div><h4>Gemeindeleitung</h4><p>Menschen, die Verantwortung tragen</p></a>
+        <a href="wer-wir-sind.html#glaube" class="wer-card">
+          <svg class="ico" aria-hidden="true"><use href="#i-buch"></use></svg>
+          <h4>Glaubensbekenntnis</h4>
+          <p>Was wir glauben und warum</p>
+        </a>
+        <a href="wer-wir-sind.html#leitbild" class="wer-card">
+          <svg class="ico" aria-hidden="true"><use href="#i-herz"></use></svg>
+          <h4>Leitbild und Werte</h4>
+          <p>Unsere Grundsätze und Vision</p>
+        </a>
+        <a href="wer-wir-sind.html#chronik" class="wer-card">
+          <svg class="ico" aria-hidden="true"><use href="#i-chronik"></use></svg>
+          <h4>Chronik</h4>
+          <p>Unsere Geschichte im Überblick</p>
+        </a>
+        <a href="wer-wir-sind.html#leitung" class="wer-card">
+          <svg class="ico" aria-hidden="true"><use href="#i-personen"></use></svg>
+          <h4>Gemeindeleitung</h4>
+          <p>Menschen, die Verantwortung tragen</p>
+        </a>
       </div>
     </div>
   </div>
@@ -310,113 +149,60 @@
 <!-- ══════════════════ GRUPPEN ═══════════════════════ -->
 <section class="section" id="gruppen">
   <div class="section-inner">
-    <div class="section-header">
-      <div class="section-kicker">Gemeinschaft &amp; Gruppen</div>
-      <h2>Für jede Lebensphase</h2>
-      <p>Bei uns findest du Gruppen und Kreise für alle Altersgruppen und Interessen.</p>
-    </div>
-
-    <div class="gruppen-overview-grid">
-      <a href="gruppen/glv.html" class="gruppe-card">
-        <div class="gruppe-card-header" style="background:linear-gradient(135deg,#1e4b8a,#2d6cc0);">
-          <div class="gruppe-card-emoji">📖</div>
-          <h3>GLV – Glauben, Leben, Verstehen</h3>
-          <span class="tag">Alle Erwachsene</span>
-        </div>
-        <div class="gruppe-card-body">
-          <p>Bibelstunden-Abend mit Vortrag, Fragen und Austausch.</p>
-          <div class="gruppe-card-meta"><div class="gruppe-card-meta-item"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>Mittwochabend</div></div>
-          <span class="gruppe-card-link">Mehr erfahren →</span>
-        </div>
-      </a>
-      <a href="gruppen/frauengebetskreis.html" class="gruppe-card">
-        <div class="gruppe-card-header" style="background:linear-gradient(135deg,#7b3fa0,#a855c8);">
-          <div class="gruppe-card-emoji">🙏</div>
-          <h3>Frauengebetskreis</h3>
-          <span class="tag">Frauen</span>
-        </div>
-        <div class="gruppe-card-body">
-          <p>Frauen verschiedener Generationen treffen sich zum gemeinsamen Gebet.</p>
-          <div class="gruppe-card-meta"><div class="gruppe-card-meta-item"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>Regelmäßige Treffen</div></div>
-          <span class="gruppe-card-link">Mehr erfahren →</span>
-        </div>
-      </a>
-      <a href="gruppen/bibelstunde.html" class="gruppe-card">
-        <div class="gruppe-card-header" style="background:linear-gradient(135deg,#1a6b3c,#27a85e);">
-          <div class="gruppe-card-emoji">📝</div>
-          <h3>Bibelstunde</h3>
-          <span class="tag">Alle Erwachsene</span>
-        </div>
-        <div class="gruppe-card-body">
-          <p>Alle 14 Tage mittwochs – gemeinsam die Bibel lesen und verstehen.</p>
-          <div class="gruppe-card-meta"><div class="gruppe-card-meta-item"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>Mi · alle 14 Tage</div></div>
-          <span class="gruppe-card-link">Mehr erfahren →</span>
-        </div>
-      </a>
-      <a href="gruppen/hauskreise.html" class="gruppe-card">
-        <div class="gruppe-card-header" style="background:linear-gradient(135deg,#b35a00,#e07b20);">
-          <div class="gruppe-card-emoji">🏠</div>
-          <h3>Hauskreise</h3>
-          <span class="tag">Alle</span>
-        </div>
-        <div class="gruppe-card-body">
-          <p>Klein und persönlich – drei Hauskreise treffen sich wöchentlich.</p>
-          <div class="gruppe-card-meta"><div class="gruppe-card-meta-item"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>Wöchentlich</div></div>
-          <span class="gruppe-card-link">Mehr erfahren →</span>
-        </div>
-      </a>
-      <a href="gruppen/crossroad.html" class="gruppe-card">
-        <div class="gruppe-card-header" style="background:linear-gradient(135deg,#b0291c,#e0432e);">
-          <div class="gruppe-card-emoji">🚀</div>
-          <h3>Crossroad</h3>
-          <span class="tag">Teens ab 13 J.</span>
-        </div>
-        <div class="gruppe-card-body">
-          <p>Unser Teenkreis für Jugendliche ab 13 Jahren – jeden Freitag.</p>
-          <div class="gruppe-card-meta"><div class="gruppe-card-meta-item"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>Jeden Freitag</div></div>
-          <span class="gruppe-card-link">Mehr erfahren →</span>
-        </div>
-      </a>
-      <a href="gruppen/kreisjugend.html" class="gruppe-card">
-        <div class="gruppe-card-header" style="background:linear-gradient(135deg,#1a5e8a,#2494c4);">
-          <div class="gruppe-card-emoji">🎉</div>
-          <h3>Kreisjugend</h3>
-          <span class="tag">Junge Erwachsene</span>
-        </div>
-        <div class="gruppe-card-body">
-          <p>Singles und junge Ehepaare – alle 14 Tage zusammen.</p>
-          <div class="gruppe-card-meta"><div class="gruppe-card-meta-item"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>Alle 14 Tage</div></div>
-          <span class="gruppe-card-link">Mehr erfahren →</span>
-        </div>
-      </a>
-      <a href="gruppen/wilde-fuechse.html" class="gruppe-card">
-        <div class="gruppe-card-header" style="background:linear-gradient(135deg,#8a6a00,#c49a00);">
-          <div class="gruppe-card-emoji">🦊</div>
-          <h3>Wilde Füchse – Jungschar</h3>
-          <span class="tag">Kinder 7–12 J.</span>
-        </div>
-        <div class="gruppe-card-body">
-          <p>Abenteuer, Spiel und Glauben für Grundschulkinder.</p>
-          <div class="gruppe-card-meta"><div class="gruppe-card-meta-item"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>Regelmäßige Treffen</div></div>
-          <span class="gruppe-card-link">Mehr erfahren →</span>
-        </div>
-      </a>
-      <a href="gruppen/knallerbsen.html" class="gruppe-card">
-        <div class="gruppe-card-header" style="background:linear-gradient(135deg,#2a7a40,#3daa58);">
-          <div class="gruppe-card-emoji">🌱</div>
-          <h3>Knallerbsen – Jungschar</h3>
-          <span class="tag">Kinder 5–8 J.</span>
-        </div>
-        <div class="gruppe-card-body">
-          <p>Spielen, Basteln und Bibelgeschichten für die Kleinsten.</p>
-          <div class="gruppe-card-meta"><div class="gruppe-card-meta-item"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>Regelmäßige Treffen</div></div>
-          <span class="gruppe-card-link">Mehr erfahren →</span>
-        </div>
+    <div class="section-kopf-reihe">
+      <div>
+        <h2>Für jede Lebensphase</h2>
+        <p>Acht Gruppen und Kreise, vom Kindergartenalter bis zur Seniorenrunde.</p>
+      </div>
+      <a href="gruppen.html" class="text-link">Alle Gruppen
+        <svg class="ico ico-sm" aria-hidden="true"><use href="#i-pfeil-rechts"></use></svg>
       </a>
     </div>
 
-    <div style="text-align:center; margin-top:36px;">
-      <a href="gruppen.html" class="btn-blau">Alle Gruppen im Überblick →</a>
+    <div class="gruppen-cluster">
+      <div class="cluster">
+        <h3>Erwachsene</h3>
+        <a href="gruppen/glv.html" class="cluster-eintrag">
+          <svg class="ico" aria-hidden="true"><use href="#i-buch"></use></svg>
+          <div><strong>GLV: Glauben, Leben, Verstehen</strong><span>Mittwochabend</span></div>
+        </a>
+        <a href="gruppen/bibelstunde.html" class="cluster-eintrag">
+          <svg class="ico" aria-hidden="true"><use href="#i-notiz"></use></svg>
+          <div><strong>Bibelstunde</strong><span>Mittwochs, alle 14 Tage</span></div>
+        </a>
+        <a href="gruppen/hauskreise.html" class="cluster-eintrag">
+          <svg class="ico" aria-hidden="true"><use href="#i-haus"></use></svg>
+          <div><strong>Hauskreise</strong><span>Drei Kreise, wöchentlich</span></div>
+        </a>
+        <a href="gruppen/frauengebetskreis.html" class="cluster-eintrag">
+          <svg class="ico" aria-hidden="true"><use href="#i-herz"></use></svg>
+          <div><strong>Frauengebetskreis</strong><span>Regelmäßige Treffen</span></div>
+        </a>
+      </div>
+
+      <div class="cluster">
+        <h3>Jugend und junge Erwachsene</h3>
+        <a href="gruppen/crossroad.html" class="cluster-eintrag">
+          <svg class="ico" aria-hidden="true"><use href="#i-kompass"></use></svg>
+          <div><strong>Crossroad</strong><span>Teens ab 13 Jahren, freitags</span></div>
+        </a>
+        <a href="gruppen/kreisjugend.html" class="cluster-eintrag">
+          <svg class="ico" aria-hidden="true"><use href="#i-personen"></use></svg>
+          <div><strong>Kreisjugend</strong><span>Singles und junge Ehepaare, alle 14 Tage</span></div>
+        </a>
+      </div>
+
+      <div class="cluster">
+        <h3>Kinder</h3>
+        <a href="gruppen/wilde-fuechse.html" class="cluster-eintrag">
+          <svg class="ico" aria-hidden="true"><use href="#i-stern"></use></svg>
+          <div><strong>Wilde Füchse: Jungschar</strong><span>Kinder von 7 bis 12 Jahren</span></div>
+        </a>
+        <a href="gruppen/knallerbsen.html" class="cluster-eintrag">
+          <svg class="ico" aria-hidden="true"><use href="#i-pflanze"></use></svg>
+          <div><strong>Knallerbsen: Jungschar</strong><span>Kinder von 5 bis 8 Jahren</span></div>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -425,67 +211,86 @@
 <section class="section section-alt" id="predigten">
   <div class="section-inner">
     <div class="section-header">
-      <div class="section-kicker">Hören &amp; Nachdenken</div>
       <h2>Predigten</h2>
-      <p>Die neuesten Predigten aus unseren Gottesdiensten – zum Nachören und Weitergeben.</p>
+      <p>Die neuesten Predigten aus unseren Gottesdiensten, zum Nachhören und Weitergeben.</p>
     </div>
+
     <div class="predigten-list">
       <div class="predigt-row">
-        <div class="predigt-play"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        <div class="predigt-info"><strong>Erwählung: Aus „Niemand" wird „Jemand"</strong><span>1. Samuel 16 · Markus Wäsch</span></div>
+        <span class="predigt-play"><svg class="ico" aria-hidden="true"><use href="#i-play"></use></svg></span>
+        <div class="predigt-info">
+          <strong>Erwählung: Aus „Niemand“ wird „Jemand“</strong>
+          <span>1. Samuel 16, Markus Wäsch</span>
+        </div>
         <div class="predigt-meta"><strong>03.05.2026</strong>Bibeltage</div>
       </div>
       <div class="predigt-row">
-        <div class="predigt-play"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        <div class="predigt-info"><strong>Freundschaft durch dick und dünn</strong><span>1. Samuel 18–23 · Markus Wäsch</span></div>
+        <span class="predigt-play"><svg class="ico" aria-hidden="true"><use href="#i-play"></use></svg></span>
+        <div class="predigt-info">
+          <strong>Freundschaft durch dick und dünn</strong>
+          <span>1. Samuel 18 bis 23, Markus Wäsch</span>
+        </div>
         <div class="predigt-meta"><strong>04.05.2026</strong>Bibeltage</div>
       </div>
       <div class="predigt-row">
-        <div class="predigt-play"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        <div class="predigt-info"><strong>Ausruhen – Neue Kraft für Müde</strong><span>1. Samuel 30 · Markus Wäsch</span></div>
+        <span class="predigt-play"><svg class="ico" aria-hidden="true"><use href="#i-play"></use></svg></span>
+        <div class="predigt-info">
+          <strong>Ausruhen: Neue Kraft für Müde</strong>
+          <span>1. Samuel 30, Markus Wäsch</span>
+        </div>
         <div class="predigt-meta"><strong>06.05.2026</strong>Bibeltage</div>
       </div>
-      <div class="predigt-row" style="background:var(--grau-hell);">
-        <div class="predigt-play" style="background:var(--grau-mittel);">
-          <svg width="16" height="16" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+      <div class="predigt-row predigt-row-gesperrt">
+        <span class="predigt-play"><svg class="ico" aria-hidden="true"><use href="#i-schloss"></use></svg></span>
+        <div class="predigt-info">
+          <strong>Ältere Predigten im internen Bereich</strong>
+          <span>Vollständiges Archiv mit Suchfunktion</span>
         </div>
-        <div class="predigt-info"><strong>Ältere Predigten im internen Bereich</strong><span>Vollständiges Archiv mit Suchfunktion</span></div>
-        <div class="predigt-meta"><span class="predigt-lock">🔒 Login erforderlich</span></div>
+        <div class="predigt-meta"><span class="predigt-lock">Login erforderlich</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════ KALENDER ══════════════════════ -->
+<!-- ══════════════════ WOCHE & KALENDER ══════════════ -->
 <section class="section" id="kalender">
   <div class="section-inner">
     <div class="section-header">
-      <div class="section-kicker">Termine auf einen Blick</div>
-      <h2>Gemeinde-Kalender</h2>
-      <p>Alle Termine der Gemeinde übersichtlich im Kalender.</p>
+      <h2>Unsere Woche</h2>
+      <p>Der feste Rhythmus der Gemeinde. Einzeltermine und Sondertage stehen im Gemeindekalender.</p>
     </div>
-    <div class="kalender-placeholder">
-      <div class="kalender-header">
-        <h3>Mai 2026</h3>
-        <div class="kalender-nav"><button>‹</button><button>›</button></div>
+
+    <div class="woche-grid">
+      <div class="woche-zelle betont">
+        <span class="tag">Sonntag</span>
+        <strong>Gottesdienst</strong>
+        <span>10:00 Uhr, mit Kinderprogramm</span>
       </div>
-      <div class="kalender-wochentage">
-        <span>Mo</span><span>Di</span><span>Mi</span><span>Do</span><span>Fr</span><span>Sa</span><span>So</span>
+      <div class="woche-zelle">
+        <span class="tag">Mittwoch</span>
+        <strong>GLV und Bibelstunde</strong>
+        <span>Im Wechsel, abends</span>
       </div>
-      <div class="kalender-tage">
-        <div class="kalender-tag leer"></div><div class="kalender-tag leer"></div><div class="kalender-tag leer"></div>
-        <div class="kalender-tag">1</div><div class="kalender-tag">2</div><div class="kalender-tag">3</div><div class="kalender-tag event">4</div>
-        <div class="kalender-tag event">5</div><div class="kalender-tag event">6</div><div class="kalender-tag event">7</div>
-        <div class="kalender-tag">8</div><div class="kalender-tag">9</div><div class="kalender-tag">10</div><div class="kalender-tag event">11</div>
-        <div class="kalender-tag">12</div><div class="kalender-tag">13</div><div class="kalender-tag">14</div>
-        <div class="kalender-tag">15</div><div class="kalender-tag">16</div><div class="kalender-tag event">17</div><div class="kalender-tag event">18</div>
-        <div class="kalender-tag">19</div><div class="kalender-tag">20</div><div class="kalender-tag">21</div>
-        <div class="kalender-tag">22</div><div class="kalender-tag">23</div><div class="kalender-tag event">24</div><div class="kalender-tag">25</div>
-        <div class="kalender-tag heute">26</div><div class="kalender-tag">27</div><div class="kalender-tag">28</div><div class="kalender-tag">29</div>
-        <div class="kalender-tag">30</div><div class="kalender-tag event">31</div>
-        <div class="kalender-tag leer"></div><div class="kalender-tag leer"></div><div class="kalender-tag leer"></div>
-        <div class="kalender-tag leer"></div><div class="kalender-tag leer"></div><div class="kalender-tag leer"></div>
+      <div class="woche-zelle">
+        <span class="tag">Freitag</span>
+        <strong>Crossroad</strong>
+        <span>Teenkreis ab 13 Jahren</span>
       </div>
+      <div class="woche-zelle">
+        <span class="tag">Laufend</span>
+        <strong>Hauskreise</strong>
+        <span>Drei Kreise, wöchentlich</span>
+      </div>
+    </div>
+
+    <!-- Hier kann später ein echter Kalender eingebunden werden (z. B. Google-Kalender-Embed
+         im Container <div class="kalender-embed">). Bis dahin keine erfundenen Termine anzeigen. -->
+    <div class="woche-fuss">
+      <p>Einzeltermine, Bibeltage und Sonderveranstaltungen kündigen wir im Gottesdienst und hier auf der Startseite an.</p>
+      <a href="#veranstaltungen" class="btn btn-sekundaer">
+        <svg class="ico ico-sm" aria-hidden="true"><use href="#i-kalender"></use></svg>
+        Zu den Veranstaltungen
+      </a>
     </div>
   </div>
 </section>
@@ -493,17 +298,12 @@
 <!-- ══════════════════ INTERN ════════════════════════ -->
 <section class="section section-alt" id="intern">
   <div class="section-inner">
-    <div class="section-header">
-      <div class="section-kicker">Für Gemeindeglieder</div>
-      <h2>Interner Bereich</h2>
-      <p>Formulare, Protokolle, Predigten-Archiv und mehr – nur für angemeldete Mitglieder.</p>
-    </div>
     <div class="intern-banner">
-      <div class="intern-icon-big">🔒</div>
+      <svg class="ico" aria-hidden="true"><use href="#i-schloss"></use></svg>
       <div class="intern-text">
-        <h3>Mitglieder-Login</h3>
-        <p>Im internen Bereich findest du Predigten-Archiv, Gemeindeformulare, Protokolle und passwortgeschützte Inhalte.</p>
-        <a href="intern.html" class="btn btn-white" style="width:fit-content;">Zum Login →</a>
+        <h3>Interner Bereich</h3>
+        <p>Predigten-Archiv, Gemeindeformulare, Protokolle und geschützte Inhalte, nur für angemeldete Mitglieder.</p>
+        <a href="intern.html" class="btn btn-blau">Zum Login</a>
       </div>
     </div>
   </div>
@@ -513,65 +313,96 @@
 <section class="section" id="kontakt">
   <div class="section-inner">
     <div class="section-header">
-      <div class="section-kicker">Wir freuen uns von dir zu hören</div>
-      <h2>Kontakt &amp; Anfahrt</h2>
+      <h2>Kontakt und Anfahrt</h2>
+      <p>Schreib uns eine Nachricht, ruf bei der Gemeindeleitung an oder komm sonntags einfach vorbei.</p>
     </div>
+
     <div class="kontakt-grid">
       <div class="kontakt-karte">
         <h3>Gemeinde-Informationen</h3>
+
         <div class="kontakt-zeile">
-          <div class="kontakt-zeile-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
-          <div class="kontakt-zeile-text"><strong>Adresse</strong>Heimlingstraße 3<br>35753 Greifenstein Allendorf</div>
+          <svg class="ico" aria-hidden="true"><use href="#i-ort"></use></svg>
+          <div class="kontakt-zeile-text">
+            <strong>Adresse</strong>
+            Heimlingstraße 3<br />35753 Greifenstein-Allendorf
+          </div>
         </div>
         <div class="kontakt-zeile">
-          <div class="kontakt-zeile-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
-          <div class="kontakt-zeile-text"><strong>E-Mail</strong><span class="ob-email" data-em="aW5mb0BlZy1hbGxlbmRvcmYuZGU="></span></div>
+          <svg class="ico" aria-hidden="true"><use href="#i-mail"></use></svg>
+          <div class="kontakt-zeile-text">
+            <strong>E-Mail</strong>
+            <span class="ob-email" data-em="aW5mb0BlZy1hbGxlbmRvcmYuZGU="></span>
+          </div>
         </div>
         <div class="kontakt-zeile">
-          <div class="kontakt-zeile-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg></div>
-          <div class="kontakt-zeile-text"><strong>Gottesdienst</strong>Jeden Sonntag · 10:00 Uhr</div>
+          <svg class="ico" aria-hidden="true"><use href="#i-uhr"></use></svg>
+          <div class="kontakt-zeile-text">
+            <strong>Gottesdienst</strong>
+            Jeden Sonntag, 10:00 Uhr
+          </div>
         </div>
-        <div style="margin-top:20px;padding-top:16px;border-top:1px solid #e8ecf5;">
-          <div class="section-kicker" style="margin-bottom:10px;">Gemeindeleitung</div>
-          <div style="display:flex;flex-direction:column;gap:10px;">
-            <div style="display:flex;gap:10px;align-items:center;">
-              <div style="width:38px;height:38px;background:var(--blau-sehr-hell);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--blau);flex-shrink:0;">TE</div>
-              <div><strong style="font-size:.88rem;display:block;">Thomas Engelke</strong><span style="font-size:.78rem;color:var(--grau-mittel);">Pastor · <a href="tel:015735353471" style="color:var(--blau-hell);"><span class="ob-tel" data-tel="MDE1NzMgLyA1MzUgMzQgNzE="></span></a></span></div>
+
+        <div class="leitung-liste" id="leitung">
+          <h4>Gemeindeleitung</h4>
+          <div class="person">
+            <span class="person-avatar" aria-hidden="true">TE</span>
+            <div class="person-info">
+              <strong>Thomas Engelke</strong>
+              <span>Pastor, <a href="#" class="ob-tel" data-tel="MDE1NzMgLyA1MzUgMzQgNzE=" rel="nofollow"></a></span>
             </div>
-            <div style="display:flex;gap:10px;align-items:center;">
-              <div style="width:38px;height:38px;background:var(--blau-sehr-hell);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--blau);flex-shrink:0;">FD</div>
-              <div><strong style="font-size:.88rem;display:block;">Florian Diehl</strong><span style="font-size:.78rem;color:var(--grau-mittel);">Gemeindeleitung · <a href="tel:06478277200" style="color:var(--blau-hell);"><span class="ob-tel" data-tel="MDY0NzggLyAyNzcgMjAw"></span></a></span></div>
+          </div>
+          <div class="person">
+            <span class="person-avatar" aria-hidden="true">FD</span>
+            <div class="person-info">
+              <strong>Florian Diehl</strong>
+              <span>Gemeindeleitung, <a href="#" class="ob-tel" data-tel="MDY0NzggLyAyNzcgMjAw" rel="nofollow"></a></span>
             </div>
-            <div style="display:flex;gap:10px;align-items:center;">
-              <div style="width:38px;height:38px;background:var(--blau-sehr-hell);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--blau);flex-shrink:0;">AG</div>
-              <div><strong style="font-size:.88rem;display:block;">Andreas Genz</strong><span style="font-size:.78rem;color:var(--grau-mittel);">Gemeindeleitung · <a href="tel:064782779911" style="color:var(--blau-hell);"><span class="ob-tel" data-tel="MDY0NzggLyAyNzcgOTkgMTE="></span></a></span></div>
+          </div>
+          <div class="person">
+            <span class="person-avatar" aria-hidden="true">AG</span>
+            <div class="person-info">
+              <strong>Andreas Genz</strong>
+              <span>Gemeindeleitung, <a href="#" class="ob-tel" data-tel="MDY0NzggLyAyNzcgOTkgMTE=" rel="nofollow"></a></span>
             </div>
           </div>
         </div>
       </div>
+
       <div class="kontakt-karte">
         <h3>Nachricht senden</h3>
-        <form class="kontakt-form" onsubmit="return false;">
-          <label>Name</label>
-          <input type="text" placeholder="Dein Name" />
-          <label>E-Mail</label>
-          <input type="email" placeholder="deine@email.de" />
-          <label>Betreff</label>
-          <select>
-            <option>Allgemeine Anfrage</option>
-            <option>Besuch &amp; Anfahrt</option>
-            <option>Gruppen &amp; Kreise</option>
-            <option>Veranstaltungen</option>
-            <option>Mitgliedschaft</option>
-          </select>
-          <label>Nachricht</label>
-          <textarea placeholder="Deine Nachricht …"></textarea>
-          <button type="submit" class="btn-blau">Nachricht senden →</button>
+        <form class="kontakt-form" action="#" method="post">
+          <div class="feld">
+            <label for="k-name">Name</label>
+            <input type="text" id="k-name" name="name" autocomplete="name" required />
+          </div>
+          <div class="feld">
+            <label for="k-mail">E-Mail</label>
+            <input type="email" id="k-mail" name="email" autocomplete="email" required />
+            <span class="hilfe">Damit wir dir antworten können.</span>
+          </div>
+          <div class="feld">
+            <label for="k-betreff">Betreff</label>
+            <select id="k-betreff" name="betreff">
+              <option>Allgemeine Anfrage</option>
+              <option>Besuch und Anfahrt</option>
+              <option>Gruppen und Kreise</option>
+              <option>Veranstaltungen</option>
+              <option>Mitgliedschaft</option>
+            </select>
+          </div>
+          <div class="feld">
+            <label for="k-nachricht">Nachricht</label>
+            <textarea id="k-nachricht" name="nachricht" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-blau">Nachricht senden</button>
         </form>
       </div>
     </div>
   </div>
 </section>
+
+</main>
 
 <footer id="site-footer"></footer>
 

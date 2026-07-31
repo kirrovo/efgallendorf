@@ -10,17 +10,37 @@ get_header();
 $wer_url     = ( $p = get_page_by_path( 'wer-wir-sind' ) ) ? get_permalink( $p ) : '#wer-wir-sind';
 $gruppen_url = get_post_type_archive_link( 'gruppe' );
 $intern_url  = ( $p = get_page_by_path( 'intern' ) ) ? get_permalink( $p ) : '#intern';
+$live_url    = ( $p = get_page_by_path( 'gottesdienst-live' ) ) ? get_permalink( $p ) : '#';
+$kal_url     = ( $p = get_page_by_path( 'kalender' ) ) ? get_permalink( $p ) : '#kalender';
 ?>
 
 <!-- ══════════════════ HERO ══════════════════════════ -->
 <section class="hero">
-	<div class="hero-inner">
-		<div class="hero-badge">Willkommen in unserer Gemeinde</div>
-		<h1>Evangelische Freie Gemeinde Allendorf</h1>
-		<p>Wir sind eine christliche Gemeinschaft in Allendorf – Menschen verschiedener Generationen, verbunden durch den Glauben.</p>
-		<div class="hero-ctas">
-			<a href="#veranstaltungen" class="btn btn-white">Nächste Veranstaltungen</a>
-			<a href="<?php echo esc_url( $wer_url ); ?>" class="btn btn-outline">Wer wir sind</a>
+	<div class="hero-grid">
+		<div class="hero-copy">
+			<h1><?php echo esc_html( get_bloginfo( 'name' ) ?: 'Evangelische Freie Gemeinde Allendorf' ); ?></h1>
+			<p class="lead">Wir sind eine christliche Gemeinschaft in Allendorf. Menschen verschiedener Generationen, verbunden durch den Glauben.</p>
+			<div class="hero-ctas">
+				<a href="#veranstaltungen" class="btn btn-blau">Nächste Veranstaltungen</a>
+				<a href="<?php echo esc_url( $wer_url ); ?>" class="btn btn-sekundaer">Wer wir sind</a>
+			</div>
+		</div>
+		<div class="hero-media">
+			<?php
+			// Beitragsbild der Startseite nutzen, sonst das mitgelieferte Gemeindefoto.
+			if ( has_post_thumbnail() ) {
+				the_post_thumbnail( 'large', array(
+					'fetchpriority' => 'high',
+					'alt'           => 'Die Gemeinde Allendorf beim gemeinsamen Gottesdienst',
+				) );
+			} else {
+				printf(
+					'<img src="%s" width="1200" height="900" fetchpriority="high" alt="%s" />',
+					esc_url( get_template_directory_uri() . '/assets/img/gemeinde.jpg' ),
+					esc_attr( 'Die Gemeinde Allendorf beim gemeinsamen Gottesdienst' )
+				);
+			}
+			?>
 		</div>
 	</div>
 </section>
@@ -29,15 +49,15 @@ $intern_url  = ( $p = get_page_by_path( 'intern' ) ) ? get_permalink( $p ) : '#i
 <div class="info-bar">
 	<div class="info-bar-inner">
 		<div class="info-item">
-			<div class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg></div>
-			<div><strong>Gottesdienst</strong><span>Sonntag · 10:00 Uhr</span></div>
+			<?php efga_ico( 'uhr' ); ?>
+			<div><strong>Gottesdienst</strong><span>Sonntag, 10:00 Uhr</span></div>
 		</div>
 		<div class="info-item">
-			<div class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+			<?php efga_ico( 'ort' ); ?>
 			<div><strong>Adresse</strong><span>Heimlingstraße 3, Greifenstein</span></div>
 		</div>
 		<div class="info-item">
-			<div class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+			<?php efga_ico( 'mail' ); ?>
 			<div><strong>Kontakt</strong><span><?php efga_email_text( 'info@eg-allendorf.de' ); ?></span></div>
 		</div>
 	</div>
@@ -46,11 +66,14 @@ $intern_url  = ( $p = get_page_by_path( 'intern' ) ) ? get_permalink( $p ) : '#i
 <!-- ══════════════════ VERANSTALTUNGEN ═══════════════ -->
 <section class="section" id="veranstaltungen">
 	<div class="section-inner">
-		<div class="section-header">
-			<div class="section-kicker">Aktuell &amp; Bald</div>
-			<h2>Veranstaltungen</h2>
-			<p>Was bei uns gerade los ist – Gottesdienste, Bibeltage, Gemeindeabende und mehr.</p>
+		<div class="section-kopf-reihe">
+			<div>
+				<h2>Veranstaltungen</h2>
+				<p>Was bei uns gerade ansteht: Gottesdienste, Bibeltage und Gemeindeabende.</p>
+			</div>
+			<a href="<?php echo esc_url( $kal_url ); ?>" class="text-link">Alle Termine <?php efga_ico( 'pfeil-rechts', 'ico-sm' ); ?></a>
 		</div>
+
 		<div class="events-grid">
 			<?php
 			$events = new WP_Query( array(
@@ -61,30 +84,35 @@ $intern_url  = ( $p = get_page_by_path( 'intern' ) ) ? get_permalink( $p ) : '#i
 			) );
 			if ( $events->have_posts() ) :
 				while ( $events->have_posts() ) : $events->the_post();
-					$day    = efga_get( 'efga_date_day' );
-					$month  = efga_get( 'efga_date_month' );
-					$time   = efga_get( 'efga_time' );
-					$tag    = efga_get( 'efga_tag' );
-					$accent = efga_get( 'efga_accent', '#1e4b8a' );
-					$link   = efga_get( 'efga_link' );
-					$link   = $link ? $link : get_permalink();
+					$day   = efga_get( 'efga_date_day' );
+					$month = efga_get( 'efga_date_month' );
+					$time  = efga_get( 'efga_time' );
+					$tag   = efga_get( 'efga_tag' );
+					$link  = efga_get( 'efga_link' );
+					$link  = $link ? $link : get_permalink();
 					?>
-					<div class="event-card">
-						<div class="event-date-bar" style="background:<?php echo esc_attr( $accent ); ?>;">
-							<div class="event-date-box"><div class="day"><?php echo esc_html( $day ); ?></div><div class="month"><?php echo esc_html( $month ); ?></div></div>
-							<div class="event-title-bar"><strong><?php the_title(); ?></strong><span><?php echo esc_html( $time ); ?></span></div>
+					<article class="event-card">
+						<div class="event-date-bar">
+							<div class="event-date-box">
+								<span class="day"><?php echo esc_html( $day ); ?></span>
+								<span class="month"><?php echo esc_html( $month ); ?></span>
+							</div>
+							<div class="event-title-bar">
+								<strong><?php the_title(); ?></strong>
+								<span><?php echo esc_html( $time ); ?></span>
+							</div>
 						</div>
 						<div class="event-body">
 							<?php if ( $tag ) : ?><span class="event-tag"><?php echo esc_html( $tag ); ?></span><?php endif; ?>
 							<p><?php echo wp_kses_post( get_the_content() ); ?></p>
-							<a href="<?php echo esc_url( $link ); ?>" class="event-link">Mehr erfahren →</a>
+							<a href="<?php echo esc_url( $link ); ?>" class="event-link">Mehr erfahren <?php efga_ico( 'pfeil-rechts', 'ico-sm' ); ?></a>
 						</div>
-					</div>
+					</article>
 					<?php
 				endwhile;
 				wp_reset_postdata();
 			else :
-				echo '<p style="text-align:center;color:var(--grau-mittel);">Aktuell sind keine Veranstaltungen eingetragen. Lege im WordPress-Admin unter <strong>Veranstaltungen</strong> welche an.</p>';
+				echo '<p class="leise">Aktuell sind keine Veranstaltungen eingetragen. Lege im WordPress-Admin unter <strong>Veranstaltungen</strong> welche an.</p>';
 			endif;
 			?>
 		</div>
@@ -96,17 +124,32 @@ $intern_url  = ( $p = get_page_by_path( 'intern' ) ) ? get_permalink( $p ) : '#i
 	<div class="section-inner">
 		<div class="wer-grid">
 			<div class="wer-text">
-				<div class="section-kicker">Unsere Gemeinde</div>
 				<h2>Wer wir sind</h2>
-				<p>Die Evangelische Freie Gemeinde Allendorf ist eine christliche Gemeinschaft, die sich seit vielen Jahrzehnten in Allendorf und Umgebung verankert hat.</p>
-				<p>Wir glauben an die Bibel als Gottes Wort und leben Gemeinschaft über alle Altersgruppen hinweg – von den Kleinsten bis zu den Ältesten.</p>
-				<a href="<?php echo esc_url( $wer_url ); ?>" class="btn-blau" style="margin-top:8px;">Mehr erfahren →</a>
+				<p>Die Evangelische Freie Gemeinde Allendorf ist eine christliche Gemeinschaft, die seit vielen Jahrzehnten in Allendorf und Umgebung verwurzelt ist.</p>
+				<p>Wir glauben an die Bibel als Gottes Wort und leben Gemeinschaft über alle Altersgruppen hinweg, von den Kleinsten bis zu den Ältesten.</p>
+				<a href="<?php echo esc_url( $wer_url ); ?>" class="btn btn-blau">Mehr über uns</a>
 			</div>
 			<div class="wer-cards">
-				<a href="<?php echo esc_url( $wer_url ); ?>" class="wer-card"><div class="wer-card-icon">📖</div><h4>Glaubensbekenntnis</h4><p>Was wir glauben und warum</p></a>
-				<a href="<?php echo esc_url( $wer_url ); ?>" class="wer-card"><div class="wer-card-icon">🕊</div><h4>Leitbild &amp; Werte</h4><p>Unsere Grundsätze und Vision</p></a>
-				<a href="<?php echo esc_url( $wer_url ); ?>" class="wer-card"><div class="wer-card-icon">📅</div><h4>Chronik</h4><p>Unsere Geschichte als Zeitstrahl</p></a>
-				<a href="<?php echo esc_url( $wer_url ); ?>" class="wer-card"><div class="wer-card-icon">👥</div><h4>Gemeindeleitung</h4><p>Menschen, die Verantwortung tragen</p></a>
+				<a href="<?php echo esc_url( $wer_url ); ?>#glaube" class="wer-card">
+					<?php efga_ico( 'buch' ); ?>
+					<h4>Glaubensbekenntnis</h4>
+					<p>Was wir glauben und warum</p>
+				</a>
+				<a href="<?php echo esc_url( $wer_url ); ?>#leitbild" class="wer-card">
+					<?php efga_ico( 'herz' ); ?>
+					<h4>Leitbild und Werte</h4>
+					<p>Unsere Grundsätze und Vision</p>
+				</a>
+				<a href="<?php echo esc_url( $wer_url ); ?>#chronik" class="wer-card">
+					<?php efga_ico( 'chronik' ); ?>
+					<h4>Chronik</h4>
+					<p>Unsere Geschichte im Überblick</p>
+				</a>
+				<a href="<?php echo esc_url( $wer_url ); ?>#leitung" class="wer-card">
+					<?php efga_ico( 'personen' ); ?>
+					<h4>Gemeindeleitung</h4>
+					<p>Menschen, die Verantwortung tragen</p>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -115,31 +158,67 @@ $intern_url  = ( $p = get_page_by_path( 'intern' ) ) ? get_permalink( $p ) : '#i
 <!-- ══════════════════ GRUPPEN ═══════════════════════ -->
 <section class="section" id="gruppen">
 	<div class="section-inner">
-		<div class="section-header">
-			<div class="section-kicker">Gemeinschaft &amp; Gruppen</div>
-			<h2>Für jede Lebensphase</h2>
-			<p>Bei uns findest du Gruppen und Kreise für alle Altersgruppen und Interessen.</p>
+		<?php
+		$gruppen = new WP_Query( array(
+			'post_type'      => 'gruppe',
+			'posts_per_page' => -1,
+			'orderby'        => 'menu_order title',
+			'order'          => 'ASC',
+		) );
+
+		// Gruppen nach Zielgruppe bündeln, damit die Übersicht nicht zur Kachelwand wird.
+		$cluster = array(
+			'Erwachsene'                    => array(),
+			'Jugend und junge Erwachsene'   => array(),
+			'Kinder'                        => array(),
+		);
+		if ( $gruppen->have_posts() ) {
+			while ( $gruppen->have_posts() ) {
+				$gruppen->the_post();
+				$badge = efga_get( 'efga_badge' );
+				if ( preg_match( '/kind|jungschar/i', $badge . ' ' . get_the_title() ) ) {
+					$key = 'Kinder';
+				} elseif ( preg_match( '/teen|jugend|jung/i', $badge . ' ' . get_the_title() ) ) {
+					$key = 'Jugend und junge Erwachsene';
+				} else {
+					$key = 'Erwachsene';
+				}
+				$cluster[ $key ][] = array(
+					'titel' => get_the_title(),
+					'url'   => get_permalink(),
+					'icon'  => efga_get( 'efga_icon', 'personen' ),
+					'zeit'  => efga_get( 'efga_schedule', $badge ),
+				);
+			}
+			wp_reset_postdata();
+		}
+		$anzahl = array_sum( array_map( 'count', $cluster ) );
+		?>
+
+		<div class="section-kopf-reihe">
+			<div>
+				<h2>Für jede Lebensphase</h2>
+				<p><?php echo esc_html( $anzahl ); ?> Gruppen und Kreise, vom Kindergartenalter bis zur Seniorenrunde.</p>
+			</div>
+			<a href="<?php echo esc_url( $gruppen_url ); ?>" class="text-link">Alle Gruppen <?php efga_ico( 'pfeil-rechts', 'ico-sm' ); ?></a>
 		</div>
 
-		<div class="gruppen-overview-grid">
-			<?php
-			$gruppen = new WP_Query( array(
-				'post_type'      => 'gruppe',
-				'posts_per_page' => -1,
-				'orderby'        => 'menu_order title',
-				'order'          => 'ASC',
-			) );
-			if ( $gruppen->have_posts() ) :
-				while ( $gruppen->have_posts() ) : $gruppen->the_post();
-					get_template_part( 'template-parts/gruppe', 'card' );
-				endwhile;
-				wp_reset_postdata();
-			endif;
-			?>
-		</div>
-
-		<div style="text-align:center; margin-top:36px;">
-			<a href="<?php echo esc_url( $gruppen_url ); ?>" class="btn-blau">Alle Gruppen im Überblick →</a>
+		<div class="gruppen-cluster">
+			<?php foreach ( $cluster as $titel => $eintraege ) : ?>
+				<?php if ( empty( $eintraege ) ) { continue; } ?>
+				<div class="cluster">
+					<h3><?php echo esc_html( $titel ); ?></h3>
+					<?php foreach ( $eintraege as $e ) : ?>
+						<a href="<?php echo esc_url( $e['url'] ); ?>" class="cluster-eintrag">
+							<?php efga_ico( $e['icon'] ); ?>
+							<div>
+								<strong><?php echo esc_html( $e['titel'] ); ?></strong>
+								<?php if ( $e['zeit'] ) : ?><span><?php echo esc_html( $e['zeit'] ); ?></span><?php endif; ?>
+							</div>
+						</a>
+					<?php endforeach; ?>
+				</div>
+			<?php endforeach; ?>
 		</div>
 	</div>
 </section>
@@ -148,63 +227,97 @@ $intern_url  = ( $p = get_page_by_path( 'intern' ) ) ? get_permalink( $p ) : '#i
 <section class="section section-alt" id="predigten">
 	<div class="section-inner">
 		<div class="section-header">
-			<div class="section-kicker">Hören &amp; Nachdenken</div>
 			<h2>Predigten</h2>
-			<p>Die neuesten Predigten aus unseren Gottesdiensten – zum Nachhören und Weitergeben.</p>
+			<p>Die neuesten Predigten aus unseren Gottesdiensten, zum Nachhören und Weitergeben.</p>
 		</div>
+
 		<div class="predigten-list">
 			<div class="predigt-row">
-				<div class="predigt-play"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-				<div class="predigt-info"><strong>Erwählung: Aus „Niemand" wird „Jemand"</strong><span>1. Samuel 16 · Markus Wäsch</span></div>
+				<span class="predigt-play"><?php efga_ico( 'play' ); ?></span>
+				<div class="predigt-info">
+					<strong>Erwählung: Aus „Niemand“ wird „Jemand“</strong>
+					<span>1. Samuel 16, Markus Wäsch</span>
+				</div>
 				<div class="predigt-meta"><strong>03.05.2026</strong>Bibeltage</div>
 			</div>
 			<div class="predigt-row">
-				<div class="predigt-play"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-				<div class="predigt-info"><strong>Freundschaft durch dick und dünn</strong><span>1. Samuel 18–23 · Markus Wäsch</span></div>
+				<span class="predigt-play"><?php efga_ico( 'play' ); ?></span>
+				<div class="predigt-info">
+					<strong>Freundschaft durch dick und dünn</strong>
+					<span>1. Samuel 18 bis 23, Markus Wäsch</span>
+				</div>
 				<div class="predigt-meta"><strong>04.05.2026</strong>Bibeltage</div>
 			</div>
 			<div class="predigt-row">
-				<div class="predigt-play"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-				<div class="predigt-info"><strong>Ausruhen – Neue Kraft für Müde</strong><span>1. Samuel 30 · Markus Wäsch</span></div>
+				<span class="predigt-play"><?php efga_ico( 'play' ); ?></span>
+				<div class="predigt-info">
+					<strong>Ausruhen: Neue Kraft für Müde</strong>
+					<span>1. Samuel 30, Markus Wäsch</span>
+				</div>
 				<div class="predigt-meta"><strong>06.05.2026</strong>Bibeltage</div>
 			</div>
-			<div class="predigt-row" style="background:var(--grau-hell);">
-				<div class="predigt-play" style="background:var(--grau-mittel);">
-					<svg width="16" height="16" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+			<div class="predigt-row predigt-row-gesperrt">
+				<span class="predigt-play"><?php efga_ico( 'schloss' ); ?></span>
+				<div class="predigt-info">
+					<strong>Ältere Predigten im internen Bereich</strong>
+					<span>Vollständiges Archiv mit Suchfunktion</span>
 				</div>
-				<div class="predigt-info"><strong>Ältere Predigten im internen Bereich</strong><span>Vollständiges Archiv mit Suchfunktion</span></div>
-				<div class="predigt-meta"><span class="predigt-lock">🔒 Login erforderlich</span></div>
+				<div class="predigt-meta"><span class="predigt-lock">Login erforderlich</span></div>
 			</div>
 		</div>
 	</div>
 </section>
 
-<!-- ══════════════════ KALENDER ══════════════════════ -->
+<!-- ══════════════════ WOCHE & KALENDER ══════════════ -->
 <section class="section" id="kalender">
 	<div class="section-inner">
 		<div class="section-header">
-			<div class="section-kicker">Termine auf einen Blick</div>
-			<h2>Gemeinde-Kalender</h2>
-			<p>Alle Termine der Gemeinde übersichtlich im Kalender.</p>
+			<h2>Unsere Woche</h2>
+			<p>Der feste Rhythmus der Gemeinde. Einzeltermine und Sondertage stehen im Gemeindekalender.</p>
 		</div>
-		<?php get_template_part( 'template-parts/kalender' ); ?>
+
+		<div class="woche-grid">
+			<div class="woche-zelle betont">
+				<span class="tag">Sonntag</span>
+				<strong>Gottesdienst</strong>
+				<span>10:00 Uhr, mit Kinderprogramm</span>
+			</div>
+			<div class="woche-zelle">
+				<span class="tag">Mittwoch</span>
+				<strong>GLV und Bibelstunde</strong>
+				<span>Im Wechsel, abends</span>
+			</div>
+			<div class="woche-zelle">
+				<span class="tag">Freitag</span>
+				<strong>Crossroad</strong>
+				<span>Teenkreis ab 13 Jahren</span>
+			</div>
+			<div class="woche-zelle">
+				<span class="tag">Laufend</span>
+				<strong>Hauskreise</strong>
+				<span>Drei Kreise, wöchentlich</span>
+			</div>
+		</div>
+
+		<div class="woche-fuss">
+			<p>Alle Einzeltermine, Bibeltage und Sonderveranstaltungen stehen im Gemeindekalender.</p>
+			<a href="<?php echo esc_url( $kal_url ); ?>" class="btn btn-sekundaer">
+				<?php efga_ico( 'kalender', 'ico-sm' ); ?>
+				Zum Gemeindekalender
+			</a>
+		</div>
 	</div>
 </section>
 
 <!-- ══════════════════ INTERN ════════════════════════ -->
 <section class="section section-alt" id="intern">
 	<div class="section-inner">
-		<div class="section-header">
-			<div class="section-kicker">Für Gemeindeglieder</div>
-			<h2>Interner Bereich</h2>
-			<p>Formulare, Protokolle, Predigten-Archiv und mehr – nur für angemeldete Mitglieder.</p>
-		</div>
 		<div class="intern-banner">
-			<div class="intern-icon-big">🔒</div>
+			<?php efga_ico( 'schloss' ); ?>
 			<div class="intern-text">
-				<h3>Mitglieder-Login</h3>
-				<p>Im internen Bereich findest du Predigten-Archiv, Gemeindeformulare, Protokolle und passwortgeschützte Inhalte.</p>
-				<a href="<?php echo esc_url( $intern_url ); ?>" class="btn btn-white" style="width:fit-content;">Zum Login →</a>
+				<h3>Interner Bereich</h3>
+				<p>Predigten-Archiv, Gemeindeformulare, Protokolle und geschützte Inhalte, nur für angemeldete Mitglieder.</p>
+				<a href="<?php echo esc_url( $intern_url ); ?>" class="btn btn-blau">Zum Login</a>
 			</div>
 		</div>
 	</div>
@@ -214,8 +327,8 @@ $intern_url  = ( $p = get_page_by_path( 'intern' ) ) ? get_permalink( $p ) : '#i
 <section class="section" id="kontakt">
 	<div class="section-inner">
 		<div class="section-header">
-			<div class="section-kicker">Wir freuen uns von dir zu hören</div>
-			<h2>Kontakt &amp; Anfahrt</h2>
+			<h2>Kontakt und Anfahrt</h2>
+			<p>Schreib uns eine Nachricht, ruf bei der Gemeindeleitung an oder komm sonntags einfach vorbei.</p>
 		</div>
 		<?php get_template_part( 'template-parts/kontakt' ); ?>
 	</div>

@@ -1,31 +1,59 @@
 <?php
 /**
- * Kalender-Platzhalter (statisch, wie in index.html).
- * Hinweis: Hier kann später ein Google-Kalender-Embed eingebunden werden.
+ * Termin-Übersicht.
+ *
+ * Zeigt die nächsten Veranstaltungen aus dem CPT "veranstaltung".
+ * Es werden bewusst keine Platzhalter-Termine erfunden: Ist nichts gepflegt,
+ * erscheint ein Hinweis statt eines gefüllten Monatsrasters.
+ *
+ * Ein echter Kalender (z. B. Google-Kalender-Embed) gehört in den Container
+ * <div class="kalender-embed"> ... </div> unterhalb dieser Liste.
  *
  * @package EFG_Allendorf
  */
+
+$termine = new WP_Query( array(
+	'post_type'      => 'veranstaltung',
+	'posts_per_page' => 8,
+	'orderby'        => 'menu_order date',
+	'order'          => 'ASC',
+) );
 ?>
-<div class="kalender-placeholder">
-	<div class="kalender-header">
-		<h3>Mai 2026</h3>
-		<div class="kalender-nav"><button>‹</button><button>›</button></div>
+
+<?php if ( $termine->have_posts() ) : ?>
+	<div class="termine-liste">
+		<?php
+		while ( $termine->have_posts() ) :
+			$termine->the_post();
+			$day   = efga_get( 'efga_date_day' );
+			$month = efga_get( 'efga_date_month' );
+			$time  = efga_get( 'efga_time' );
+			?>
+			<a href="<?php the_permalink(); ?>" class="termin-zeile">
+				<div class="termin-datum">
+					<span class="tag"><?php echo esc_html( $day ); ?></span>
+					<span class="monat"><?php echo esc_html( $month ); ?></span>
+				</div>
+				<div class="termin-text">
+					<strong><?php the_title(); ?></strong>
+					<?php if ( $time ) : ?><span><?php echo esc_html( $time ); ?></span><?php endif; ?>
+				</div>
+				<?php efga_ico( 'pfeil-rechts', 'ico-sm' ); ?>
+			</a>
+			<?php
+		endwhile;
+		wp_reset_postdata();
+		?>
+		<div class="termine-fuss">
+			<span>Der Gottesdienst findet jeden Sonntag um 10:00 Uhr statt.</span>
+			<a href="<?php echo esc_url( home_url( '/#kalender' ) ); ?>" class="text-link">
+				Wochenrhythmus ansehen <?php efga_ico( 'pfeil-rechts', 'ico-sm' ); ?>
+			</a>
+		</div>
 	</div>
-	<div class="kalender-wochentage">
-		<span>Mo</span><span>Di</span><span>Mi</span><span>Do</span><span>Fr</span><span>Sa</span><span>So</span>
+<?php else : ?>
+	<div class="archive-hint">
+		<strong>Zurzeit sind keine Termine eingetragen.</strong>
+		Neue Veranstaltungen legst du im WordPress-Admin unter <strong>Veranstaltungen</strong> an.
 	</div>
-	<div class="kalender-tage">
-		<div class="kalender-tag leer"></div><div class="kalender-tag leer"></div><div class="kalender-tag leer"></div>
-		<div class="kalender-tag">1</div><div class="kalender-tag">2</div><div class="kalender-tag">3</div><div class="kalender-tag event">4</div>
-		<div class="kalender-tag event">5</div><div class="kalender-tag event">6</div><div class="kalender-tag event">7</div>
-		<div class="kalender-tag">8</div><div class="kalender-tag">9</div><div class="kalender-tag">10</div><div class="kalender-tag event">11</div>
-		<div class="kalender-tag">12</div><div class="kalender-tag">13</div><div class="kalender-tag">14</div>
-		<div class="kalender-tag">15</div><div class="kalender-tag">16</div><div class="kalender-tag event">17</div><div class="kalender-tag event">18</div>
-		<div class="kalender-tag">19</div><div class="kalender-tag">20</div><div class="kalender-tag">21</div>
-		<div class="kalender-tag">22</div><div class="kalender-tag">23</div><div class="kalender-tag event">24</div><div class="kalender-tag">25</div>
-		<div class="kalender-tag heute">26</div><div class="kalender-tag">27</div><div class="kalender-tag">28</div><div class="kalender-tag">29</div>
-		<div class="kalender-tag">30</div><div class="kalender-tag event">31</div>
-		<div class="kalender-tag leer"></div><div class="kalender-tag leer"></div><div class="kalender-tag leer"></div>
-		<div class="kalender-tag leer"></div><div class="kalender-tag leer"></div><div class="kalender-tag leer"></div>
-	</div>
-</div>
+<?php endif; ?>

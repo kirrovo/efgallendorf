@@ -32,7 +32,7 @@ get_template_part( 'template-parts/page-hero', null, array(
 			</div>
 			<div style="text-align:center;margin-top:32px;"><?php the_posts_pagination(); ?></div>
 		<?php else : ?>
-			<p style="text-align:center;color:var(--grau-mittel);">Keine Beiträge gefunden.</p>
+			<p style="text-align:center;color:var(--text-leise);">Keine Beiträge gefunden.</p>
 		<?php endif; ?>
 	</div>
 </section>
