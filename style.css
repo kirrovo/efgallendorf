@@ -622,6 +622,11 @@ a.karte:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
   will-change: transform;
   color: #fff;
 }
+/* Auftritt und Blättern schwingen leicht über, wie das elastische
+   Easing der Vorlage. Danach greift wieder die ruhige Kurve oben. */
+.faecher-karte.faecher-auftritt {
+  transition: transform 1s cubic-bezier(.16, 1.4, .38, 1), opacity .5s ease;
+}
 .faecher-karte img {
   position: absolute; inset: 0;
   width: 100%; height: 100%;

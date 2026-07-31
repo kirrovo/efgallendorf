@@ -65,6 +65,27 @@
     var plaetze = blaettern ? SICHTBAR : anzahl;
     var mitte = blaettern ? HAELFTE : anzahl >> 1;
     var gehoverter = null;
+    var sperrTimer;
+    var vorherSichtbar = {};
+    var ersterAuftritt = true;
+    var laeuft = false;   // sperrt Hover und Neuzeichnen während Auftritt/Blättern
+
+    /** Werte setzen, ohne dass die laufende Transition sie weichzeichnet. */
+    function sofort(karte, werte) {
+      karte.style.transition = 'none';
+      setzen(karte, werte);
+      void karte.offsetWidth;          // Layout erzwingen
+      karte.style.transition = '';
+    }
+
+    function setzen(karte, w) {
+      if (w.x !== undefined)     karte.style.setProperty('--fx', w.x + 'rem');
+      if (w.y !== undefined)     karte.style.setProperty('--fy', w.y + 'rem');
+      if (w.rot !== undefined)   karte.style.setProperty('--frot', w.rot + 'deg');
+      if (w.scale !== undefined) karte.style.setProperty('--fscale', w.scale);
+      if (w.op !== undefined)    karte.style.setProperty('--fop', w.op);
+      if (w.z !== undefined)     karte.style.setProperty('--fz', w.z);
+    }
 
     /** Welche Karte liegt auf welchem Platz? */
     function belegung() {
@@ -79,7 +100,7 @@
       return m;
     }
 
-    function zeichnen() {
+    function zeichnen(richtung) {
       var m = belegung();
       var fb = breitenFaktor(window.innerWidth);
       var fh = hoehenFaktor(window.innerWidth);
@@ -93,10 +114,19 @@
       karten.forEach(function (karte, i) {
         var slot = m[i];
 
+        var warSichtbar = vorherSichtbar[i];
+
         if (slot === undefined) {
-          karte.style.setProperty('--fop', '0');
-          karte.style.setProperty('--fscale', '0.5');
-          karte.style.setProperty('--fz', '0');
+          // Gerichteter Abgang: die Karte fliegt zur Gegenseite hinaus
+          if (warSichtbar && richtung) {
+            setzen(karte, {
+              x: richtung === 'rechts' ? -40 : 40,
+              rot: richtung === 'rechts' ? -30 : 30,
+              scale: 0.5, op: 0, z: 0
+            });
+          } else {
+            setzen(karte, { scale: 0.5, op: 0, z: 0 });
+          }
           karte.setAttribute('aria-hidden', 'true');
           karte.tabIndex = -1;
           return;
@@ -124,15 +154,49 @@
           }
         }
 
-        karte.style.setProperty('--fx', x + 'rem');
-        karte.style.setProperty('--fy', y + 'rem');
-        karte.style.setProperty('--frot', rot + 'deg');
-        karte.style.setProperty('--fscale', sc);
-        karte.style.setProperty('--fop', '1');
-        karte.style.setProperty('--fz', p.z);
+        var ziel = { x: x, y: y, rot: rot, scale: sc, op: 1, z: p.z };
+
+        if (ersterAuftritt) {
+          // Auftritt: von unten, klein und unsichtbar, gestaffelt pro Platz
+          sofort(karte, { x: 0, y: 12 * fh, rot: 0, scale: 0.5, op: 0, z: p.z });
+          karte.classList.add('faecher-auftritt');
+          karte.style.transitionDelay = (0.2 + slot * 0.06) + 's';
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () { setzen(karte, ziel); });
+          });
+        } else if (!warSichtbar && richtung) {
+          // Eintritt von der Seite, aus der geblättert wurde
+          sofort(karte, {
+            x: richtung === 'rechts' ? 40 : -40,
+            y: y,
+            rot: richtung === 'rechts' ? 30 : -30,
+            scale: 0.5, op: 0, z: p.z
+          });
+          karte.classList.add('faecher-auftritt');
+          karte.style.transitionDelay = '0s';
+          requestAnimationFrame(function () { setzen(karte, ziel); });
+        } else {
+          karte.classList.remove('faecher-auftritt');
+          karte.style.transitionDelay = '0s';
+          setzen(karte, ziel);
+        }
+
         karte.removeAttribute('aria-hidden');
         karte.tabIndex = 0;
       });
+
+      vorherSichtbar = {};
+      Object.keys(m).forEach(function (i) { vorherSichtbar[i] = true; });
+
+      // Während Auftritt und Blättern ruht die Interaktion, sonst
+      // überschreibt ein Hover die gestaffelte Bewegung.
+      if (ersterAuftritt || richtung) {
+        laeuft = true;
+        clearTimeout(sperrTimer);
+        sperrTimer = setTimeout(function () { laeuft = false; },
+          ersterAuftritt ? 1600 : 700);
+      }
+      ersterAuftritt = false;
 
       punkte.forEach(function (pt, i) {
         pt.setAttribute('aria-current', i === mitte ? 'true' : 'false');
@@ -140,12 +204,12 @@
     }
 
     function weiter(richtung) {
-      if (!blaettern) return;
+      if (!blaettern || laeuft) return;
       mitte = richtung === 'rechts'
         ? (mitte + 1) % anzahl
         : (mitte - 1 + anzahl) % anzahl;
       gehoverter = null;
-      zeichnen();
+      zeichnen(richtung);
     }
 
     wurzel.querySelectorAll('.faecher-pfeil').forEach(function (b) {
@@ -157,6 +221,7 @@
 
     karten.forEach(function (karte, i) {
       karte.addEventListener('mouseenter', function () {
+        if (laeuft) return;
         var slot = belegung()[i];
         if (slot === undefined) return;
         gehoverter = slot; zeichnen();
@@ -168,7 +233,10 @@
         gehoverter = null; zeichnen();
       });
     });
-    buehne.addEventListener('mouseleave', function () { gehoverter = null; zeichnen(); });
+    buehne.addEventListener('mouseleave', function () {
+      if (laeuft) return;
+      gehoverter = null; zeichnen();
+    });
 
     // Pfeiltasten steuern den Fächer, wenn er den Fokus hat
     wurzel.addEventListener('keydown', function (e) {
