@@ -77,7 +77,7 @@
     </div>
 
     <div class="events-grid">
-      <article class="event-card">
+      <article class="event-card" data-spot>
         <div class="event-date-bar">
           <div class="event-date-box"><span class="day">03</span><span class="month">Mai</span></div>
           <div class="event-title-bar"><strong>Bibeltage 2026</strong><span>Sonntag bis Mittwoch, 10:00 und 19:30 Uhr</span></div>
@@ -91,7 +91,7 @@
         </div>
       </article>
 
-      <article class="event-card">
+      <article class="event-card" data-spot>
         <div class="event-date-bar">
           <div class="event-date-box"><span class="day">11</span><span class="month">Mai</span></div>
           <div class="event-title-bar"><strong>Sonntagsgottesdienst</strong><span>Sonntag, 10:00 Uhr</span></div>
@@ -105,7 +105,7 @@
         </div>
       </article>
 
-      <article class="event-card">
+      <article class="event-card" data-spot>
         <div class="event-date-bar">
           <div class="event-date-box"><span class="day">17</span><span class="month">Mai</span></div>
           <div class="event-title-bar"><strong>Gemeindeabend</strong><span>Samstag, 19:00 Uhr</span></div>
@@ -133,25 +133,49 @@
         <a href="wer-wir-sind.html" class="btn btn-blau">Mehr über uns</a>
       </div>
       <div class="wer-cards">
-        <a href="wer-wir-sind.html#glaube" class="wer-card">
-          <svg class="ico" aria-hidden="true"><use href="#i-buch"></use></svg>
+        <a href="wer-wir-sind.html#glaube" class="wer-card" style="--i: 0">
+          <div class="wer-card-kopf">
+            <svg class="ico" aria-hidden="true"><use href="#i-buch"></use></svg>
+            <span class="nummer" aria-hidden="true">01</span>
+          </div>
           <h4>Glaubensbekenntnis</h4>
-          <p>Was wir glauben und warum</p>
+          <p>Woran wir glauben und warum. Zwölf Sätze, die unsere Grundlage beschreiben.</p>
+          <span class="mehr">Ansehen
+            <svg class="ico ico-sm" aria-hidden="true"><use href="#i-pfeil-rechts"></use></svg>
+          </span>
         </a>
-        <a href="wer-wir-sind.html#leitbild" class="wer-card">
-          <svg class="ico" aria-hidden="true"><use href="#i-herz"></use></svg>
+        <a href="wer-wir-sind.html#leitbild" class="wer-card" style="--i: 1">
+          <div class="wer-card-kopf">
+            <svg class="ico" aria-hidden="true"><use href="#i-herz"></use></svg>
+            <span class="nummer" aria-hidden="true">02</span>
+          </div>
           <h4>Leitbild und Werte</h4>
-          <p>Unsere Grundsätze und Vision</p>
+          <p>Was wir wollen und wofür wir uns treffen. Unsere Grundsätze im Alltag.</p>
+          <span class="mehr">Ansehen
+            <svg class="ico ico-sm" aria-hidden="true"><use href="#i-pfeil-rechts"></use></svg>
+          </span>
         </a>
-        <a href="wer-wir-sind.html#chronik" class="wer-card">
-          <svg class="ico" aria-hidden="true"><use href="#i-chronik"></use></svg>
+        <a href="wer-wir-sind.html#chronik" class="wer-card" style="--i: 2">
+          <div class="wer-card-kopf">
+            <svg class="ico" aria-hidden="true"><use href="#i-chronik"></use></svg>
+            <span class="nummer" aria-hidden="true">03</span>
+          </div>
           <h4>Chronik</h4>
-          <p>Unsere Geschichte im Überblick</p>
+          <p>Seit 1884 in Allendorf. Aus der Gemeinschaftsbewegung wurde eine Ortsgemeinde.</p>
+          <span class="mehr">Ansehen
+            <svg class="ico ico-sm" aria-hidden="true"><use href="#i-pfeil-rechts"></use></svg>
+          </span>
         </a>
-        <a href="wer-wir-sind.html#leitung" class="wer-card">
-          <svg class="ico" aria-hidden="true"><use href="#i-personen"></use></svg>
+        <a href="wer-wir-sind.html#leitung" class="wer-card" style="--i: 3">
+          <div class="wer-card-kopf">
+            <svg class="ico" aria-hidden="true"><use href="#i-personen"></use></svg>
+            <span class="nummer" aria-hidden="true">04</span>
+          </div>
           <h4>Gemeindeleitung</h4>
-          <p>Menschen, die Verantwortung tragen</p>
+          <p>Die Menschen, die Verantwortung tragen, mit Namen und Kontakt.</p>
+          <span class="mehr">Ansehen
+            <svg class="ico ico-sm" aria-hidden="true"><use href="#i-pfeil-rechts"></use></svg>
+          </span>
         </a>
       </div>
     </div>
@@ -477,6 +501,7 @@
 <footer id="site-footer"></footer>
 
 <script src="nav.js"></script>
+<script src="effekte.js"></script>
 <script>renderNav('home', 0); renderFooter(0);</script>
 </body>
 </html>

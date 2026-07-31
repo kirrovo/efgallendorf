@@ -19,6 +19,59 @@ $kontakt_url = ( $p = get_page_by_path( 'kontakt' ) ) ? get_permalink( $p ) : ho
 
 <section class="section">
 	<div class="section-inner">
+
+		<?php
+		/*
+		 * Schaufenster: gefächerte Karten aus den Gruppen mit Bild.
+		 * Die eigentliche Navigation bleibt das beschriftete Raster darunter,
+		 * damit alle Angebote ohne Blättern erreichbar sind.
+		 */
+		$fan = new WP_Query( array(
+			'post_type'      => 'gruppe',
+			'posts_per_page' => -1,
+			'orderby'        => 'menu_order title',
+			'order'          => 'ASC',
+		) );
+		$fan_karten = array();
+		if ( $fan->have_posts() ) {
+			while ( $fan->have_posts() ) {
+				$fan->the_post();
+				$slug = get_post_field( 'post_name' );
+				$datei = get_template_directory() . '/assets/img/angebote/' . $slug . '.jpg';
+				if ( has_post_thumbnail() ) {
+					$bild = get_the_post_thumbnail_url( null, 'medium_large' );
+				} elseif ( file_exists( $datei ) ) {
+					$bild = get_template_directory_uri() . '/assets/img/angebote/' . $slug . '.jpg';
+				} else {
+					continue; // ohne Bild keine Fächerkarte
+				}
+				$fan_karten[] = array( 'titel' => get_the_title(), 'url' => get_permalink(), 'bild' => $bild );
+			}
+			wp_reset_postdata();
+		}
+		?>
+		<?php if ( count( $fan_karten ) > 2 ) : ?>
+		<div class="faecher" data-faecher role="group" aria-label="Bilder unserer Angebote">
+			<div class="faecher-buehne">
+				<?php foreach ( $fan_karten as $k ) : ?>
+					<a class="faecher-karte" href="<?php echo esc_url( $k['url'] ); ?>">
+						<img src="<?php echo esc_url( $k['bild'] ); ?>" width="400" height="533" loading="lazy" alt="" />
+						<span class="faecher-titel"><?php echo esc_html( $k['titel'] ); ?></span>
+					</a>
+				<?php endforeach; ?>
+			</div>
+			<div class="faecher-steuerung">
+				<button class="faecher-pfeil" type="button" data-richtung="links" aria-label="Vorheriges Angebot"><?php efga_ico( 'pfeil-links' ); ?></button>
+				<div class="faecher-punkte">
+					<?php foreach ( $fan_karten as $k ) : ?>
+						<button class="faecher-punkt" type="button" aria-label="<?php echo esc_attr( $k['titel'] ); ?>"></button>
+					<?php endforeach; ?>
+				</div>
+				<button class="faecher-pfeil" type="button" data-richtung="rechts" aria-label="Nächstes Angebot"><?php efga_ico( 'pfeil-rechts' ); ?></button>
+			</div>
+		</div>
+		<?php endif; ?>
+
 		<div class="gruppen-overview-grid">
 			<?php
 			while ( have_posts() ) :

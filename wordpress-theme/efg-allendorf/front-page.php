@@ -106,7 +106,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 					$link  = efga_get( 'efga_link' );
 					$link  = $link ? $link : get_permalink();
 					?>
-					<article class="event-card">
+					<article class="event-card" data-spot>
 						<div class="event-date-bar">
 							<div class="event-date-box">
 								<span class="day"><?php echo esc_html( $day ); ?></span>
@@ -145,25 +145,41 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 				<a href="<?php echo esc_url( $wer_url ); ?>" class="btn btn-blau">Mehr über uns</a>
 			</div>
 			<div class="wer-cards">
-				<a href="<?php echo esc_url( $wer_url ); ?>#glaube" class="wer-card">
-					<?php efga_ico( 'buch' ); ?>
+				<a href="<?php echo esc_url( $wer_url ); ?>#glaube" class="wer-card" style="--i: 0">
+					<div class="wer-card-kopf">
+						<?php efga_ico( 'buch' ); ?>
+						<span class="nummer" aria-hidden="true">01</span>
+					</div>
 					<h4>Glaubensbekenntnis</h4>
-					<p>Was wir glauben und warum</p>
+					<p>Woran wir glauben und warum. Zwölf Sätze, die unsere Grundlage beschreiben.</p>
+					<span class="mehr">Ansehen <?php efga_ico( 'pfeil-rechts', 'ico-sm' ); ?></span>
 				</a>
-				<a href="<?php echo esc_url( $wer_url ); ?>#leitbild" class="wer-card">
-					<?php efga_ico( 'herz' ); ?>
+				<a href="<?php echo esc_url( $wer_url ); ?>#leitbild" class="wer-card" style="--i: 1">
+					<div class="wer-card-kopf">
+						<?php efga_ico( 'herz' ); ?>
+						<span class="nummer" aria-hidden="true">02</span>
+					</div>
 					<h4>Leitbild und Werte</h4>
-					<p>Unsere Grundsätze und Vision</p>
+					<p>Was wir wollen und wofür wir uns treffen. Unsere Grundsätze im Alltag.</p>
+					<span class="mehr">Ansehen <?php efga_ico( 'pfeil-rechts', 'ico-sm' ); ?></span>
 				</a>
-				<a href="<?php echo esc_url( $wer_url ); ?>#chronik" class="wer-card">
-					<?php efga_ico( 'chronik' ); ?>
+				<a href="<?php echo esc_url( $wer_url ); ?>#chronik" class="wer-card" style="--i: 2">
+					<div class="wer-card-kopf">
+						<?php efga_ico( 'chronik' ); ?>
+						<span class="nummer" aria-hidden="true">03</span>
+					</div>
 					<h4>Chronik</h4>
-					<p>Unsere Geschichte im Überblick</p>
+					<p>Seit 1884 in Allendorf. Aus der Gemeinschaftsbewegung wurde eine Ortsgemeinde.</p>
+					<span class="mehr">Ansehen <?php efga_ico( 'pfeil-rechts', 'ico-sm' ); ?></span>
 				</a>
-				<a href="<?php echo esc_url( $wer_url ); ?>#leitung" class="wer-card">
-					<?php efga_ico( 'personen' ); ?>
+				<a href="<?php echo esc_url( $wer_url ); ?>#leitung" class="wer-card" style="--i: 3">
+					<div class="wer-card-kopf">
+						<?php efga_ico( 'personen' ); ?>
+						<span class="nummer" aria-hidden="true">04</span>
+					</div>
 					<h4>Gemeindeleitung</h4>
-					<p>Menschen, die Verantwortung tragen</p>
+					<p>Die Menschen, die Verantwortung tragen, mit Namen und Kontakt.</p>
+					<span class="mehr">Ansehen <?php efga_ico( 'pfeil-rechts', 'ico-sm' ); ?></span>
 				</a>
 			</div>
 		</div>

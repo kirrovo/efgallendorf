@@ -33,6 +33,85 @@
 <section class="section">
   <div class="section-inner">
 
+    <!-- Schaufenster: gefächerte Karten. Die eigentliche Navigation ist
+         das beschriftete Raster darunter, damit alle Angebote ohne
+         Blättern erreichbar bleiben. -->
+    <div class="faecher" data-faecher role="group" aria-label="Bilder unserer Angebote">
+      <div class="faecher-buehne">
+        <a class="faecher-karte" href="gruppen/gottesdienst.html">
+          <img src="bilder/angebote/gottesdienst.jpg" width="400" height="533" loading="lazy" alt="" />
+          <span class="faecher-titel">Gottesdienst</span>
+        </a>
+        <a class="faecher-karte" href="gruppen/glv.html">
+          <img src="bilder/angebote/glv.jpg" width="400" height="533" loading="lazy" alt="" />
+          <span class="faecher-titel">GLV: Glauben, Leben, Verstehen</span>
+        </a>
+        <a class="faecher-karte" href="gruppen/bibelstunde.html">
+          <img src="bilder/angebote/bibelstunde.jpg" width="400" height="533" loading="lazy" alt="" />
+          <span class="faecher-titel">Bibelstunde</span>
+        </a>
+        <a class="faecher-karte" href="gruppen/hauskreise.html">
+          <img src="bilder/angebote/hauskreise.jpg" width="400" height="533" loading="lazy" alt="" />
+          <span class="faecher-titel">Hauskreise</span>
+        </a>
+        <a class="faecher-karte" href="gruppen/kaffee-und-muesli.html">
+          <img src="bilder/angebote/kaffee-und-muesli.jpg" width="400" height="533" loading="lazy" alt="" />
+          <span class="faecher-titel">Kaffee und Müsli</span>
+        </a>
+        <a class="faecher-karte" href="gruppen/frauengebetskreis.html">
+          <img src="bilder/angebote/frauengebetskreis.jpg" width="400" height="533" loading="lazy" alt="" />
+          <span class="faecher-titel">Frauengebetskreis</span>
+        </a>
+        <a class="faecher-karte" href="gruppen/maennertreffen.html">
+          <img src="bilder/angebote/maennertreffen.jpg" width="400" height="533" loading="lazy" alt="" />
+          <span class="faecher-titel">Männertreffen</span>
+        </a>
+        <a class="faecher-karte" href="gruppen/seniorenarbeit.html">
+          <img src="bilder/angebote/seniorenarbeit.jpg" width="400" height="533" loading="lazy" alt="" />
+          <span class="faecher-titel">Seniorenarbeit</span>
+        </a>
+        <a class="faecher-karte" href="gruppen/kindergottesdienst.html">
+          <img src="bilder/angebote/kindergottesdienst.jpg" width="400" height="533" loading="lazy" alt="" />
+          <span class="faecher-titel">Kindergottesdienst</span>
+        </a>
+        <a class="faecher-karte" href="gruppen/knallerbsen.html">
+          <img src="bilder/angebote/knallerbsen.jpg" width="400" height="533" loading="lazy" alt="" />
+          <span class="faecher-titel">Knallerbsen: Jungschar</span>
+        </a>
+        <a class="faecher-karte" href="gruppen/wilde-fuechse.html">
+          <img src="bilder/angebote/wilde-fuechse.jpg" width="400" height="533" loading="lazy" alt="" />
+          <span class="faecher-titel">Wilde Füchse: Jungschar</span>
+        </a>
+        <a class="faecher-karte" href="gruppen/biblischer-unterricht.html">
+          <img src="bilder/angebote/biblischer-unterricht.jpg" width="400" height="533" loading="lazy" alt="" />
+          <span class="faecher-titel">Biblischer Unterricht</span>
+        </a>
+        <a class="faecher-karte" href="gruppen/crossroad.html">
+          <img src="bilder/angebote/crossroad.jpg" width="400" height="533" loading="lazy" alt="" />
+          <span class="faecher-titel">Crossroad</span>
+        </a>
+      </div>
+      <div class="faecher-steuerung">
+        <button class="faecher-pfeil" type="button" data-richtung="links" aria-label="Vorheriges Angebot"><svg class="ico" aria-hidden="true"><use href="#i-pfeil-links"></use></svg></button>
+        <div class="faecher-punkte">
+          <button class="faecher-punkt" type="button" aria-label="Gottesdienst"></button>
+          <button class="faecher-punkt" type="button" aria-label="GLV: Glauben, Leben, Verstehen"></button>
+          <button class="faecher-punkt" type="button" aria-label="Bibelstunde"></button>
+          <button class="faecher-punkt" type="button" aria-label="Hauskreise"></button>
+          <button class="faecher-punkt" type="button" aria-label="Kaffee und Müsli"></button>
+          <button class="faecher-punkt" type="button" aria-label="Frauengebetskreis"></button>
+          <button class="faecher-punkt" type="button" aria-label="Männertreffen"></button>
+          <button class="faecher-punkt" type="button" aria-label="Seniorenarbeit"></button>
+          <button class="faecher-punkt" type="button" aria-label="Kindergottesdienst"></button>
+          <button class="faecher-punkt" type="button" aria-label="Knallerbsen: Jungschar"></button>
+          <button class="faecher-punkt" type="button" aria-label="Wilde Füchse: Jungschar"></button>
+          <button class="faecher-punkt" type="button" aria-label="Biblischer Unterricht"></button>
+          <button class="faecher-punkt" type="button" aria-label="Crossroad"></button>
+        </div>
+        <button class="faecher-pfeil" type="button" data-richtung="rechts" aria-label="Nächstes Angebot"><svg class="ico" aria-hidden="true"><use href="#i-pfeil-rechts"></use></svg></button>
+      </div>
+    </div>
+
     <div class="gruppen-overview-grid">
 
       <a href="gruppen/gottesdienst.html" class="gruppe-card">
@@ -331,6 +410,7 @@
 <footer id="site-footer"></footer>
 
 <script src="nav.js"></script>
+<script src="effekte.js"></script>
 <script>renderNav('gruppen', 0); renderFooter(0);</script>
 </body>
 </html>

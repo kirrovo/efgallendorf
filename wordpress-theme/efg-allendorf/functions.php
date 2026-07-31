@@ -42,6 +42,7 @@ function efga_assets() {
 	wp_enqueue_style( 'efga-style', get_stylesheet_uri(), array(), EFGA_VERSION );
 	wp_enqueue_script( 'efga-contacts', get_template_directory_uri() . '/assets/js/contacts.js', array(), EFGA_VERSION, true );
 	wp_enqueue_script( 'efga-nav', get_template_directory_uri() . '/assets/js/nav.js', array(), EFGA_VERSION, true );
+	wp_enqueue_script( 'efga-effekte', get_template_directory_uri() . '/assets/js/effekte.js', array(), EFGA_VERSION, true );
 }
 add_action( 'wp_enqueue_scripts', 'efga_assets' );
 

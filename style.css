@@ -531,6 +531,112 @@ nav ul.primary-menu li.nav-intern a:hover { background: var(--blau-hell); color:
 }
 a.karte:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
 
+/* ─── Kartenfächer (Gruppen-Schaufenster) ────────────
+   Sieben sichtbare Karten, gefächert. Positionen aus der Vorlage,
+   umgesetzt mit CSS-Transforms statt GSAP, damit kein 70-KB-Paket
+   für ein dekoratives Element geladen werden muss.
+*/
+.faecher { position: relative; margin-bottom: 56px; }
+
+.faecher-buehne {
+  position: relative;
+  height: 28rem;
+  max-width: 80rem; margin: 0 auto;
+  overflow: hidden;
+}
+
+.faecher-karte {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 14rem;
+  aspect-ratio: 3 / 4;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--flaeche-3);
+  box-shadow: 0 18px 40px -18px rgba(31, 41, 55, .45);
+  /* Drehpunkt unterhalb der Karte erzeugt den Bogen des Fächers */
+  transform-origin: 50% 112%;
+  transform:
+    translate(-50%, -50%)
+    translate(var(--fx, 0), var(--fy, 0))
+    rotate(var(--frot, 0deg))
+    scale(var(--fscale, 1));
+  opacity: var(--fop, 1);
+  z-index: var(--fz, 1);
+  transition: transform .55s cubic-bezier(.22, 1, .36, 1), opacity .4s ease;
+  will-change: transform;
+  color: #fff;
+}
+.faecher-karte img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+/* Beschriftung: die Vorlage zeigt reine Bilder, ohne Namen ist der
+   Fächer auf einer Gemeindeseite aber nicht verständlich. */
+.faecher-titel {
+  position: absolute; inset: auto 0 0 0;
+  padding: 46px 16px 16px;
+  font-size: .98rem; font-weight: 650; line-height: 1.25;
+  background: linear-gradient(to top, rgba(15, 23, 35, .82) 30%, transparent);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+}
+.faecher-karte:focus-visible { outline: 3px solid var(--akzent); outline-offset: 3px; }
+
+.faecher-steuerung {
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+  margin-top: 20px;
+}
+.faecher-pfeil {
+  width: 46px; height: 46px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1.5px solid var(--linie-stark);
+  border-radius: 50%;
+  background: var(--flaeche);
+  color: var(--text-leise);
+  cursor: pointer;
+  transition: border-color .3s, color .3s, background .3s;
+}
+.faecher-pfeil:hover { border-color: var(--akzent); color: var(--akzent); background: var(--flaeche-2); }
+.faecher-pfeil:active { opacity: .7; }
+
+.faecher-punkte { display: flex; align-items: center; gap: 8px; }
+.faecher-punkt {
+  width: 8px; height: 8px; padding: 0;
+  border: none; border-radius: 50%;
+  background: color-mix(in srgb, var(--text) 15%, transparent);
+  cursor: pointer;
+  transition: background .3s, transform .3s;
+}
+.faecher-punkt[aria-current="true"] {
+  background: color-mix(in srgb, var(--text) 70%, transparent);
+  transform: scale(1.3);
+}
+
+@media (max-width: 1023px) { .faecher-buehne { height: 23rem; } }
+@media (max-width: 767px)  { .faecher-buehne { height: 19rem; } .faecher-karte { width: 11rem; } }
+@media (max-width: 479px)  { .faecher-buehne { height: 15rem; } .faecher-karte { width: 8.5rem; } }
+
+/* Ohne Bewegung: aus dem Fächer wird eine schlichte Scrollreihe */
+@media (prefers-reduced-motion: reduce) {
+  .faecher-buehne {
+    height: auto;
+    display: flex; justify-content: flex-start;
+    gap: 16px; overflow-x: auto;
+    padding-bottom: 12px;
+    scroll-snap-type: x mandatory;
+  }
+  .faecher-karte {
+    position: static;
+    transform: none !important;
+    opacity: 1 !important;
+    flex: 0 0 14rem;
+    scroll-snap-align: start;
+    transition: none;
+  }
+  .faecher-steuerung { display: none; }
+}
+
 /* ─── Veranstaltungen ────────────────────────────── */
 .events-grid {
   display: grid;
@@ -575,34 +681,110 @@ a.karte:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
 .event-link { margin-top: auto; font-size: .95rem; font-weight: 600; color: var(--akzent); display: inline-flex; align-items: center; gap: 6px; }
 .event-link:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-/* ─── Wer wir sind (Startseite) ──────────────────── */
+/* ─── Spotlight auf den Veranstaltungskarten ─────────
+   Der Lichtkegel folgt dem Zeiger. Anders als in der Vorlage bleibt
+   der Farbton auf dem Gemeinde-Blau, statt mit der Mausposition durch
+   Violett und Pink zu wandern.
+*/
+.event-card[data-spot] { isolation: isolate; }
+
+/* leuchtender Rand */
+.event-card[data-spot]::before {
+  content: '';
+  position: absolute; inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: radial-gradient(
+    var(--spot-groesse, 220px) var(--spot-groesse, 220px)
+    at var(--sx, 50%) var(--sy, 0%),
+    var(--blau-hell), transparent 68%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity .35s ease;
+  pointer-events: none;
+}
+
+/* sehr zurückhaltender Schimmer auf der Fläche */
+.event-card[data-spot]::after {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    var(--spot-groesse, 220px) var(--spot-groesse, 220px)
+    at var(--sx, 50%) var(--sy, 0%),
+    color-mix(in srgb, var(--blau) 9%, transparent), transparent 65%);
+  opacity: 0;
+  transition: opacity .35s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.events-grid:hover .event-card[data-spot]::before,
+.events-grid:hover .event-card[data-spot]::after { opacity: 1; }
+.event-card[data-spot]:focus-within::before { opacity: 1; }
+
+/* Geräte ohne Zeiger und Nutzer ohne Bewegung sehen den Effekt nicht */
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .event-card[data-spot]::before,
+  .event-card[data-spot]::after { display: none; }
+}
+
+/* ─── Wer wir sind (Startseite, gestapelte Karten) ───
+   Linke Spalte bleibt stehen, die Karten rechts stapeln sich beim
+   Scrollen übereinander. Reines position: sticky, kein JavaScript.
+*/
 .wer-grid {
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: 56px; align-items: center;
+  gap: 56px; align-items: start;
+  perspective: 1000px;
+}
+.wer-text {
+  position: sticky;
+  top: 120px;
 }
 .wer-text h2 { margin-bottom: 16px; }
-.wer-text p { color: var(--text-leise); margin-bottom: 14px; max-width: 52ch; }
+.wer-text p { color: var(--text-leise); margin-bottom: 14px; max-width: 46ch; }
 .wer-text .btn-blau { margin-top: 10px; }
 
-.wer-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.wer-cards { display: flex; flex-direction: column; gap: 26px; }
+
 .wer-card {
+  position: sticky;
+  /* Jede Karte hält 14px tiefer als die vorherige, dadurch der Stapel */
+  top: calc(104px + var(--i, 0) * 14px);
+  z-index: calc(var(--i, 0) + 1);
   background: var(--flaeche);
   border: 1px solid var(--linie);
   border-radius: var(--r-karte);
-  padding: 22px 20px;
+  padding: 28px;
   display: block;
+  min-height: 190px;
+  box-shadow: var(--schatten);
+  backface-visibility: hidden;
   transition: border-color .15s, box-shadow .15s;
 }
-.wer-card:hover { border-color: var(--akzent); box-shadow: var(--schatten); }
-.wer-card .ico { color: var(--akzent); width: 1.5rem; height: 1.5rem; margin-bottom: 12px; }
-.wer-card h4 { font-size: 1rem; font-weight: 650; margin-bottom: 4px; }
-.wer-card p { font-size: .92rem; color: var(--text-leise); }
-
-@media (max-width: 860px) {
-  .wer-grid { grid-template-columns: 1fr; gap: 32px; }
+.wer-card:hover { border-color: var(--akzent); box-shadow: var(--schatten-hoch); }
+.wer-card-kopf { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+.wer-card .ico { color: var(--akzent); width: 1.6rem; height: 1.6rem; }
+.wer-card .nummer { font-size: 1.5rem; font-weight: 700; color: var(--flaeche-3); line-height: 1; }
+.wer-card h4 { font-size: 1.2rem; font-weight: 650; margin-bottom: 8px; }
+.wer-card p { font-size: 1rem; color: var(--text-leise); max-width: 40ch; }
+.wer-card .mehr {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 14px;
+  font-size: .95rem; font-weight: 600; color: var(--akzent);
 }
-@media (max-width: 460px) {
-  .wer-cards { grid-template-columns: 1fr; }
+.wer-card:hover .mehr { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Auf schmalen Geräten wäre der Stapel unpraktisch: normale Liste */
+@media (max-width: 860px) {
+  .wer-grid { grid-template-columns: 1fr; gap: 32px; perspective: none; }
+  .wer-text { position: static; }
+  .wer-card { position: static; min-height: 0; padding: 22px; }
+  .wer-cards { gap: 14px; }
 }
 
 /* ─── Gruppen-Karten ─────────────────────────────── */
