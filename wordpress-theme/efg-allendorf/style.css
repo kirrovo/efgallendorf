@@ -752,52 +752,69 @@ a.karte:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
 .event-link:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 /* ─── Spotlight auf den Veranstaltungskarten ─────────
-   Der Lichtkegel folgt dem Zeiger. Anders als in der Vorlage bleibt
-   der Farbton auf dem Gemeinde-Blau, statt mit der Mausposition durch
-   Violett und Pink zu wandern.
+   Drei Ebenen wie in der Vorlage: Schimmer auf der Fläche, leuchtende
+   Randkontur mit weißem Kern und ein weicher Schein außen herum.
+   Alle drei folgen dem Zeiger.
+   Abweichung: Der Farbton bleibt auf dem Gemeinde-Blau, statt über
+   --hue mit der Mausposition durch Violett und Pink zu wandern.
 */
-.event-card[data-spot] { isolation: isolate; }
+.event-card[data-spot] {
+  position: relative;   /* Bezugsrahmen für die drei Leuchtebenen */
+  isolation: isolate;
+  --spot: var(--spot-groesse, 240px);
+  /* Ebene 1: Schimmer auf der Kartenfläche */
+  background-image: radial-gradient(
+    var(--spot) var(--spot) at var(--sx, 50%) var(--sy, 0%),
+    color-mix(in srgb, var(--blau) 11%, transparent), transparent 66%);
+  transition: border-color .15s, box-shadow .15s, background-image .3s;
+}
 
-/* leuchtender Rand */
+/* Ebene 2: leuchtende Randkontur, weißer Kern innen */
 .event-card[data-spot]::before {
   content: '';
   position: absolute; inset: -1px;
   border-radius: inherit;
   padding: 1.5px;
-  background: radial-gradient(
-    var(--spot-groesse, 220px) var(--spot-groesse, 220px)
-    at var(--sx, 50%) var(--sy, 0%),
-    var(--blau-hell), transparent 68%);
+  background:
+    radial-gradient(calc(var(--spot) * .5) calc(var(--spot) * .5)
+      at var(--sx, 50%) var(--sy, 0%),
+      rgba(255, 255, 255, .95), transparent 100%),
+    radial-gradient(calc(var(--spot) * .75) calc(var(--spot) * .75)
+      at var(--sx, 50%) var(--sy, 0%),
+      var(--blau-hell), transparent 100%);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
           mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
           mask-composite: exclude;
-  opacity: 0;
+  opacity: .6;
   transition: opacity .35s ease;
   pointer-events: none;
 }
 
-/* sehr zurückhaltender Schimmer auf der Fläche */
+/* Ebene 3: weicher Schein außerhalb der Karte */
 .event-card[data-spot]::after {
   content: '';
-  position: absolute; inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(
-    var(--spot-groesse, 220px) var(--spot-groesse, 220px)
-    at var(--sx, 50%) var(--sy, 0%),
-    color-mix(in srgb, var(--blau) 9%, transparent), transparent 65%);
-  opacity: 0;
-  transition: opacity .35s ease;
-  pointer-events: none;
+  position: absolute; inset: -10px;
   z-index: -1;
+  border-radius: calc(var(--r-karte) + 10px);
+  background: radial-gradient(
+    calc(var(--spot) * .8) calc(var(--spot) * .8)
+    at var(--sx, 50%) var(--sy, 0%),
+    color-mix(in srgb, var(--blau-hell) 55%, transparent), transparent 70%);
+  filter: blur(18px);
+  opacity: 0;
+  transition: opacity .4s ease;
+  pointer-events: none;
 }
 
-.events-grid:hover .event-card[data-spot]::before,
-.events-grid:hover .event-card[data-spot]::after { opacity: 1; }
+.events-grid:hover .event-card[data-spot]::before { opacity: 1; }
+.events-grid:hover .event-card[data-spot]::after  { opacity: .75; }
 .event-card[data-spot]:focus-within::before { opacity: 1; }
+.event-card[data-spot]:focus-within::after  { opacity: .75; }
 
 /* Geräte ohne Zeiger und Nutzer ohne Bewegung sehen den Effekt nicht */
 @media (hover: none), (prefers-reduced-motion: reduce) {
+  .event-card[data-spot] { background-image: none; }
   .event-card[data-spot]::before,
   .event-card[data-spot]::after { display: none; }
 }
