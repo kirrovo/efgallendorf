@@ -244,36 +244,98 @@ nav ul.primary-menu li.nav-intern a:hover { background: var(--blau-hell); color:
   nav ul.primary-menu li.nav-intern a { margin-left: 0; justify-content: center; margin-top: 6px; }
 }
 
-/* ─── Buttons ────────────────────────────────────── */
+/* ─── Buttons ────────────────────────────────────────
+   Eine Familie, drei Varianten, drei Größen. Alle Buttons sind Pillen,
+   passend zu den Eingabefeldern und der Hero-Pille.
+   Die feine Leuchtlinie: unten dauerhaft, oben beim Hover.
+*/
 .btn, .btn-blau {
+  position: relative;
   display: inline-flex; align-items: center; justify-content: center; gap: 9px;
-  padding: 13px 24px;
+  padding: 13px 26px;
   border: 1px solid transparent;
-  border-radius: var(--r-feld);
+  border-radius: var(--r-pille);
   font-size: 1rem; font-weight: 600;
   white-space: nowrap;
   cursor: pointer;
-  transition: background .15s, border-color .15s, transform .1s, color .15s;
+  transition: background .2s, border-color .2s, transform .1s, color .2s;
 }
 .btn:active, .btn-blau:active { transform: translateY(1px); }
 
+/* Leuchtlinien als Pseudoelemente, kein Zusatz-Markup nötig */
+.btn::before, .btn::after,
+.btn-blau::before, .btn-blau::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  width: 75%;
+  height: 1px;
+  margin: 0 auto;
+  background: linear-gradient(to right, transparent, var(--blau-hell), transparent);
+  transition: opacity .5s ease-in-out;
+  pointer-events: none;
+}
+/* obere Linie: blendet beim Hover ein */
+.btn::before, .btn-blau::before { top: 0; opacity: 0; }
+.btn:hover::before, .btn-blau:hover::before { opacity: 1; }
+/* untere Linie: sichtbar, nimmt sich beim Hover zurück */
+.btn::after, .btn-blau::after { bottom: -1px; opacity: 1; }
+.btn:hover::after, .btn-blau:hover::after { opacity: .3; }
+
+/* Opt-out für Stellen, an denen die Linie stört */
+.ohne-leuchtlinie::before, .ohne-leuchtlinie::after { display: none; }
+
+/* Variante: gefüllt */
 .btn-blau, .btn-primaer {
   background: var(--blau); color: #fff;
 }
-.btn-blau:hover, .btn-primaer:hover { background: var(--blau-hell); color: #fff; }
+.btn-blau:hover, .btn-primaer:hover {
+  background: var(--blau-hell); color: #fff;
+  border-color: color-mix(in srgb, var(--text) 45%, transparent);
+}
+/* Bei gefüllten Buttons liegt nur die obere Linie auf der blauen Fläche,
+   sie wird hell. Die untere sitzt außerhalb auf hellem Grund und bleibt blau. */
+.btn-blau::before, .btn-primaer::before {
+  background: linear-gradient(to right, transparent, rgba(255,255,255,.85), transparent);
+}
 
+/* Variante: getönt (Standard der Vorlage) */
 .btn-sekundaer {
-  background: var(--flaeche);
+  background: color-mix(in srgb, var(--blau) 5%, transparent);
+  color: var(--akzent);
+  border-color: color-mix(in srgb, var(--blau) 22%, transparent);
+}
+.btn-sekundaer:hover {
+  background: transparent;
+  border-color: color-mix(in srgb, var(--blau) 40%, transparent);
+  color: var(--akzent);
+}
+
+/* Variante: schlicht */
+.btn-ghost {
+  background: transparent;
   color: var(--text);
+  border-color: transparent;
+}
+.btn-ghost:hover {
+  background: var(--flaeche-2);
   border-color: var(--linie-stark);
 }
-.btn-sekundaer:hover { background: var(--flaeche-2); border-color: var(--akzent); color: var(--akzent); }
+
+/* Größen */
+.btn-sm { padding: 8px 18px; font-size: .92rem; }
+.btn-lg { padding: 16px 34px; font-size: 1.05rem; }
 
 /* Alt-Klassen aus dem Bestand, damit nichts unlesbar wird */
 .btn-white   { background: var(--flaeche); color: var(--blau); border-color: var(--linie-stark); }
 .btn-white:hover { background: var(--flaeche-2); }
 .btn-outline { background: transparent; color: var(--text); border-color: var(--linie-stark); }
 .btn-outline:hover { border-color: var(--akzent); color: var(--akzent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn::before, .btn::after,
+  .btn-blau::before, .btn-blau::after { transition: none; }
+}
 
 .text-link {
   display: inline-flex; align-items: center; gap: 6px;
