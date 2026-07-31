@@ -56,13 +56,19 @@ add_action( 'wp_enqueue_scripts', 'efga_assets' );
 /** Liste der verfügbaren Icon-Namen (für Auswahlfelder im Backend). */
 function efga_icon_namen() {
 	return array(
+		'kirche'    => 'Kirche (Gottesdienst)',
 		'buch'      => 'Buch (Bibel, Glaube)',
 		'notiz'     => 'Notiz (Bibelstunde)',
 		'haus'      => 'Haus (Hauskreise)',
 		'herz'      => 'Herz (Gebet, Leitbild)',
 		'personen'  => 'Personen (Gruppen, Leitung)',
+		'tasse'     => 'Tasse (Frühstück, Kaffee)',
+		'sonne'     => 'Sonne (Senioren)',
+		'note'      => 'Note (Kindergottesdienst, Musik)',
+		'lupe'      => 'Lupe (Unterricht, Suche)',
 		'kompass'   => 'Kompass (Jugend)',
 		'stern'     => 'Stern (Jungschar)',
+		'funke'     => 'Funke (junge Erwachsene)',
 		'pflanze'   => 'Pflanze (Kinder)',
 		'uhr'       => 'Uhr (Zeit)',
 		'ort'       => 'Ort (Adresse)',
@@ -73,6 +79,18 @@ function efga_icon_namen() {
 		'video'     => 'Video (Live)',
 		'play'      => 'Play (Predigt)',
 		'chronik'   => 'Chronik (Geschichte)',
+	);
+}
+
+/**
+ * Bereiche, nach denen die Angebote auf der Startseite gebündelt werden.
+ * Reihenfolge bestimmt die Reihenfolge der Spalten.
+ */
+function efga_bereiche() {
+	return array(
+		'Gemeinde gemeinsam'        => 'Gemeinde gemeinsam',
+		'Frauen, Männer, Senioren'  => 'Frauen, Männer, Senioren',
+		'Kinder und Jugend'         => 'Kinder und Jugend',
 	);
 }
 
@@ -232,6 +250,7 @@ function efga_gruppe_meta_cb( $post ) {
 	wp_nonce_field( 'efga_gruppe_meta', 'efga_gruppe_nonce' );
 	echo '<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 24px;">';
 	efga_select( $post->ID, 'efga_icon', 'Icon', efga_icon_namen(), 'Ersetzt die früheren Emojis. Alle Gruppen nutzen dieselbe Akzentfarbe.' );
+	efga_select( $post->ID, 'efga_bereich', 'Bereich (Bündelung auf der Startseite)', efga_bereiche() );
 	efga_field( $post->ID, 'efga_badge', 'Zielgruppe (Badge)', 'Alle Erwachsenen' );
 	efga_field( $post->ID, 'efga_schedule', 'Wann (Treffen)', 'Mittwochabend' );
 	efga_field( $post->ID, 'efga_location', 'Wo', 'Gemeindehaus Allendorf' );
@@ -263,7 +282,7 @@ function efga_save_meta( $post_id ) {
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) { return; }
 	if ( ! current_user_can( 'edit_post', $post_id ) ) { return; }
 
-	$gruppe_keys = array( 'efga_icon', 'efga_badge', 'efga_schedule', 'efga_location', 'efga_audience', 'efga_hero_subtitle', 'efga_short', 'efga_leader_name', 'efga_leader_initials', 'efga_leader_phone', 'efga_leader_email' );
+	$gruppe_keys = array( 'efga_icon', 'efga_bereich', 'efga_badge', 'efga_schedule', 'efga_location', 'efga_audience', 'efga_hero_subtitle', 'efga_short', 'efga_leader_name', 'efga_leader_initials', 'efga_leader_phone', 'efga_leader_email' );
 	if ( isset( $_POST['efga_gruppe_nonce'] ) && wp_verify_nonce( $_POST['efga_gruppe_nonce'], 'efga_gruppe_meta' ) ) {
 		foreach ( $gruppe_keys as $k ) {
 			if ( isset( $_POST[ $k ] ) ) {

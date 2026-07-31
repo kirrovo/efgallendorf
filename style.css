@@ -489,7 +489,7 @@ a.karte:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
 
 /* ─── Wochenrhythmus ─────────────────────────────── */
 .woche-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
   margin-bottom: 28px;
 }
 @media (max-width: 900px) { .woche-grid { grid-template-columns: repeat(2, 1fr); } }

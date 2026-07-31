@@ -16,84 +16,218 @@ function efga_seed_content() {
 	/* ── 1. GRUPPEN ──────────────────────────────────── */
 	$gruppen = array(
 		array(
-			'title'    => 'GLV: Glauben, Leben, Verstehen',
-			'slug'     => 'glv',
-			'short'    => 'Bibelstunden-Abend mit Vortrag, Fragen und Austausch.',
-			'content'  => "GLV steht für <strong>Glauben, Leben, Verstehen</strong>. An diesem Abend beschäftigen wir uns gemeinsam mit Fragen, die den Glauben und das Leben berühren. Ein Vortrag bildet den Einstieg, danach gibt es Raum für Gespräch, Nachfragen und persönlichen Austausch.",
-			'icon'     => 'buch', 'badge' => 'Alle Erwachsene',
-			'schedule' => 'Mittwochabend', 'location' => 'Gemeindehaus Allendorf', 'audience' => 'Alle Erwachsenen',
-			'subtitle' => 'Ein Abend, der Fragen stellt und Antworten sucht: gemeinsam aus der Bibel.',
-			'name'     => 'Simon Droß', 'initials' => 'SD', 'phone' => '06478 / 911 638', 'email' => 'simon.dross@eg-allendorf.de',
-		),
-		array(
-			'title'    => 'Frauengebetskreis',
-			'slug'     => 'frauengebetskreis',
-			'short'    => 'Frauen verschiedener Generationen treffen sich zum gemeinsamen Gebet.',
-			'content'  => 'Frauen verschiedener Generationen treffen sich zum gemeinsamen Gebet und zur Stärkung im Glauben.',
-			'icon'     => 'herz', 'badge' => 'Frauen',
-			'schedule' => 'Regelmäßige Treffen', 'location' => 'Gemeindehaus Allendorf', 'audience' => 'Frauen',
-			'subtitle' => 'Gemeinsam beten, einander tragen, im Glauben wachsen.',
-			'name'     => 'Heike Prang', 'initials' => 'HP', 'phone' => '06478 / 277 739 9', 'email' => 'heikeprang@outlook.com',
-		),
-		array(
-			'title'    => 'Bibelstunde',
-			'slug'     => 'bibelstunde',
-			'short'    => 'Alle 14 Tage mittwochs: gemeinsam die Bibel lesen und verstehen.',
-			'content'  => 'Alle 14 Tage mittwochs lesen wir gemeinsam in der Bibel, verstehen sie besser und entdecken sie neu für den Alltag.',
-			'icon'     => 'notiz', 'badge' => 'Alle Erwachsene',
-			'schedule' => 'Mittwochs, alle 14 Tage', 'location' => 'Gemeindehaus Allendorf', 'audience' => 'Alle Erwachsenen',
-			'subtitle' => 'Gemeinsam die Bibel lesen, verstehen und für den Alltag entdecken.',
-			'name'     => 'Friedhelm Genz', 'initials' => 'FG', 'phone' => '06478 / 680', 'email' => 'f.genz@gmx.de',
+			'title'    => 'Gottesdienst',
+			'slug'     => 'gottesdienst',
+			'short'    => 'Das Herzstück unseres Gemeindelebens: Lieder, Gebet und Gottes Wort. Einmal im Monat mit Abendmahl.',
+			'content'  => '<p>Der wöchentliche Gottesdienst ist das Herzstück unseres Gemeindelebens. Hier kommen wir als Glaubensgeschwister zusammen, um gemeinsam zur Ruhe zu kommen, auf Gottes Wort zu hören und ihm in Form von Liedern und Gebeten zu antworten und ihn anzubeten.</p>
+
+<p>Einmal im Monat feiern wir zudem das Abendmahl.</p>
+
+<p>Im Gottesdienst wollen wir uns für die neue Woche ausrüsten lassen, um mit neuem Mut unseren Glauben im Alltag praktisch werden zu lassen.</p>',
+			'icon'     => 'kirche', 'badge' => 'Ganze Gemeinde',
+			'bereich'  => 'Gemeinde gemeinsam',
+			'schedule' => 'Sonntags 10:00 Uhr', 'location' => 'Gemeindehaus Allendorf', 'audience' => 'Jeder ist willkommen',
+			'subtitle' => 'Das Herzstück unseres Gemeindelebens.',
+			'name'     => 'Gemeindeleitung', 'initials' => 'GL', 'phone' => '', 'email' => 'gemeindeleitung@eg-allendorf.de',
 		),
 		array(
 			'title'    => 'Hauskreise',
 			'slug'     => 'hauskreise',
-			'short'    => 'Klein und persönlich: drei Hauskreise treffen sich wöchentlich.',
-			'content'  => 'Klein und persönlich: In drei Hauskreisen treffen sich Gemeindemitglieder wöchentlich zum Austausch und Gebet.',
+			'short'    => 'Bunt gemischte Kleingruppen unter der Woche. Leben teilen, Nachfolge leben, im Glauben wachsen.',
+			'content'  => '<p>Unsere Hauskreise sind verschiedene, bunt gemischte Kleingruppen, die sich regelmäßig unter der Woche treffen. Im Vordergrund steht der persönliche Austausch, ob über den normalen Alltag, über Glaubensfragen oder persönliche Anliegen.</p>
+
+<p>Hauskreise bieten die Möglichkeit, bei lockerem Zusammensein intensive Gemeinschaft zu erleben, um sich gegenseitig im Glauben an Gott und in der Nachfolge Jesu zu schleifen und zu unterstützen. Wir wollen Leben teilen, Nachfolge leben und im Glauben wachsen.</p>
+
+<p>Jeder ist herzlich eingeladen, Teil eines Hauskreises zu werden. Komm gerne auf uns zu.</p>',
 			'icon'     => 'haus', 'badge' => 'Alle',
-			'schedule' => 'Wöchentlich', 'location' => 'In Privathäusern', 'audience' => 'Alle',
-			'subtitle' => 'Glauben und Leben teilen: in kleiner, persönlicher Runde.',
-			'name'     => 'Walter Klaus', 'initials' => 'WK', 'phone' => '06478 / 473 497', 'email' => 'walter.klaus@eg-allendorf.de',
+			'bereich'  => 'Gemeinde gemeinsam',
+			'schedule' => 'Alle 14 Tage, nach Absprache', 'location' => 'Nach Absprache', 'audience' => 'Jeder ist willkommen',
+			'subtitle' => 'Leben teilen. Nachfolge leben. Im Glauben wachsen.',
+			'name'     => 'Gemeindeleitung', 'initials' => 'GL', 'phone' => '', 'email' => 'gemeindeleitung@eg-allendorf.de',
+		),
+		array(
+			'title'    => 'GLV: Glauben, Leben, Verstehen',
+			'slug'     => 'glv',
+			'short'    => 'Alle vierzehn Tage denken wir über Glaubensfragen nach, mit Raum für Diskussion und Austausch.',
+			'content'  => '<p>Als gesamte Gemeinde treffen wir uns neben dem Gottesdienst alle vierzehn Tage zur GLV, um über verschiedene Glaubensfragen intensiv nachzudenken und unseren Glauben aktiv zu leben. Gemeinsam wollen wir Glauben leben und verstehen.</p>
+
+<p>Hier behandeln wir aktuelle, lebensnahe und theologische Themen auf der Grundlage der Bibel. Dabei haben wir die Möglichkeit für Diskussion und Austausch.</p>
+
+<p>Daneben nehmen wir uns regelmäßig die Zeit, füreinander und für die Anliegen der Gemeinde zu beten.</p>',
+			'icon'     => 'buch', 'badge' => 'Ganze Gemeinde',
+			'bereich'  => 'Gemeinde gemeinsam',
+			'schedule' => 'Mittwochs, alle 14 Tage', 'location' => 'Gemeindehaus Allendorf', 'audience' => 'Jeder ist willkommen',
+			'subtitle' => 'Gemeinsam über Glaubensfragen nachdenken und den Glauben aktiv leben.',
+			'name'     => 'Simon Droß', 'initials' => 'SD', 'phone' => '06478 / 911 638', 'email' => 'simon.dross@eg-allendorf.de',
+		),
+		array(
+			'title'    => 'Bibelstunde',
+			'slug'     => 'bibelstunde',
+			'short'    => 'Gemeinsam singen, in der Bibel lesen und die Botschaft in den Alltag übertragen.',
+			'content'  => '<p>Die Bibelstunde trifft sich regelmäßig, um gemeinsam zu singen, in der Bibel zu lesen und sich zusammen über das Wort Gottes auszutauschen.</p>
+
+<p>Unser gemeinsames Ziel ist es, die Botschaft der Bibel besser zu verstehen und sie auch in unseren Alltag zu übertragen.</p>
+
+<h2>Was machen wir?</h2>
+<ul><li>Uns mit biblischen Büchern beschäftigen</li><li>Die biblischen Texte gemeinsam erarbeiten</li><li>Zusammen beten</li><li>Gemeinsam singen</li></ul>',
+			'icon'     => 'notiz', 'badge' => 'Jedes Alter',
+			'bereich'  => 'Gemeinde gemeinsam',
+			'schedule' => 'Mittwochs, alle 14 Tage', 'location' => 'Gemeindehaus Allendorf', 'audience' => 'Für jedes Alter geeignet',
+			'subtitle' => 'Zeit zum Bibellesen, zum gemeinsamen Austausch und zum Verstehen biblischer Texte.',
+			'name'     => 'Simon Droß', 'initials' => 'SD', 'phone' => '06478 / 911 638', 'email' => 'simon.dross@eg-allendorf.de',
+		),
+		array(
+			'title'    => 'Seniorenarbeit',
+			'slug'     => 'seniorenarbeit',
+			'short'    => 'Besuchsdienst und Seniorenkaffee mit Andacht, Gemeinschaft und Begleitung im Alltag.',
+			'content'  => '<p>Die Seniorenarbeit bietet neben dem Besuchsdienst mit dem Seniorenkaffee dreimal im Jahr einen vielfältigen Treffpunkt für Menschen im und um das Ruhestandsalter an.</p>
+
+<p>Dieses Angebot richtet sich gezielt an die Bedürfnisse und Interessen älter gewordener Menschen. Neben Kaffee und Kuchen und der gemeinsamen Andacht stehen Gemeinschaft, Begegnung, Austausch und auch Begleitung im Alltag im Mittelpunkt.</p>
+
+<h2>Was machen wir?</h2>
+<ul><li>Besuchsdienst und Unterstützung im Alltag</li><li>Gemütliches Kaffeetrinken</li><li>Gemeinsamer Austausch</li><li>Zusammen singen</li><li>Geistlicher Impuls</li></ul>',
+			'icon'     => 'sonne', 'badge' => 'Ab dem Ruhestandsalter',
+			'bereich'  => 'Frauen, Männer, Senioren',
+			'schedule' => 'Seniorenkaffee 3x im Jahr', 'location' => 'Gemeindehaus Allendorf', 'audience' => 'Menschen im und um das Ruhestandsalter',
+			'subtitle' => 'Begegnung, Austausch und Begleitung.',
+			'name'     => 'Simon und Ulrike Droß', 'initials' => 'SD', 'phone' => '06478 / 911 638', 'email' => 'simon.dross@eg-allendorf.de',
+		),
+		array(
+			'title'    => 'Kaffee und Müsli',
+			'slug'     => 'kaffee-und-muesli',
+			'short'    => 'Das Frauenfrühstück der Gemeinde, mit Lobpreis, biblischem Impuls und persönlichem Austausch.',
+			'content'  => '<p>Kaffee und Müsli ist ein regelmäßiges Frauenfrühstück für Frauen der Gemeinde. In gemütlicher Atmosphäre genießen wir gemeinsam ein Frühstück und haben Zeit für Lobpreis, einen biblischen Impuls, Gebet und persönlichen Austausch.</p>
+
+<p>Mehrmals im Jahr findet zudem Kaffee und Müsli kreativ statt, ein offenes Angebot für Frauen aus unserer Gemeinde und der Umgebung. Bei einem gemeinsamen Frühstück, kreativen Workshops und lebensnahen Impulsen schaffen wir einen Ort der Begegnung, an dem Frauen Gemeinschaft erleben und Gott sowie den christlichen Glauben kennenlernen können.</p>
+
+<p>Jede Frau ist herzlich willkommen, unabhängig davon, wo sie gerade auf ihrem Lebens- oder Glaubensweg steht.</p>',
+			'icon'     => 'tasse', 'badge' => 'Frauen jeden Alters',
+			'bereich'  => 'Frauen, Männer, Senioren',
+			'schedule' => 'Samstags 9:00 Uhr, monatlich', 'location' => 'Gemeindehaus Allendorf', 'audience' => 'Frauen jeden Alters',
+			'subtitle' => 'Das Frauenfrühstück unserer Gemeinde.',
+			'name'     => 'Sibylle Rupp', 'initials' => 'SR', 'phone' => '0178 696 1961', 'email' => '',
+		),
+		array(
+			'title'    => 'Frauengebetskreis',
+			'slug'     => 'frauengebetskreis',
+			'short'    => 'Wir beten für Anliegen von Gemeinde und Mission, singen, lesen in der Bibel und tauschen uns aus.',
+			'content'  => '<p>Der Name ist Programm. Wir treffen uns als Frauen der Gemeinde, um für Anliegen von Gemeinde und Mission zu beten, getreu Philipper 4,6: „Bringt alle eure Anliegen im Gebet mit Bitte und Danksagung vor Gott.“</p>
+
+<p>Neben dem Gebet singen wir, lesen in der Bibel und tauschen uns aus.</p>',
+			'icon'     => 'herz', 'badge' => 'Frauen der Gemeinde',
+			'bereich'  => 'Frauen, Männer, Senioren',
+			'schedule' => 'Montags, alle 14 Tage', 'location' => 'Gemeindehaus Allendorf', 'audience' => 'Alle Frauen der Gemeinde',
+			'subtitle' => 'Gebetstreff für Frauen der Gemeinde.',
+			'name'     => 'Leni Klaus', 'initials' => 'LK', 'phone' => '', 'email' => '',
+		),
+		array(
+			'title'    => 'Männertreffen',
+			'slug'     => 'maennertreffen',
+			'short'    => 'Mehrmals im Jahr: gutes Essen, Sport, Gespräche und Themen, die uns als Männer betreffen.',
+			'content'  => '<p>Als Männer der Gemeinde wollen wir in allen Altersstufen miteinander verbunden sein. Dazu treffen wir uns mehrmals im Jahr, um bei ungezwungenem Zusammensein, gutem Essen, Sport sowie Gesprächen und Diskussionen echte Männergemeinschaft zu erleben.</p>
+
+<p>Wir wollen uns gegenseitig in unserem Glauben an Gott stärken. Dafür denken wir besonders über die Themen nach, die uns als Männer in unserem Alltag und Glaubensleben in besonderer Weise betreffen.</p>
+
+<p>Zu unseren Treffen sind alle Männer jeden Alters herzlich eingeladen.</p>
+
+<h2>Nächste Treffen</h2>
+<ul><li>Männerfrühstück am 26. September 2026 um 9:00 Uhr</li><li>Männerwandern zwischen den Jahren</li></ul>',
+			'icon'     => 'personen', 'badge' => 'Männer jeden Alters',
+			'bereich'  => 'Frauen, Männer, Senioren',
+			'schedule' => 'Quartalsweise', 'location' => 'Gemeindehaus Allendorf', 'audience' => 'Männer jeden Alters',
+			'subtitle' => 'Echte Gemeinschaft unter Männern.',
+			'name'     => 'Lars Rupp', 'initials' => 'LR', 'phone' => '', 'email' => 'lars.rupp@eg-allendorf.de',
 		),
 		array(
 			'title'    => 'Crossroad',
 			'slug'     => 'crossroad',
-			'short'    => 'Unser Teenkreis für Jugendliche ab 13 Jahren: jeden Freitag.',
-			'content'  => 'Unser Teenkreis für Jugendliche ab 13 Jahren: Glauben, Fragen, Gemeinschaft und jede Menge Spaß.',
-			'icon'     => 'kompass', 'badge' => 'Teens ab 13 J.',
-			'schedule' => 'Jeden Freitag', 'location' => 'Gemeindehaus Allendorf', 'audience' => 'Teens ab 13 Jahren',
-			'subtitle' => 'Glauben, Fragen, Gemeinschaft und jede Menge Spaß.',
-			'name'     => 'Andreas Genz', 'initials' => 'AG', 'phone' => '06478 / 277 533', 'email' => 'andy.genz@eg-allendorf.de',
-		),
-		array(
-			'title'    => 'Kreisjugend',
-			'slug'     => 'kreisjugend',
-			'short'    => 'Singles und junge Ehepaare: alle 14 Tage zusammen.',
-			'content'  => 'Singles und junge Ehepaare treffen sich alle 14 Tage: für Gemeinschaft, Glauben und gemeinsame Erlebnisse.',
-			'icon'     => 'personen', 'badge' => 'Junge Erwachsene',
-			'schedule' => 'Alle 14 Tage', 'location' => 'Gemeindehaus Allendorf', 'audience' => 'Junge Erwachsene',
-			'subtitle' => 'Gemeinschaft, Glauben und gemeinsame Erlebnisse.',
-			'name'     => 'Andreas Genz', 'initials' => 'AG', 'phone' => '06478 / 277 533', 'email' => 'andy.genz@eg-allendorf.de',
+			'short'    => 'Unser Teen- und Jugendkreis. Alltag teilen, Freundschaft leben, über Gott nachdenken.',
+			'content'  => '<p>Der Crossroad ist unser wöchentlicher Teen- und Jugendkreis. Hier geht es um echte Gemeinschaft unter jungen Menschen, ob bei lockerem Zusammensein, bei Spiel und Spaß oder verschiedenen Aktionen. Wir wollen unseren Alltag miteinander teilen und echte Freundschaften leben.</p>
+
+<p>Wir nehmen uns Zeit, um zu singen und in der Bibel zu lesen, über Gott nachzudenken und zu fragen, welche Bedeutung der Glaube an Gott für unser Leben und unseren Alltag hat.</p>
+
+<p>Jeder ist herzlich willkommen, dazuzukommen. Nimm gerne Kontakt mit uns auf.</p>',
+			'icon'     => 'kompass', 'badge' => 'Teens ab dem 8. Schuljahr',
+			'bereich'  => 'Kinder und Jugend',
+			'schedule' => 'Freitags 19:00 Uhr', 'location' => 'Gemeindehaus Allendorf', 'audience' => 'Teens und Jugendliche ab dem 8. Schuljahr',
+			'subtitle' => 'Glauben entdecken. Alltag teilen. Freundschaft leben.',
+			'name'     => 'Thomas Engelke', 'initials' => 'TE', 'phone' => '', 'email' => 'thomas.engelke@eg-allendorf.de',
 		),
 		array(
 			'title'    => 'Wilde Füchse: Jungschar',
 			'slug'     => 'wilde-fuechse',
-			'short'    => 'Abenteuer, Spiel und Glauben für Grundschulkinder.',
-			'content'  => 'Abenteuer, Spiel und Glauben: die Jungschar für Grundschulkinder mit viel Spaß und Gemeinschaft.',
-			'icon'     => 'stern', 'badge' => 'Kinder 7-12 J.',
-			'schedule' => 'Regelmäßige Treffen', 'location' => 'Gemeindehaus Allendorf', 'audience' => 'Kinder 7-12 Jahre',
-			'subtitle' => 'Abenteuer, Spiel und Glauben für Grundschulkinder.',
-			'name'     => 'Miriam Diehl', 'initials' => 'MD', 'phone' => '06478 / 277 200', 'email' => 'mimo81@gmx.de',
+			'short'    => 'Musik, Spiele, Ausflüge und biblische Geschichten. Jährliches Highlight ist die Kinderfreizeit.',
+			'content'  => '<p>Wir sind Kinder, die in die 4. bis 7. Klasse gehen. Jeden Dienstag treffen wir uns, um gemeinsam Musik zu machen, zu singen, uns zu bewegen, zu spielen, gemeinsam zu essen, Ausflüge zu machen und jede Menge Spaß zu haben.</p>
+
+<p>Außerdem ist uns die Bibel ein sehr wichtiges Buch, aus der wir regelmäßig Geschichten hören. Dabei erfahren wir, dass es einen Gott gibt, der uns geschaffen hat, der uns bedingungslos liebt und dem wir unendlich wertvoll sind.</p>
+
+<p>Als Mitarbeiterteam möchten wir für unsere Jungscharkinder immer ein offenes Ohr haben und für sie da sein. Wir möchten ihnen etwas von unserem Glauben an Gott und seinen Sohn Jesus Christus weitergeben, damit sie Gott selbst für ihr Leben kennenlernen.</p>
+
+<h2>Highlight im Jahr</h2>
+<ul><li>Unsere jährliche Kinderfreizeit in Rodenroth, nächster Termin 3. bis 5. September 2027</li></ul>',
+			'icon'     => 'stern', 'badge' => '4. bis 7. Schuljahr',
+			'bereich'  => 'Kinder und Jugend',
+			'schedule' => 'Dienstags 17:00 Uhr', 'location' => 'Gemeindehaus, Heimlingstraße 3', 'audience' => 'Kinder ab dem 4. bis einschließlich 7. Schuljahr',
+			'subtitle' => 'Gemeinschaft, Glaube und jede Menge Action.',
+			'name'     => 'Ulrike Droß', 'initials' => 'UD', 'phone' => '', 'email' => 'uli.dross@eg-allendorf.de',
 		),
 		array(
 			'title'    => 'Knallerbsen: Jungschar',
 			'slug'     => 'knallerbsen',
-			'short'    => 'Spielen, Basteln und Bibelgeschichten für die Kleinsten.',
-			'content'  => 'Die Jungschar für die Kleinsten: Spiel, Basteln, Lieder und Geschichten aus der Bibel.',
-			'icon'     => 'pflanze', 'badge' => 'Kinder 5-8 J.',
-			'schedule' => 'Regelmäßige Treffen', 'location' => 'Gemeindehaus Allendorf', 'audience' => 'Kinder 5-8 Jahre',
-			'subtitle' => 'Spielen, Basteln und Bibelgeschichten für die Kleinsten.',
-			'name'     => 'Ulrike Droß', 'initials' => 'UD', 'phone' => '06478 / 911 638', 'email' => 'info@eg-allendorf.de',
+			'short'    => 'Spannende Geschichten aus der Bibel, singen, spielen, basteln und backen.',
+			'content'  => '<p>Die Knallerbsen sind eine Jungschargruppe für Kinder ab 5 Jahren. Jede Woche hören wir spannende Geschichten aus der Bibel und entdecken darin, wie sehr Gott uns liebt.</p>
+
+<p>Bei uns wird gesungen, gespielt und gelacht, ob drinnen oder draußen, beim Basteln oder Backen.</p>
+
+<p>Wenn du Lust auf Spiele, Spaß und spannende Geschichten hast, komm gerne einfach vorbei. Wir freuen uns auf dich.</p>',
+			'icon'     => 'pflanze', 'badge' => 'Ab 5 Jahren',
+			'bereich'  => 'Kinder und Jugend',
+			'schedule' => 'Donnerstags 16:15 Uhr', 'location' => 'Gemeindehaus Allendorf', 'audience' => 'Kinder ab 5 Jahren bis einschließlich 3. Schuljahr',
+			'subtitle' => 'Spiel, Spaß und spannende biblische Geschichten.',
+			'name'     => 'Miriam Diehl', 'initials' => 'MD', 'phone' => '06478 / 277 200', 'email' => 'miriam.diehl@eg-allendorf.de',
+		),
+		array(
+			'title'    => 'Kindergottesdienst',
+			'slug'     => 'kindergottesdienst',
+			'short'    => 'Fröhliche Lieder, Geschichten aus der Bibel und ein erlebnisreiches Bastel- und Spieleprogramm.',
+			'content'  => '<p>Wir sind eine bunt gemischte Gruppe, die gemeinsam wertvolle Zeit verbringt.</p>
+
+<p>Im Kindergottesdienst erwarten dich fröhliche Lieder, Geschichten und kindgerecht gestaltete Impulse aus der Bibel sowie ein erlebnisreiches Bastel- und Spieleprogramm.</p>
+
+<h2>Besondere Highlights</h2>
+<ul><li>Unser Sommerfest</li><li>Das Weihnachtsanspiel, das wir zusammen an Weihnachten aufführen</li></ul>',
+			'icon'     => 'note', 'badge' => 'Kinder von 3 bis 12',
+			'bereich'  => 'Kinder und Jugend',
+			'schedule' => 'Sonntags 10:30 Uhr', 'location' => 'Gemeindehaus Allendorf', 'audience' => 'Kinder ab 3 bis 12 Jahren',
+			'subtitle' => 'Hören, vertrauen, wachsen.',
+			'name'     => 'Ricarda Genz', 'initials' => 'RG', 'phone' => '06478 / 277 99 11', 'email' => 'ricarda.genz@web.de',
+		),
+		array(
+			'title'    => 'Biblischer Unterricht',
+			'slug'     => 'biblischer-unterricht',
+			'short'    => 'Eineinhalb Jahre in fester Gruppe auf der Suche: Was ist die Bibel? Wer ist Gott?',
+			'content'  => '<p>Im biblischen Unterricht treffen wir uns für eineinhalb Jahre in einer festen Gruppe, um gemeinsam auf die Suche zu gehen: Was ist die Bibel? Wer ist Gott? Wer sind wir Menschen? Warum gibt es die Gemeinde?</p>
+
+<p>Unser Motto: „Die Bibel ist eine zusammenhängende Geschichte, die zu Jesus führt und uns zeigt, wer Gott ist, wer wir Menschen sind und wie wir Menschen mit diesem Gott leben können.“ Diese Geschichte zu entdecken und zu verstehen, welche Bedeutung sie für unser Leben hat, ist das Ziel vom BU.</p>
+
+<p>Neben unseren regelmäßigen Treffen dürfen die Kinder und Teens sich auf weitere Aktionen, Mitarbeit in Gemeinde und Gottesdiensten sowie eine viertägige Abschlussfreizeit freuen.</p>',
+			'icon'     => 'lupe', 'badge' => '6. und 7. Schuljahr',
+			'bereich'  => 'Kinder und Jugend',
+			'schedule' => 'Freitags, alle 14 Tage', 'location' => 'Gemeindehaus Allendorf', 'audience' => 'Kinder im 6. und 7. Schuljahr',
+			'subtitle' => 'Gemeinsam auf der Suche.',
+			'name'     => 'Thomas Engelke', 'initials' => 'TE', 'phone' => '', 'email' => 'thomas.engelke@eg-allendorf.de',
+		),
+		// Nicht im Textdokument REV0 enthalten, aus dem Altbestand übernommen.
+		array(
+			'title'    => 'Kreisjugend',
+			'slug'     => 'kreisjugend',
+			'short'    => 'Singles und junge Ehepaare treffen sich für Gemeinschaft, Glauben und gemeinsame Erlebnisse.',
+			'content'  => '<p>Singles und junge Ehepaare treffen sich alle vierzehn Tage für Gemeinschaft, Glauben und gemeinsame Erlebnisse.</p>',
+			'icon'     => 'funke', 'badge' => 'Junge Erwachsene',
+			'bereich'  => 'Kinder und Jugend',
+			'schedule' => 'Alle 14 Tage', 'location' => 'Gemeindehaus Allendorf', 'audience' => 'Junge Erwachsene',
+			'subtitle' => 'Gemeinschaft für Singles und junge Ehepaare.',
+			'name'     => 'Andreas Genz', 'initials' => 'AG', 'phone' => '06478 / 277 533', 'email' => 'andy.genz@eg-allendorf.de',
 		),
 	);
 
@@ -113,6 +247,7 @@ function efga_seed_content() {
 		if ( $id && ! is_wp_error( $id ) ) {
 			update_post_meta( $id, 'efga_icon', $g['icon'] );
 			update_post_meta( $id, 'efga_badge', $g['badge'] );
+			update_post_meta( $id, 'efga_bereich', $g['bereich'] );
 			update_post_meta( $id, 'efga_schedule', $g['schedule'] );
 			update_post_meta( $id, 'efga_location', $g['location'] );
 			update_post_meta( $id, 'efga_audience', $g['audience'] );

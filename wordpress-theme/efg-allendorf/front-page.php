@@ -166,22 +166,24 @@ $kal_url     = ( $p = get_page_by_path( 'kalender' ) ) ? get_permalink( $p ) : '
 			'order'          => 'ASC',
 		) );
 
-		// Gruppen nach Zielgruppe bündeln, damit die Übersicht nicht zur Kachelwand wird.
-		$cluster = array(
-			'Erwachsene'                    => array(),
-			'Jugend und junge Erwachsene'   => array(),
-			'Kinder'                        => array(),
-		);
+		// Angebote nach Bereich bündeln, damit die Übersicht nicht zur Kachelwand wird.
+		// Der Bereich wird pro Gruppe im Backend gesetzt (Feld "Bereich").
+		$cluster = array_fill_keys( array_keys( efga_bereiche() ), array() );
+		$standard = array_key_first( $cluster );
 		if ( $gruppen->have_posts() ) {
 			while ( $gruppen->have_posts() ) {
 				$gruppen->the_post();
 				$badge = efga_get( 'efga_badge' );
-				if ( preg_match( '/kind|jungschar/i', $badge . ' ' . get_the_title() ) ) {
-					$key = 'Kinder';
-				} elseif ( preg_match( '/teen|jugend|jung/i', $badge . ' ' . get_the_title() ) ) {
-					$key = 'Jugend und junge Erwachsene';
-				} else {
-					$key = 'Erwachsene';
+				$key   = efga_get( 'efga_bereich' );
+				if ( ! isset( $cluster[ $key ] ) ) {
+					// Fallback für Gruppen ohne gesetzten Bereich.
+					if ( preg_match( '/kind|jungschar|teen|jugend|schuljahr/i', $badge . ' ' . get_the_title() ) ) {
+						$key = 'Kinder und Jugend';
+					} elseif ( preg_match( '/frau|männer|senior|ruhestand/i', $badge . ' ' . get_the_title() ) ) {
+						$key = 'Frauen, Männer, Senioren';
+					} else {
+						$key = $standard;
+					}
 				}
 				$cluster[ $key ][] = array(
 					'titel' => get_the_title(),
@@ -198,7 +200,7 @@ $kal_url     = ( $p = get_page_by_path( 'kalender' ) ) ? get_permalink( $p ) : '
 		<div class="section-kopf-reihe">
 			<div>
 				<h2>Für jede Lebensphase</h2>
-				<p><?php echo esc_html( $anzahl ); ?> Gruppen und Kreise, vom Kindergartenalter bis zur Seniorenrunde.</p>
+				<p><?php echo esc_html( $anzahl ); ?> Angebote, vom Kindergottesdienst bis zur Seniorenrunde.</p>
 			</div>
 			<a href="<?php echo esc_url( $gruppen_url ); ?>" class="text-link">Alle Gruppen <?php efga_ico( 'pfeil-rechts', 'ico-sm' ); ?></a>
 		</div>
@@ -277,30 +279,40 @@ $kal_url     = ( $p = get_page_by_path( 'kalender' ) ) ? get_permalink( $p ) : '
 		</div>
 
 		<div class="woche-grid">
-			<div class="woche-zelle betont">
-				<span class="tag">Sonntag</span>
-				<strong>Gottesdienst</strong>
-				<span>10:00 Uhr, mit Kinderprogramm</span>
-			</div>
-			<div class="woche-zelle">
-				<span class="tag">Mittwoch</span>
-				<strong>GLV und Bibelstunde</strong>
-				<span>Im Wechsel, abends</span>
-			</div>
-			<div class="woche-zelle">
-				<span class="tag">Freitag</span>
-				<strong>Crossroad</strong>
-				<span>Teenkreis ab 13 Jahren</span>
-			</div>
-			<div class="woche-zelle">
-				<span class="tag">Laufend</span>
-				<strong>Hauskreise</strong>
-				<span>Drei Kreise, wöchentlich</span>
-			</div>
+		  <div class="woche-zelle betont">
+		    <span class="tag">Sonntag</span>
+		    <strong>Gottesdienst und Kindergottesdienst</strong>
+		    <span>10:00 Uhr, Kinder ab 10:30 Uhr</span>
+		  </div>
+		  <div class="woche-zelle">
+		    <span class="tag">Montag</span>
+		    <strong>Frauengebetskreis</strong>
+		    <span>Alle 14 Tage, abends</span>
+		  </div>
+		  <div class="woche-zelle">
+		    <span class="tag">Dienstag</span>
+		    <strong>Wilde Füchse</strong>
+		    <span>17:00 bis 18:30 Uhr</span>
+		  </div>
+		  <div class="woche-zelle">
+		    <span class="tag">Mittwoch</span>
+		    <strong>GLV und Bibelstunde</strong>
+		    <span>Alle 14 Tage im Wechsel, abends</span>
+		  </div>
+		  <div class="woche-zelle">
+		    <span class="tag">Donnerstag</span>
+		    <strong>Knallerbsen</strong>
+		    <span>16:15 bis 17:45 Uhr</span>
+		  </div>
+		  <div class="woche-zelle">
+		    <span class="tag">Freitag</span>
+		    <strong>Crossroad und Biblischer Unterricht</strong>
+		    <span>Crossroad ab 19:00 Uhr</span>
+		  </div>
 		</div>
 
 		<div class="woche-fuss">
-			<p>Alle Einzeltermine, Bibeltage und Sonderveranstaltungen stehen im Gemeindekalender.</p>
+			<p>Hauskreise, Männertreffen und Seniorenkaffee laufen nach Absprache. Einzeltermine und Sondertage stehen im Gemeindekalender.</p>
 			<a href="<?php echo esc_url( $kal_url ); ?>" class="btn btn-sekundaer">
 				<?php efga_ico( 'kalender', 'ico-sm' ); ?>
 				Zum Gemeindekalender

@@ -33,6 +33,12 @@ const EFGA_ICON_SPRITE = `
     <symbol id="i-pflanze" viewBox="0 0 24 24"><line x1="12" y1="21" x2="12" y2="13.6"/><path d="M12 13.6C12 8.8 8.2 6.4 4 6.4c0 4.8 3.8 7.2 8 7.2z"/><path d="M12 13.6c0-4 3.4-6.4 7-6.4 0 4.4-3.4 6.4-7 6.4z"/></symbol>
     <symbol id="i-notiz" viewBox="0 0 24 24"><path d="M4 20h4L18.6 9.4a2.1 2.1 0 0 0-3-3L5 17z"/><line x1="14.6" y1="6.4" x2="17.6" y2="9.4"/></symbol>
     <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6" width="13.5" height="12" rx="2"/><path d="m16.5 11 4.5-2.6v7.2L16.5 13z"/></symbol>
+    <symbol id="i-kirche" viewBox="0 0 24 24"><path d="M4.5 21V11.2L12 6.6l7.5 4.6V21"/><line x1="2.5" y1="21" x2="21.5" y2="21"/><line x1="12" y1="1.8" x2="12" y2="6.6"/><line x1="9.6" y1="3.6" x2="14.4" y2="3.6"/><path d="M10 21v-4.4a2 2 0 0 1 4 0V21"/></symbol>
+    <symbol id="i-tasse" viewBox="0 0 24 24"><path d="M4 9h13v6.5a4.5 4.5 0 0 1-4.5 4.5h-4A4.5 4.5 0 0 1 4 15.5z"/><path d="M17 10.5h1.8a2.6 2.6 0 0 1 0 5.2H17"/><line x1="8" y1="2.6" x2="8" y2="5.6"/><line x1="12.5" y1="2.6" x2="12.5" y2="5.6"/></symbol>
+    <symbol id="i-sonne" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><line x1="12" y1="2.4" x2="12" y2="4.6"/><line x1="12" y1="19.4" x2="12" y2="21.6"/><line x1="2.4" y1="12" x2="4.6" y2="12"/><line x1="19.4" y1="12" x2="21.6" y2="12"/><line x1="5.2" y1="5.2" x2="6.8" y2="6.8"/><line x1="17.2" y1="17.2" x2="18.8" y2="18.8"/><line x1="5.2" y1="18.8" x2="6.8" y2="17.2"/><line x1="17.2" y1="6.8" x2="18.8" y2="5.2"/></symbol>
+    <symbol id="i-note" viewBox="0 0 24 24"><circle cx="6.5" cy="17.5" r="2.8"/><circle cx="17.5" cy="15.5" r="2.8"/><line x1="9.3" y1="17.5" x2="9.3" y2="6.4"/><line x1="20.3" y1="15.5" x2="20.3" y2="4.4"/><path d="M9.3 8.4 20.3 6.4"/></symbol>
+    <symbol id="i-lupe" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><line x1="15.8" y1="15.8" x2="20.6" y2="20.6"/></symbol>
+    <symbol id="i-funke" viewBox="0 0 24 24"><path d="M11 3.2 12.6 8 17.4 9.6 12.6 11.2 11 16 9.4 11.2 4.6 9.6 9.4 8z"/><path d="M17.6 15.4 18.4 17.6 20.6 18.4 18.4 19.2 17.6 21.4 16.8 19.2 14.6 18.4 16.8 17.6z"/></symbol>
     <symbol id="i-youtube" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15.1V8.9l5.2 3.1z"/></symbol>
   </defs>
 </svg>`;
