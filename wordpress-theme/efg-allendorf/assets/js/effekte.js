@@ -215,7 +215,42 @@
     }, { passive: true });
   }
 
+  /* ── Gleitender Text in der Navigation ────────────────────────────
+     Die Vorlage hinterlegt jeden Link doppelt. Statt das im Markup zu
+     verdoppeln, baut das Skript die zweite Kopie zur Laufzeit ein.
+     Läuft für beide Varianten: statisches HTML und wp_nav_menu.
+  ──────────────────────────────────────────────────────────────── */
+  function navGleitenStarten() {
+    if (wenigerBewegung.matches) return;
+    var links = document.querySelectorAll('#hauptnavigation a');
+    Array.prototype.forEach.call(links, function (a) {
+      if (a.querySelector('.nav-gleit')) return;
+      // Nur reine Textknoten ersetzen, Icons bleiben unangetastet
+      Array.prototype.slice.call(a.childNodes).forEach(function (knoten) {
+        if (knoten.nodeType !== 3) return;
+        var text = knoten.textContent;
+        if (!text.trim()) return;
+        var huelle = document.createElement('span');
+        huelle.className = 'nav-gleit';
+        huelle.setAttribute('aria-hidden', 'false');
+        var a1 = document.createElement('span');
+        var a2 = document.createElement('span');
+        a1.textContent = text.trim();
+        a2.textContent = text.trim();
+        a2.setAttribute('aria-hidden', 'true');
+        huelle.appendChild(a1);
+        huelle.appendChild(a2);
+        a.replaceChild(huelle, knoten);
+      });
+    });
+  }
+
+  // Die statische Navigation wird per JS gerendert, daher auch nachziehen
+  window.efgaNavGleiten = navGleitenStarten;
+
   document.addEventListener('DOMContentLoaded', function () {
+    navGleitenStarten();
+    setTimeout(navGleitenStarten, 0);
     document.querySelectorAll('[data-faecher]').forEach(function (el) {
       if (!wenigerBewegung.matches) faecherStarten(el);
     });

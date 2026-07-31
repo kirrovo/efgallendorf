@@ -79,6 +79,7 @@ function renderNav(activePage, depth) {
 
   initNavToggle();
   decodeContacts();
+  if (window.efgaNavGleiten) window.efgaNavGleiten();
 }
 
 /** Mobil-Menü: Disclosure-Muster, tastaturbedienbar. */

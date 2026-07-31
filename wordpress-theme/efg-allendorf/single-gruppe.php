@@ -23,41 +23,65 @@ while ( have_posts() ) :
 	$archive  = get_post_type_archive_link( 'gruppe' );
 	$kal      = ( $p = get_page_by_path( 'kalender' ) ) ? get_permalink( $p ) : home_url( '/#kalender' );
 
-	get_template_part( 'template-parts/page-hero', null, array(
-		'title'    => get_the_title(),
-		'subtitle' => $subtitle,
-		'badge'    => $badge,
-		'crumbs'   => array(
-			array( 'label' => 'Gruppen und Kreise', 'url' => $archive ),
-			array( 'label' => get_the_title() ),
-		),
-	) );
-
 	/*
-	 * Stimmungsbild: Beitragsbild der Gruppe hat Vorrang. Ist keins gesetzt,
+	 * Bildquelle: Beitragsbild der Gruppe hat Vorrang. Ist keins gesetzt,
 	 * greift das mitgelieferte Stockfoto aus assets/img/angebote/<slug>.jpg.
 	 * Die Bilder liegen lokal im Theme, es wird nichts von Pexels nachgeladen.
 	 */
-	$bild_alt  = efga_get( 'efga_bild_alt', get_the_title() );
-	$fallback  = get_template_directory() . '/assets/img/angebote/' . get_post_field( 'post_name' ) . '.jpg';
+	$bild_alt     = efga_get( 'efga_bild_alt', get_the_title() );
+	$fallback     = get_template_directory() . '/assets/img/angebote/' . get_post_field( 'post_name' ) . '.jpg';
 	$fallback_url = get_template_directory_uri() . '/assets/img/angebote/' . get_post_field( 'post_name' ) . '.jpg';
+
+	/*
+	 * Angebots-Hero: Bildkarte mit Rasterstruktur. Ohne Bild bleibt der
+	 * schlichte Seitenkopf, damit keine leere dunkle Fläche entsteht.
+	 */
+	if ( has_post_thumbnail() || file_exists( $fallback ) ) {
+		$hero_bild = has_post_thumbnail() ? get_the_post_thumbnail_url( null, 'full' ) : $fallback_url;
+		?>
+		<div class="breadcrumb">
+			<div class="breadcrumb-inner">
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Startseite</a>
+				<span aria-hidden="true">&rsaquo;</span>
+				<a href="<?php echo esc_url( $archive ); ?>">Gruppen und Kreise</a>
+				<span aria-hidden="true">&rsaquo;</span>
+				<span><?php the_title(); ?></span>
+			</div>
+		</div>
+		<div class="angebot-hero">
+			<div class="angebot-hero-karte">
+				<img src="<?php echo esc_url( $hero_bild ); ?>" width="1400" height="790" fetchpriority="high" alt="<?php echo esc_attr( $bild_alt ); ?>" />
+				<div class="angebot-hero-inhalt">
+					<?php if ( $badge ) : ?>
+					<span class="angebot-hero-pille">
+						<?php efga_ico( 'personen' ); ?>
+						<?php echo esc_html( $badge ); ?>
+					</span>
+					<?php endif; ?>
+					<h1><?php the_title(); ?></h1>
+					<?php if ( $subtitle ) : ?><p><?php echo esc_html( $subtitle ); ?></p><?php endif; ?>
+					<a href="<?php echo esc_url( home_url( '/#kontakt' ) ); ?>" class="btn">
+						Kontakt aufnehmen
+						<?php efga_ico( 'pfeil-rechts', 'ico-sm' ); ?>
+					</a>
+				</div>
+			</div>
+		</div>
+		<?php
+	} else {
+		get_template_part( 'template-parts/page-hero', null, array(
+			'title'    => get_the_title(),
+			'subtitle' => $subtitle,
+			'badge'    => $badge,
+			'crumbs'   => array(
+				array( 'label' => 'Gruppen und Kreise', 'url' => $archive ),
+				array( 'label' => get_the_title() ),
+			),
+		) );
+	}
+
 	?>
 
-	<?php if ( has_post_thumbnail() || file_exists( $fallback ) ) : ?>
-	<div class="angebot-bild">
-		<?php
-		if ( has_post_thumbnail() ) {
-			the_post_thumbnail( 'large', array( 'loading' => 'lazy', 'alt' => esc_attr( $bild_alt ) ) );
-		} else {
-			printf(
-				'<img src="%s" width="1400" height="790" loading="lazy" alt="%s" />',
-				esc_url( $fallback_url ),
-				esc_attr( $bild_alt )
-			);
-		}
-		?>
-	</div>
-	<?php endif; ?>
 
 	<section class="section">
 		<div class="section-inner">

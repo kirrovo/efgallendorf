@@ -57,7 +57,7 @@ Text Domain: efg-allendorf
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 88px;
+  scroll-padding-top: 110px;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -94,7 +94,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   padding: 10px 18px; border-radius: var(--r-feld); font-weight: 600;
   transition: top .15s;
 }
-.skip-link:focus { top: 16px; }
+.skip-link:focus { top: 84px; }
 
 /* ─── Typografie ─────────────────────────────────── */
 h1, h2, h3, h4 {
@@ -144,27 +144,44 @@ p { text-wrap: pretty; }
 .ico-lg { width: 1.6em;  height: 1.6em; }
 #efga-icons { display: none; }
 
-/* ─── Kopfzeile & Navigation ─────────────────────── */
+/* ─── Kopfzeile & Navigation ─────────────────────────
+   Schwebende Pille, mittig, mit Weichzeichner. Form und Verhalten
+   nach der Vorlage, Farben aus dem hellen Designsystem.
+*/
 header#site-header {
-  position: sticky; top: 0; z-index: 100;
-  background: color-mix(in srgb, var(--flaeche) 88%, transparent);
-  backdrop-filter: saturate(180%) blur(12px);
-  border-bottom: 1px solid var(--linie);
+  position: fixed;
+  top: 18px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  width: calc(100% - 2rem);
+  max-width: fit-content;
+  padding: 8px 10px 8px 20px;
+  border: 1px solid var(--linie-stark);
+  border-radius: var(--r-pille);
+  background: color-mix(in srgb, var(--flaeche) 78%, transparent);
+  backdrop-filter: saturate(180%) blur(14px);
+  box-shadow: 0 2px 6px rgba(31, 41, 55, .05), 0 16px 40px -20px rgba(30, 90, 168, .3);
+  transition: border-radius .3s ease, box-shadow .3s ease;
 }
 @supports not (backdrop-filter: blur(1px)) {
   header#site-header { background: var(--flaeche); }
 }
+/* Bei geöffnetem Mobilmenü wird aus der Pille ein abgerundetes Feld */
+header#site-header:has(.nav-toggle[aria-expanded="true"]) {
+  border-radius: 22px;
+}
+
+/* Der Inhalt startet unter der schwebenden Leiste */
+body { padding-top: 96px; }
+@media (max-width: 940px) { body { padding-top: 88px; } }
 
 .nav-inner {
-  max-width: var(--breite);
-  margin: 0 auto;
-  padding: 0 24px;
-  height: 72px;
   display: flex; align-items: center; justify-content: space-between;
-  gap: 24px;
+  gap: 28px;
+  height: 48px;
 }
-.logo { display: flex; align-items: center; }
-.logo img { height: 42px; width: auto; }
+.logo { display: flex; align-items: center; flex-shrink: 0; }
+.logo img { height: 30px; width: auto; max-width: none; flex-shrink: 0; }
 .logo-text strong { display: block; font-size: .98rem; font-weight: 700; color: var(--akzent); }
 .logo-text span   { font-size: .82rem; color: var(--text-leise); }
 
@@ -177,7 +194,7 @@ nav ul.primary-menu {
 nav a,
 nav ul.primary-menu li a {
   display: inline-flex; align-items: center; gap: 7px;
-  padding: 9px 14px;
+  padding: 8px 13px;
   border-radius: var(--r-feld);
   font-size: .95rem; font-weight: 500;
   color: var(--text);
@@ -224,22 +241,60 @@ nav ul.primary-menu li.nav-intern a:hover { background: var(--blau-hell); color:
 .nav-toggle[aria-expanded="true"] .ico-menue     { display: none; }
 .nav-toggle[aria-expanded="true"] .ico-schliessen { display: block; }
 
+/* Gleitender Text beim Hover: zwei Kopien übereinander, die obere
+   wandert nach oben aus dem Sichtfeld, die untere rückt nach. */
+.nav-gleit {
+  display: inline-flex; flex-direction: column;
+  height: 1.25em; overflow: hidden;
+  line-height: 1.25em;
+}
+.nav-gleit span {
+  white-space: nowrap;      /* sonst bricht der Text in der festen Höhe um */
+  transition: transform .4s cubic-bezier(.22, 1, .36, 1);
+}
+nav a:hover .nav-gleit span,
+nav a:focus-visible .nav-gleit span { transform: translateY(-1.25em); }
+
 @media (max-width: 940px) {
-  .nav-inner { height: 66px; }
-  .nav-toggle { display: inline-flex; }
-  nav {
-    display: none;
-    position: absolute; left: 0; right: 0; top: 100%;
-    flex-direction: column; align-items: stretch; gap: 4px;
-    background: var(--flaeche);
-    border-bottom: 1px solid var(--linie);
-    box-shadow: var(--schatten-hoch);
-    padding: 12px 20px 20px;
+  /* Die Leiste selbst wächst, statt ein Menü darunter aufzuklappen.
+     Das <nav> liegt innerhalb von .nav-inner, deshalb muss dort
+     umgebrochen werden, nicht am Header. */
+  header#site-header {
+    width: calc(100% - 2rem);
+    max-width: none;
+    padding: 8px 12px;
   }
-  nav.offen { display: flex; }
-  nav ul.primary-menu { flex-direction: column; align-items: stretch; gap: 4px; }
+  .nav-inner {
+    width: 100%;
+    height: auto;
+    min-height: 46px;
+    flex-wrap: wrap;
+    gap: 0 12px;
+  }
+  .logo, .nav-toggle { min-height: 46px; }
+  .nav-toggle { display: inline-flex; }
+
+  nav {
+    flex: 0 0 100%;
+    order: 3;
+    display: flex; flex-direction: column; align-items: stretch;
+    width: 100%;
+    max-height: 0; opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    gap: 2px;
+    transition: max-height .3s ease-in-out, opacity .3s ease-in-out, padding .3s ease-in-out;
+  }
+  nav.offen {
+    max-height: 500px; opacity: 1;
+    pointer-events: auto;
+    padding: 12px 4px 8px;
+  }
+  nav ul.primary-menu { flex-direction: column; align-items: stretch; gap: 2px; }
   nav a,
-  nav ul.primary-menu li a { padding: 13px 14px; font-size: 1.05rem; }
+  nav ul.primary-menu li a { padding: 12px 14px; font-size: 1.02rem; justify-content: center; }
+  .nav-gleit { height: auto; overflow: visible; }
+  .nav-gleit span:last-child { display: none; }
   .nav-intern,
   nav ul.primary-menu li.nav-intern a { margin-left: 0; justify-content: center; margin-top: 6px; }
 }
@@ -1166,27 +1221,118 @@ a.predigt-row:hover .predigt-play { background: var(--blau); border-color: var(-
   .page-hero { padding: 36px 20px 40px; }
 }
 
-/* ─── Stimmungsbild auf Angebotsseiten ───────────── */
-.angebot-bild {
+/* ─── Angebots-Hero (Bildkarte mit Dithering) ────────
+   Große abgerundete Karte mit Foto, Rasterstruktur und zentriertem
+   Text. Die Vorlage nutzt einen WebGL-Shader; hier übernimmt eine
+   CSS-Rasterebene die Dithering-Anmutung, ohne dauerlaufendes Canvas.
+*/
+.angebot-hero {
   max-width: var(--breite);
-  margin: 0 auto;
+  margin: 0 auto 8px;
   padding: 0 24px;
 }
-.angebot-bild img {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  border-radius: var(--r-karte);
-  margin-top: -40px;            /* schiebt das Bild leicht in den Seitenkopf */
-  box-shadow: var(--schatten-hoch);
-}
-@media (max-width: 700px) {
-  .angebot-bild { padding: 0 20px; }
-  .angebot-bild img { margin-top: -24px; aspect-ratio: 3 / 2; }
+
+.angebot-hero-karte {
+  position: relative;
+  overflow: hidden;
+  border-radius: 40px;
+  min-height: 460px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 64px 32px;
+  color: #fff;
+  isolation: isolate;
 }
 
-/* Der Abschnitt darunter braucht dann weniger Luft nach oben. */
-.angebot-bild + .section { padding-top: 48px; }
+/* Foto */
+.angebot-hero-karte img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: -3;
+}
+
+/* Abdunkelung, damit der Text sicher lesbar bleibt */
+.angebot-hero-karte::before {
+  content: '';
+  position: absolute; inset: 0; z-index: -2;
+  background:
+    linear-gradient(to top, rgba(12, 20, 32, .88) 0%, rgba(12, 20, 32, .62) 55%, rgba(12, 20, 32, .5) 100%);
+}
+
+/* 4x4-Rasterpunkte als Dithering-Ersatz, in Markenblau eingefärbt */
+.angebot-hero-karte::after {
+  content: '';
+  position: absolute; inset: -20%; z-index: -1;
+  background-image: radial-gradient(color-mix(in srgb, var(--blau-hell) 85%, transparent) 1px, transparent 1.4px);
+  background-size: 4px 4px;
+  opacity: .34;
+  mix-blend-mode: screen;
+  transition: opacity .5s ease;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .angebot-hero-karte::after { animation: dither-drift 26s linear infinite; }
+  .angebot-hero-karte:hover::after { animation-duration: 9s; opacity: .46; }
+}
+@keyframes dither-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-64px, 40px, 0); }
+}
+
+.angebot-hero-inhalt {
+  position: relative;
+  max-width: 44rem;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center;
+}
+
+.angebot-hero-pille {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-bottom: 26px;
+  padding: 6px 18px;
+  border: 1px solid rgba(255, 255, 255, .28);
+  border-radius: var(--r-pille);
+  background: rgba(255, 255, 255, .13);
+  backdrop-filter: blur(6px);
+  font-size: .92rem; font-weight: 600;
+}
+.angebot-hero-pille .ico { width: 1rem; height: 1rem; }
+
+.angebot-hero-inhalt h1 {
+  color: #fff;
+  font-size: clamp(2.1rem, 1.3rem + 3.4vw, 3.6rem);
+  line-height: 1.06;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, .35);
+}
+.angebot-hero-inhalt p {
+  font-size: clamp(1.05rem, 1rem + .5vw, 1.25rem);
+  color: rgba(255, 255, 255, .88);
+  max-width: 36rem;
+  margin-bottom: 32px;
+  line-height: 1.55;
+}
+
+.angebot-hero-inhalt .btn {
+  background: #fff; color: var(--blau);
+  border-color: transparent;
+  padding: 15px 32px;
+  transition: background .3s, transform .3s, box-shadow .3s;
+}
+.angebot-hero-inhalt .btn:hover {
+  background: #fff;
+  transform: scale(1.04);
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, .22);
+}
+.angebot-hero-inhalt .btn::before,
+.angebot-hero-inhalt .btn::after { display: none; }
+.angebot-hero-inhalt .btn .ico { transition: transform .3s; }
+.angebot-hero-inhalt .btn:hover .ico { transform: translateX(4px); }
+
+@media (max-width: 700px) {
+  .angebot-hero { padding: 0 16px; }
+  .angebot-hero-karte { border-radius: 28px; min-height: 380px; padding: 48px 22px; }
+}
 
 /* ─── Detailseiten (Gruppen) ─────────────────────── */
 .detail-grid {
