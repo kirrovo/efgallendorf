@@ -9,7 +9,6 @@ get_header();
 
 $wer_url     = ( $p = get_page_by_path( 'wer-wir-sind' ) ) ? get_permalink( $p ) : '#wer-wir-sind';
 $gruppen_url = get_post_type_archive_link( 'gruppe' );
-$intern_url  = ( $p = get_page_by_path( 'intern' ) ) ? get_permalink( $p ) : '#intern';
 $live_url    = ( $p = get_page_by_path( 'gottesdienst-live' ) ) ? get_permalink( $p ) : '#';
 $kal_url     = ( $p = get_page_by_path( 'kalender' ) ) ? get_permalink( $p ) : '#kalender';
 ?>
@@ -352,22 +351,9 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 	</div>
 </section>
 
-<!-- ══════════════════ INTERN ════════════════════════ -->
-<section class="section section-alt" id="intern">
-	<div class="section-inner">
-		<div class="intern-banner">
-			<?php efga_ico( 'schloss' ); ?>
-			<div class="intern-text">
-				<h3>Interner Bereich</h3>
-				<p>Predigten-Archiv, Gemeindeformulare, Protokolle und geschützte Inhalte, nur für angemeldete Mitglieder.</p>
-				<a href="<?php echo esc_url( $intern_url ); ?>" class="btn btn-blau">Zum Login</a>
-			</div>
-		</div>
-	</div>
-</section>
 
 <!-- ══════════════════ KONTAKT ═══════════════════════ -->
-<section class="section" id="kontakt">
+<section class="section section-alt" id="kontakt">
 	<div class="section-inner">
 		<?php get_template_part( 'template-parts/kontakt' ); ?>
 	</div>
