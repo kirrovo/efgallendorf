@@ -72,7 +72,6 @@ function renderNav(activePage, depth) {
         <a href="${r}wer-wir-sind.html" ${activePage === 'wer' ? 'class="active" aria-current="page"' : ''}>Wer wir sind</a>
         <a href="${r}gruppen.html" ${activePage === 'gruppen' ? 'class="active" aria-current="page"' : ''}>Gruppen</a>
         <a href="${r}gottesdienst-live.html" class="nav-live ${activePage === 'live' ? 'active' : ''}" ${activePage === 'live' ? 'aria-current="page"' : ''}>${ico('video', 'ico-sm')}Live</a>
-        <a href="${r}index.html#kalender" ${activePage === 'kalender' ? 'class="active" aria-current="page"' : ''}>Kalender</a>
         <a href="${r}intern.html" class="nav-intern">${ico('schloss', 'ico-sm')}Intern</a>
       </nav>
     </div>`;

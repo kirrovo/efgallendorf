@@ -291,6 +291,7 @@ nav a:focus-visible .nav-gleit span { transform: translateY(-1.25em); }
 */
 .btn, .btn-blau {
   position: relative;
+  isolation: isolate;
   display: inline-flex; align-items: center; justify-content: center; gap: 9px;
   padding: 13px 26px;
   border: 1px solid transparent;
@@ -298,9 +299,39 @@ nav a:focus-visible .nav-gleit span { transform: translateY(-1.25em); }
   font-size: 1rem; font-weight: 600;
   white-space: nowrap;
   cursor: pointer;
-  transition: background .2s, border-color .2s, transform .1s, color .2s;
+  /* kein overflow: hidden, sonst wird die untere Leuchtlinie beschnitten */
+  /* Glasanmutung: Hintergrund wird leicht durchgezeichnet, oben eine
+     helle Kante, unten eine dunkle. Das erzeugt die Wölbung. */
+  backdrop-filter: blur(10px) saturate(170%);
+  -webkit-backdrop-filter: blur(10px) saturate(170%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .45),
+    inset 0 -1px 0 rgba(15, 25, 45, .10),
+    0 6px 18px -10px rgba(30, 90, 168, .45);
+  transition: background .25s, border-color .25s, transform .12s,
+              color .25s, box-shadow .25s;
 }
-.btn:active, .btn-blau:active { transform: translateY(1px); }
+
+.btn:hover, .btn-blau:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .6),
+    inset 0 -1px 0 rgba(15, 25, 45, .12),
+    0 10px 26px -10px rgba(30, 90, 168, .55);
+}
+.btn:active, .btn-blau:active {
+  transform: translateY(1px);
+  box-shadow:
+    inset 0 2px 5px rgba(15, 25, 45, .18),
+    inset 0 1px 0 rgba(255, 255, 255, .25);
+}
+
+/* Nutzer mit reduzierter Transparenz bekommen deckende Flächen */
+@media (prefers-reduced-transparency: reduce) {
+  .btn, .btn-blau {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
 
 /* Leuchtlinien als Pseudoelemente, kein Zusatz-Markup nötig */
 .btn::before, .btn::after,
@@ -325,13 +356,20 @@ nav a:focus-visible .nav-gleit span { transform: translateY(-1.25em); }
 /* Opt-out für Stellen, an denen die Linie stört */
 .ohne-leuchtlinie::before, .ohne-leuchtlinie::after { display: none; }
 
-/* Variante: gefüllt */
+/* Variante: gefüllt, als getöntes Glas */
 .btn-blau, .btn-primaer {
-  background: var(--blau); color: #fff;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, #fff 22%, transparent) 0%, transparent 55%),
+    color-mix(in srgb, var(--blau) 92%, transparent);
+  color: #fff;
+  border-color: color-mix(in srgb, #fff 28%, transparent);
 }
 .btn-blau:hover, .btn-primaer:hover {
-  background: var(--blau-hell); color: #fff;
-  border-color: color-mix(in srgb, var(--text) 45%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, #fff 30%, transparent) 0%, transparent 55%),
+    color-mix(in srgb, var(--blau-hell) 94%, transparent);
+  color: #fff;
+  border-color: color-mix(in srgb, #fff 45%, transparent);
 }
 /* Bei gefüllten Buttons liegt nur die obere Linie auf der blauen Fläche,
    sie wird hell. Die untere sitzt außerhalb auf hellem Grund und bleibt blau. */
@@ -339,15 +377,19 @@ nav a:focus-visible .nav-gleit span { transform: translateY(-1.25em); }
   background: linear-gradient(to right, transparent, rgba(255,255,255,.85), transparent);
 }
 
-/* Variante: getönt (Standard der Vorlage) */
+/* Variante: getönt, klares Glas mit blauem Schimmer */
 .btn-sekundaer {
-  background: color-mix(in srgb, var(--blau) 5%, transparent);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .75) 0%, rgba(255, 255, 255, .25) 55%),
+    color-mix(in srgb, var(--blau) 6%, transparent);
   color: var(--akzent);
-  border-color: color-mix(in srgb, var(--blau) 22%, transparent);
+  border-color: color-mix(in srgb, var(--blau) 24%, transparent);
 }
 .btn-sekundaer:hover {
-  background: transparent;
-  border-color: color-mix(in srgb, var(--blau) 40%, transparent);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .9) 0%, rgba(255, 255, 255, .4) 55%),
+    color-mix(in srgb, var(--blau) 10%, transparent);
+  border-color: color-mix(in srgb, var(--blau) 42%, transparent);
   color: var(--akzent);
 }
 
@@ -701,17 +743,106 @@ a.karte:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
 .events-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-  gap: 20px;
+  gap: 24px;
+  perspective: 1000px;
 }
+
+/* Karte als Glasplatte: Neigung folgt der Maus, darauf eine
+   Reflexion, eine feine Körnung und ein Lichtsaum an der Unterkante.
+   Aufbau wie in der Vorlage, nur hell statt schwarz und ohne die
+   violett-türkisen Verläufe. */
 .event-card {
-  background: var(--flaeche);
-  border: 1px solid var(--linie);
-  border-radius: var(--r-karte);
-  padding: 24px;
+  position: relative;
+  border-radius: 24px;
+  padding: 26px;
   display: flex; flex-direction: column; gap: 14px;
-  transition: border-color .15s, box-shadow .15s;
+  transform-style: preserve-3d;
+  transform:
+    rotateX(var(--kipp-x, 0deg))
+    rotateY(var(--kipp-y, 0deg))
+    translateY(var(--hebung, 0));
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .9) 0%, rgba(255, 255, 255, .55) 100%),
+    var(--flaeche);
+  border: 1px solid var(--linie);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .8),
+    0 -6px 40px -14px color-mix(in srgb, var(--blau) 45%, transparent),
+    0 10px 30px -18px rgba(15, 25, 45, .35);
+  transition: transform .35s cubic-bezier(.22, 1, .36, 1),
+              box-shadow .35s ease, border-color .25s;
+  will-change: transform;
 }
-.event-card:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
+.event-card:hover {
+  --hebung: -5px;
+  border-color: color-mix(in srgb, var(--blau) 30%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .9),
+    0 -8px 52px -14px color-mix(in srgb, var(--blau) 60%, transparent),
+    0 16px 40px -18px rgba(15, 25, 45, .4);
+}
+
+/* Glasreflexion und Körnung, beides ohne Mausereignisse */
+.event-card > .event-glanz {
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, .55) 0%, rgba(255, 255, 255, 0) 42%,
+                            rgba(255, 255, 255, 0) 80%, rgba(255, 255, 255, .35) 100%);
+  opacity: .55;
+  transition: opacity .4s ease;
+}
+.event-card:hover > .event-glanz { opacity: .8; }
+
+.event-card > .event-koernung {
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  opacity: .16;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Lichtsaum an der Unterkante, dazu die beiden kurzen Seitenkanten */
+.event-card > .event-saum {
+  position: absolute; inset: auto 0 0 0;
+  height: 1.5px;
+  border-radius: 0 0 24px 24px;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(90deg,
+    transparent 0%, color-mix(in srgb, var(--blau-hell) 85%, transparent) 50%, transparent 100%);
+  box-shadow: 0 0 14px 2px color-mix(in srgb, var(--blau) 45%, transparent);
+  opacity: .8;
+  transition: opacity .4s ease, box-shadow .4s ease;
+}
+.event-card:hover > .event-saum {
+  opacity: 1;
+  box-shadow: 0 0 22px 4px color-mix(in srgb, var(--blau) 60%, transparent);
+}
+.event-card > .event-saum::before,
+.event-card > .event-saum::after {
+  content: '';
+  position: absolute; bottom: 0;
+  width: 1.5px; height: 60px;
+  background: linear-gradient(to top,
+    color-mix(in srgb, var(--blau-hell) 70%, transparent) 0%, transparent 85%);
+}
+.event-card > .event-saum::before { left: 0; }
+.event-card > .event-saum::after  { right: 0; }
+
+.event-card > *:not(.event-glanz):not(.event-koernung):not(.event-saum) {
+  position: relative; z-index: 3;
+}
+
+/* Ohne Zeiger oder bei reduzierter Bewegung bleibt die Karte flach */
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .event-card { transform: none !important; transition: box-shadow .2s; }
+  .event-card > .event-koernung { display: none; }
+}
 
 .event-date-bar { display: flex; align-items: center; gap: 14px; }
 .event-date-box {
@@ -750,13 +881,14 @@ a.karte:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
 */
 .event-card[data-spot] {
   position: relative;   /* Bezugsrahmen für die drei Leuchtebenen */
-  isolation: isolate;
   --spot: var(--spot-groesse, 240px);
-  /* Ebene 1: Schimmer auf der Kartenfläche */
-  background-image: radial-gradient(
-    var(--spot) var(--spot) at var(--sx, 50%) var(--sy, 0%),
-    color-mix(in srgb, var(--blau) 11%, transparent), transparent 66%);
-  transition: border-color .15s, box-shadow .15s, background-image .3s;
+  /* Ebene 1: Zeigerschimmer, davor der Glasverlauf der Karte.
+     Beide müssen in einer Liste stehen, sonst überschreibt die
+     spezifischere Regel den Verlauf. */
+  background-image:
+    radial-gradient(var(--spot) var(--spot) at var(--sx, 50%) var(--sy, 0%),
+      color-mix(in srgb, var(--blau) 12%, transparent), transparent 66%),
+    linear-gradient(180deg, rgba(255, 255, 255, .9) 0%, rgba(255, 255, 255, .55) 100%);
 }
 
 /* Ebene 2: leuchtende Randkontur, weißer Kern innen */
@@ -786,7 +918,7 @@ a.karte:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
   content: '';
   position: absolute; inset: -10px;
   z-index: -1;
-  border-radius: calc(var(--r-karte) + 10px);
+  border-radius: 34px;
   background: radial-gradient(
     calc(var(--spot) * .8) calc(var(--spot) * .8)
     at var(--sx, 50%) var(--sy, 0%),
@@ -905,6 +1037,75 @@ a.karte:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
   display: inline-flex; align-items: center; gap: 6px;
 }
 .gruppe-card:hover .gruppe-card-link { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ─── Bereichskarten mit Bild (Startseite) ───────────
+   Bild oben, Text unten, beim Überfahren hebt sich die Karte und das
+   Bild zoomt langsam. Aufbau nach der Vorlage.
+*/
+.bereich-karten {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+@media (max-width: 900px) { .bereich-karten { grid-template-columns: 1fr; } }
+
+.bereich-karte {
+  position: relative;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--linie);
+  border-radius: var(--r-karte);
+  background: var(--flaeche);
+  box-shadow: var(--schatten);
+  color: inherit;
+  transition: transform .5s ease-in-out, box-shadow .5s ease-in-out, border-color .3s;
+}
+.bereich-karte:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--schatten-hoch);
+  border-color: color-mix(in srgb, var(--blau) 28%, transparent);
+}
+
+.bereich-karte-bild { aspect-ratio: 16 / 9; overflow: hidden; }
+.bereich-karte-bild img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .7s ease-in-out;
+}
+.bereich-karte:hover .bereich-karte-bild img { transform: scale(1.1); }
+
+.bereich-karte-inhalt {
+  display: flex; flex-direction: column; flex: 1;
+  padding: 24px;
+}
+.bereich-karte-inhalt h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  transition: color .3s;
+}
+.bereich-karte:hover .bereich-karte-inhalt h3 { color: var(--akzent); }
+.bereich-karte-inhalt p { flex: 1; color: var(--text-leise); font-size: .97rem; }
+.bereich-karte-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 16px;
+  font-size: .95rem; font-weight: 600; color: var(--akzent);
+}
+.bereich-karte-link .ico { transition: transform .3s; }
+.bereich-karte:hover .bereich-karte-link .ico { transform: translateX(4px); }
+.bereich-karte:hover .bereich-karte-link { text-decoration: underline; text-underline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bereich-karte, .bereich-karte-bild img { transition: none; }
+  .bereich-karte:hover { transform: none; }
+  .bereich-karte:hover .bereich-karte-bild img { transform: none; }
+}
+
+/* Bereichsüberschriften auf der Gruppen-Übersicht */
+.bereich-titel {
+  font-size: 1.3rem;
+  margin: 48px 0 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--linie);
+}
+.bereich-titel:first-of-type { margin-top: 0; }
 
 /* ─── Gruppen, nach Lebensphase gebündelt (Startseite) ─ */
 .gruppen-cluster {

@@ -106,6 +106,9 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 					$link  = $link ? $link : get_permalink();
 					?>
 					<article class="event-card" data-spot>
+						<span class="event-glanz" aria-hidden="true"></span>
+						<span class="event-koernung" aria-hidden="true"></span>
+						<span class="event-saum" aria-hidden="true"></span>
 						<div class="event-date-bar">
 							<div class="event-date-box">
 								<span class="day"><?php echo esc_html( $day ); ?></span>
@@ -220,6 +223,11 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 					'url'   => get_permalink(),
 					'icon'  => efga_get( 'efga_icon', 'personen' ),
 					'zeit'  => efga_get( 'efga_schedule', $badge ),
+					'bild'  => has_post_thumbnail()
+						? get_the_post_thumbnail_url( null, 'large' )
+						: ( file_exists( get_template_directory() . '/assets/img/angebote/' . get_post_field( 'post_name' ) . '.jpg' )
+							? get_template_directory_uri() . '/assets/img/angebote/' . get_post_field( 'post_name' ) . '.jpg'
+							: '' ),
 				);
 			}
 			wp_reset_postdata();
@@ -235,22 +243,33 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 			<a href="<?php echo esc_url( $gruppen_url ); ?>" class="text-link">Alle Gruppen <?php efga_ico( 'pfeil-rechts', 'ico-sm' ); ?></a>
 		</div>
 
-		<div class="gruppen-cluster">
-			<?php foreach ( $cluster as $titel => $eintraege ) : ?>
-				<?php if ( empty( $eintraege ) ) { continue; } ?>
-				<div class="cluster">
-					<h3><?php echo esc_html( $titel ); ?></h3>
-					<?php foreach ( $eintraege as $e ) : ?>
-						<a href="<?php echo esc_url( $e['url'] ); ?>" class="cluster-eintrag">
-							<?php efga_ico( $e['icon'] ); ?>
-							<div>
-								<strong><?php echo esc_html( $e['titel'] ); ?></strong>
-								<?php if ( $e['zeit'] ) : ?><span><?php echo esc_html( $e['zeit'] ); ?></span><?php endif; ?>
-							</div>
-						</a>
-					<?php endforeach; ?>
-				</div>
-			<?php endforeach; ?>
+		<div class="bereich-karten">
+			<?php
+			// Ein Bild je Bereich: das erste Angebot des Bereichs, das eins hat.
+			foreach ( $cluster as $bereich => $eintraege ) :
+				if ( empty( $eintraege ) ) { continue; }
+				$anker = 'bereich-' . sanitize_title( $bereich );
+				$bild  = '';
+				foreach ( $eintraege as $e ) {
+					if ( ! empty( $e['bild'] ) ) { $bild = $e['bild']; break; }
+				}
+				$namen = array_slice( wp_list_pluck( $eintraege, 'titel' ), 0, 4 );
+				?>
+				<a href="<?php echo esc_url( $gruppen_url . '#' . $anker ); ?>" class="bereich-karte">
+					<?php if ( $bild ) : ?>
+					<div class="bereich-karte-bild">
+						<img src="<?php echo esc_url( $bild ); ?>" width="1400" height="790" loading="lazy" alt="" />
+					</div>
+					<?php endif; ?>
+					<div class="bereich-karte-inhalt">
+						<h3><?php echo esc_html( $bereich ); ?></h3>
+						<p><?php echo esc_html( implode( ', ', $namen ) ); ?><?php echo count( $eintraege ) > 4 ? ' und weitere' : ''; ?>.</p>
+						<span class="bereich-karte-link">Angebote ansehen <?php efga_ico( 'pfeil-rechts', 'ico-sm' ); ?></span>
+					</div>
+				</a>
+				<?php
+			endforeach;
+			?>
 		</div>
 	</div>
 </section>

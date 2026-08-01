@@ -317,7 +317,44 @@
   window.efgaNavGleiten = navGleitenStarten;
 
 
+  /* ── Neigung der Veranstaltungskarten ─────────────────────────────
+     Die Karte kippt der Maus entgegen, maximal 5 Grad wie in der
+     Vorlage. Dort erledigt das framer-motion mit einer Feder, hier
+     genügen zwei CSS-Variablen und eine Transition.
+  ──────────────────────────────────────────────────────────────── */
+  function kippenStarten() {
+    if (wenigerBewegung.matches) return;
+    if (!window.matchMedia('(hover: hover)').matches) return;
+
+    var karten = document.querySelectorAll('.event-card');
+    Array.prototype.forEach.call(karten, function (karte) {
+      var geplant = false, letztes = null;
+
+      function anwenden() {
+        geplant = false;
+        if (!letztes) return;
+        var r = karte.getBoundingClientRect();
+        var x = letztes.x - r.left - r.width / 2;
+        var y = letztes.y - r.top - r.height / 2;
+        karte.style.setProperty('--kipp-x', (-(y / r.height) * 5) + 'deg');
+        karte.style.setProperty('--kipp-y', ((x / r.width) * 5) + 'deg');
+      }
+
+      karte.addEventListener('pointermove', function (e) {
+        letztes = { x: e.clientX, y: e.clientY };
+        if (!geplant) { geplant = true; requestAnimationFrame(anwenden); }
+      }, { passive: true });
+
+      karte.addEventListener('pointerleave', function () {
+        letztes = null;
+        karte.style.setProperty('--kipp-x', '0deg');
+        karte.style.setProperty('--kipp-y', '0deg');
+      });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
+    kippenStarten();
     navGleitenStarten();
     setTimeout(navGleitenStarten, 0);
     document.querySelectorAll('[data-faecher]').forEach(function (el) {

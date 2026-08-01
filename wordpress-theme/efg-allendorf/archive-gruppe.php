@@ -72,14 +72,34 @@ $kontakt_url = ( $p = get_page_by_path( 'kontakt' ) ) ? get_permalink( $p ) : ho
 		</div>
 		<?php endif; ?>
 
-		<div class="gruppen-overview-grid">
-			<?php
-			while ( have_posts() ) :
-				the_post();
-				get_template_part( 'template-parts/gruppe', 'card' );
-			endwhile;
+		<?php
+		// Nach Bereich gruppieren, damit die Karten der Startseite auf
+		// einen echten Anker zeigen koennen.
+		$nach_bereich = array_fill_keys( array_keys( efga_bereiche() ), array() );
+		$standard     = array_key_first( $nach_bereich );
+		while ( have_posts() ) {
+			the_post();
+			$b = efga_get( 'efga_bereich' );
+			if ( ! isset( $nach_bereich[ $b ] ) ) { $b = $standard; }
+			$nach_bereich[ $b ][] = get_the_ID();
+		}
+		foreach ( $nach_bereich as $bereich => $ids ) :
+			if ( empty( $ids ) ) { continue; }
 			?>
-		</div>
+			<h2 class="bereich-titel" id="bereich-<?php echo esc_attr( sanitize_title( $bereich ) ); ?>"><?php echo esc_html( $bereich ); ?></h2>
+			<div class="gruppen-overview-grid">
+				<?php
+				foreach ( $ids as $id ) {
+					$post = get_post( $id );
+					setup_postdata( $post );
+					get_template_part( 'template-parts/gruppe', 'card' );
+				}
+				wp_reset_postdata();
+				?>
+			</div>
+			<?php
+		endforeach;
+		?>
 
 		<div class="woche-fuss" style="margin-top: 40px;">
 			<p><strong>Fragen zu einer Gruppe?</strong> Wende dich direkt an die Gruppenleitung oder schreib uns eine Nachricht.</p>

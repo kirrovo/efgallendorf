@@ -337,7 +337,6 @@ function efga_default_menu() {
 	echo '<a href="' . esc_url( get_permalink( get_page_by_path( 'wer-wir-sind' ) ) ) . '">Wer wir sind</a>';
 	echo '<a href="' . esc_url( get_post_type_archive_link( 'gruppe' ) ) . '">Gruppen</a>';
 	echo '<a href="' . esc_url( get_permalink( get_page_by_path( 'gottesdienst-live' ) ) ) . '" class="nav-live">' . efga_ico( 'video', 'ico-sm', false ) . 'Live</a>';
-	echo '<a href="' . esc_url( get_permalink( get_page_by_path( 'kalender' ) ) ) . '">Kalender</a>';
 	echo '<a href="' . esc_url( get_permalink( get_page_by_path( 'intern' ) ) ) . '" class="nav-intern">' . efga_ico( 'schloss', 'ico-sm', false ) . 'Intern</a>';
 	echo '</nav>';
 }
