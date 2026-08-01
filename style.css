@@ -1675,42 +1675,6 @@ footer#site-footer { padding: 0 24px 24px; }
 .footer-social .ico { width: 1.35rem; height: 1.35rem; }
 .footer-rechtliches { display: flex; gap: 18px; flex-wrap: wrap; }
 
-/* Großer Schriftzug mit Zeigerspur */
-.footer-schriftzug {
-  position: relative; z-index: 1;
-  display: none;
-  margin: -12px 0 -6px;
-  padding: 0 16px;
-}
-@media (min-width: 1024px) { .footer-schriftzug { display: block; } }
-
-.footer-schriftzug svg {
-  width: 100%; height: 190px;
-  display: block;
-  user-select: none;
-}
-.footer-schriftzug text {
-  font-family: inherit;
-  font-size: 34px;
-  font-weight: 700;
-  letter-spacing: .02em;
-  fill: transparent;
-  stroke-width: .6;
-}
-/* ruhende Kontur */
-.ft-basis { stroke: var(--linie-stark); opacity: .85; }
-/* einmalig gezeichnete Linie beim Laden */
-.ft-linie { stroke: color-mix(in srgb, var(--blau) 45%, transparent); }
-@media (prefers-reduced-motion: no-preference) {
-  .ft-linie {
-    stroke-dasharray: 1200;
-    stroke-dashoffset: 1200;
-    animation: ft-zeichnen 4s ease-in-out forwards;
-  }
-}
-@keyframes ft-zeichnen { to { stroke-dashoffset: 0; } }
-/* farbige Kontur, nur im Umkreis des Zeigers sichtbar */
-.ft-spur { stroke: url(#ft-farbe); }
 
 @media (max-width: 700px) {
   footer#site-footer { padding: 0 16px 16px; }

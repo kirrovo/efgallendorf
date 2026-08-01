@@ -1,6 +1,6 @@
 <?php
 /**
- * Footer: abgerundete Karte, vier Spalten, Konturschriftzug.
+ * Footer: abgerundete Karte mit vier Spalten.
  *
  * @package EFG_Allendorf
  */
@@ -75,30 +75,6 @@ $gruppen_url = get_post_type_archive_link( 'gruppe' );
 			</div>
 		</div>
 
-		<?php
-		/* Konturschriftzug: farbige Linie folgt dem Zeiger, siehe effekte.js */
-		?>
-		<div class="footer-schriftzug" data-schriftzug aria-hidden="true">
-			<svg viewBox="0 0 300 100" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-				<defs>
-					<linearGradient id="ft-farbe" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="300" y2="0">
-						<stop offset="0%" stop-color="#1e5aa8" />
-						<stop offset="50%" stop-color="#2f76cc" />
-						<stop offset="100%" stop-color="#8fb8f5" />
-					</linearGradient>
-					<radialGradient id="ft-maske-verlauf" gradientUnits="userSpaceOnUse" r="46" cx="150" cy="50">
-						<stop offset="0%" stop-color="white" />
-						<stop offset="100%" stop-color="black" />
-					</radialGradient>
-					<mask id="ft-maske">
-						<rect x="0" y="0" width="300" height="100" fill="url(#ft-maske-verlauf)" />
-					</mask>
-				</defs>
-				<text class="ft-basis" x="150" y="50" text-anchor="middle" dominant-baseline="middle">EFG ALLENDORF</text>
-				<text class="ft-linie" x="150" y="50" text-anchor="middle" dominant-baseline="middle">EFG ALLENDORF</text>
-				<text class="ft-spur" x="150" y="50" text-anchor="middle" dominant-baseline="middle" mask="url(#ft-maske)">EFG ALLENDORF</text>
-			</svg>
-		</div>
 	</div>
 </footer>
 
