@@ -1,5 +1,5 @@
-/* Interaktive Elemente: Kartenfächer und Spotlight.
-   Ohne Framework, ohne externe Bibliothek. Beide Effekte schalten sich
+/* Interaktive Elemente: Kartenfächer, Kartenneigung, Navigation.
+   Ohne Framework, ohne externe Bibliothek. Alle Effekte schalten sich
    ab, wenn der Nutzer reduzierte Bewegung eingestellt hat. */
 (function () {
   'use strict';
@@ -253,35 +253,6 @@
     zeichnen();
   }
 
-  /* ── Spotlight ────────────────────────────────────────────────────
-     Ein einziger Zeiger-Listener für alle Karten, gedrosselt über
-     requestAnimationFrame. Die Vorlage registriert einen Listener pro
-     Karte, das ist bei mehreren Karten unnötig teuer.
-  ──────────────────────────────────────────────────────────────── */
-  function spotlightStarten() {
-    var karten = Array.prototype.slice.call(document.querySelectorAll('[data-spot]'));
-    if (!karten.length || wenigerBewegung.matches) return;
-    if (!window.matchMedia('(hover: hover)').matches) return;
-
-    var letztes = null, geplant = false;
-
-    function anwenden() {
-      geplant = false;
-      if (!letztes) return;
-      karten.forEach(function (k) {
-        var r = k.getBoundingClientRect();
-        // Nur rechnen, was in Sichtweite liegt
-        if (r.bottom < -200 || r.top > window.innerHeight + 200) return;
-        k.style.setProperty('--sx', (letztes.x - r.left) + 'px');
-        k.style.setProperty('--sy', (letztes.y - r.top) + 'px');
-      });
-    }
-
-    document.addEventListener('pointermove', function (e) {
-      letztes = { x: e.clientX, y: e.clientY };
-      if (!geplant) { geplant = true; requestAnimationFrame(anwenden); }
-    }, { passive: true });
-  }
 
   /* ── Gleitender Text in der Navigation ────────────────────────────
      Die Vorlage hinterlegt jeden Link doppelt. Statt das im Markup zu
@@ -353,13 +324,41 @@
     });
   }
 
+  /* ── Restzeit auf den Wochenkarten ────────────────────────────────
+     Die Vorlage zeigt an dieser Stelle "2 days left". Hier wird der
+     Wert aus dem heutigen Wochentag berechnet, statt ihn zu setzen.
+     Die naechste anstehende Karte wird hervorgehoben.
+  ──────────────────────────────────────────────────────────────── */
+  function wochenRestzeit() {
+    var karten = document.querySelectorAll('.woche-karte[data-wochentag]');
+    if (!karten.length) return;
+
+    var heute = new Date().getDay();   // 0 = Sonntag
+    var kleinster = 8, naechste = null;
+
+    Array.prototype.forEach.call(karten, function (karte) {
+      var tag = parseInt(karte.dataset.wochentag, 10);
+      var abstand = (tag - heute + 7) % 7;
+      var feld = karte.querySelector('[data-restzeit]');
+      if (feld) {
+        feld.textContent = abstand === 0 ? 'heute'
+                         : abstand === 1 ? 'morgen'
+                         : 'in ' + abstand + ' Tagen';
+      }
+      karte.classList.remove('betont');
+      if (abstand < kleinster) { kleinster = abstand; naechste = karte; }
+    });
+
+    if (naechste) { naechste.classList.add('betont'); }
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
+    wochenRestzeit();
     kippenStarten();
     navGleitenStarten();
     setTimeout(navGleitenStarten, 0);
     document.querySelectorAll('[data-faecher]').forEach(function (el) {
       if (!wenigerBewegung.matches) faecherStarten(el);
     });
-    spotlightStarten();
   });
 })();

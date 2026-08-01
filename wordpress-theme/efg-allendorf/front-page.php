@@ -105,7 +105,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 					$link  = efga_get( 'efga_link' );
 					$link  = $link ? $link : get_permalink();
 					?>
-					<article class="event-card" data-spot>
+					<article class="event-card">
 						<span class="event-glanz" aria-hidden="true"></span>
 						<span class="event-koernung" aria-hidden="true"></span>
 						<span class="event-saum" aria-hidden="true"></span>
@@ -328,36 +328,110 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 		</div>
 
 		<div class="woche-grid">
-		  <div class="woche-zelle betont">
-		    <span class="tag">Sonntag</span>
-		    <strong>Gottesdienst und Kindergottesdienst</strong>
-		    <span>10:00 Uhr, Kinder ab 10:30 Uhr</span>
-		  </div>
-		  <div class="woche-zelle">
-		    <span class="tag">Montag</span>
-		    <strong>Frauengebetskreis</strong>
-		    <span>Alle 14 Tage, abends</span>
-		  </div>
-		  <div class="woche-zelle">
-		    <span class="tag">Dienstag</span>
-		    <strong>Wilde Füchse</strong>
-		    <span>17:00 bis 18:30 Uhr</span>
-		  </div>
-		  <div class="woche-zelle">
-		    <span class="tag">Mittwoch</span>
-		    <strong>GLV und Bibelstunde</strong>
-		    <span>Alle 14 Tage im Wechsel, abends</span>
-		  </div>
-		  <div class="woche-zelle">
-		    <span class="tag">Donnerstag</span>
-		    <strong>Knallerbsen</strong>
-		    <span>16:15 bis 17:45 Uhr</span>
-		  </div>
-		  <div class="woche-zelle">
-		    <span class="tag">Freitag</span>
-		    <strong>Crossroad und Biblischer Unterricht</strong>
-		    <span>Crossroad ab 19:00 Uhr</span>
-		  </div>
+		  <article class="woche-karte" data-wochentag="0">
+		    <div class="woche-karte-kopf">
+		      <span class="tag">Sonntag</span>
+		      <svg class="ico" aria-hidden="true"><use href="#i-kirche"></use></svg>
+		    </div>
+		    <div class="woche-karte-koerper">
+		      <h3>Gottesdienst und Kindergottesdienst</h3>
+		      <p>10:00 Uhr, Kinder ab 10:30 Uhr</p>
+		    </div>
+		    <div class="woche-karte-fuss">
+		      <div class="woche-links">
+		        <a href="<?php echo esc_url( $gruppen_url ); ?>/gottesdienst/" aria-label="Gottesdienst"><svg class="ico ico-sm" aria-hidden="true"><use href="#i-kirche"></use></svg></a>
+		        <a href="<?php echo esc_url( $gruppen_url ); ?>/kindergottesdienst/" aria-label="Kindergottesdienst"><svg class="ico ico-sm" aria-hidden="true"><use href="#i-note"></use></svg></a>
+		      </div>
+		      <span class="woche-restzeit" data-restzeit>&nbsp;</span>
+		    </div>
+		  </article>
+
+		  <article class="woche-karte" data-wochentag="1">
+		    <div class="woche-karte-kopf">
+		      <span class="tag">Montag</span>
+		      <svg class="ico" aria-hidden="true"><use href="#i-herz"></use></svg>
+		    </div>
+		    <div class="woche-karte-koerper">
+		      <h3>Frauengebetskreis</h3>
+		      <p>Alle 14 Tage, abends</p>
+		    </div>
+		    <div class="woche-karte-fuss">
+		      <div class="woche-links">
+		        <a href="<?php echo esc_url( $gruppen_url ); ?>/frauengebetskreis/" aria-label="Frauengebetskreis"><svg class="ico ico-sm" aria-hidden="true"><use href="#i-herz"></use></svg></a>
+		      </div>
+		      <span class="woche-restzeit" data-restzeit>&nbsp;</span>
+		    </div>
+		  </article>
+
+		  <article class="woche-karte" data-wochentag="2">
+		    <div class="woche-karte-kopf">
+		      <span class="tag">Dienstag</span>
+		      <svg class="ico" aria-hidden="true"><use href="#i-stern"></use></svg>
+		    </div>
+		    <div class="woche-karte-koerper">
+		      <h3>Wilde Füchse</h3>
+		      <p>17:00 bis 18:30 Uhr</p>
+		    </div>
+		    <div class="woche-karte-fuss">
+		      <div class="woche-links">
+		        <a href="<?php echo esc_url( $gruppen_url ); ?>/wilde-fuechse/" aria-label="Wilde Füchse"><svg class="ico ico-sm" aria-hidden="true"><use href="#i-stern"></use></svg></a>
+		      </div>
+		      <span class="woche-restzeit" data-restzeit>&nbsp;</span>
+		    </div>
+		  </article>
+
+		  <article class="woche-karte" data-wochentag="3">
+		    <div class="woche-karte-kopf">
+		      <span class="tag">Mittwoch</span>
+		      <svg class="ico" aria-hidden="true"><use href="#i-buch"></use></svg>
+		    </div>
+		    <div class="woche-karte-koerper">
+		      <h3>GLV und Bibelstunde</h3>
+		      <p>Alle 14 Tage im Wechsel, abends</p>
+		    </div>
+		    <div class="woche-karte-fuss">
+		      <div class="woche-links">
+		        <a href="<?php echo esc_url( $gruppen_url ); ?>/glv/" aria-label="GLV"><svg class="ico ico-sm" aria-hidden="true"><use href="#i-buch"></use></svg></a>
+		        <a href="<?php echo esc_url( $gruppen_url ); ?>/bibelstunde/" aria-label="Bibelstunde"><svg class="ico ico-sm" aria-hidden="true"><use href="#i-notiz"></use></svg></a>
+		      </div>
+		      <span class="woche-restzeit" data-restzeit>&nbsp;</span>
+		    </div>
+		  </article>
+
+		  <article class="woche-karte" data-wochentag="4">
+		    <div class="woche-karte-kopf">
+		      <span class="tag">Donnerstag</span>
+		      <svg class="ico" aria-hidden="true"><use href="#i-pflanze"></use></svg>
+		    </div>
+		    <div class="woche-karte-koerper">
+		      <h3>Knallerbsen</h3>
+		      <p>16:15 bis 17:45 Uhr</p>
+		    </div>
+		    <div class="woche-karte-fuss">
+		      <div class="woche-links">
+		        <a href="<?php echo esc_url( $gruppen_url ); ?>/knallerbsen/" aria-label="Knallerbsen"><svg class="ico ico-sm" aria-hidden="true"><use href="#i-pflanze"></use></svg></a>
+		      </div>
+		      <span class="woche-restzeit" data-restzeit>&nbsp;</span>
+		    </div>
+		  </article>
+
+		  <article class="woche-karte" data-wochentag="5">
+		    <div class="woche-karte-kopf">
+		      <span class="tag">Freitag</span>
+		      <svg class="ico" aria-hidden="true"><use href="#i-kompass"></use></svg>
+		    </div>
+		    <div class="woche-karte-koerper">
+		      <h3>Crossroad und Biblischer Unterricht</h3>
+		      <p>Crossroad ab 19:00 Uhr</p>
+		    </div>
+		    <div class="woche-karte-fuss">
+		      <div class="woche-links">
+		        <a href="<?php echo esc_url( $gruppen_url ); ?>/crossroad/" aria-label="Crossroad"><svg class="ico ico-sm" aria-hidden="true"><use href="#i-kompass"></use></svg></a>
+		        <a href="<?php echo esc_url( $gruppen_url ); ?>/biblischer-unterricht/" aria-label="Biblischer Unterricht"><svg class="ico ico-sm" aria-hidden="true"><use href="#i-lupe"></use></svg></a>
+		      </div>
+		      <span class="woche-restzeit" data-restzeit>&nbsp;</span>
+		    </div>
+		  </article>
 		</div>
 
 		<div class="woche-fuss">
