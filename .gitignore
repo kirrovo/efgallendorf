@@ -1,6 +1,3 @@
 .DS_Store
 .vercel
 .env*
-
-# Originalfassungen der Bilder, nicht ausgeliefert
-_originale/

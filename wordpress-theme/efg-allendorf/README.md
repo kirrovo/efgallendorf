@@ -154,7 +154,8 @@ JavaScript stehen alle vorhandenen Bilder als horizontal scrollbare Reihe bereit
 Original-Videostandbild aus dem EFG-Gottesdienst vom 06.09.2026:
 https://www.youtube.com/watch?v=dQ_TlADxXw0
 Bildquelle: https://i.ytimg.com/vi/dQ_TlADxXw0/maxres3.jpg (1280×720).
-Unverändert lokal als `assets/img/livestream-standbild.jpg` gespeichert.
+Das damals verwendete Standbild wurde durch das Bibelmotiv ersetzt und bei der
+Bereinigung am 10.09.2026 aus dem Theme entfernt.
 Die Abdunklung für lesbare Bedienelemente erfolgt ausschließlich per CSS;
 YouTube wird weiterhin erst beim Klick aufgerufen.
 
@@ -166,7 +167,7 @@ Das Motiv ist ein Symbolbild und keine Aufnahme der EFG-Räumlichkeiten.
 Erstellt mit dem integrierten OpenAI-imagegen-Tool, native Größe 1672 × 941 Pixel,
 keine Hochskalierung. WebP mit Qualität 85, unveränderte Bildabmessungen.
 Statische Website: `bilder/livestream-bibel.webp`; Theme: `assets/img/livestream-bibel.webp`.
-Das frühere YouTube-Standbild bleibt als Quelldatei erhalten. Play-Button, Text und
+Das frühere YouTube-Standbild wurde bei der Bereinigung am 10.09.2026 entfernt. Play-Button, Text und
 YouTube-Link bleiben HTML; ein leichter CSS-Verlauf sichert die Lesbarkeit.
 
 Verwendeter Prompt:
@@ -182,3 +183,16 @@ Unverändertes Motiv und native Abmessungen 1672 × 941 Pixel, nur als WebP
 (Qualität 90) komprimiert. Startseite und Wer wir sind verwenden
 `bilder/gemeinde-aktuell.webp`, im Theme `assets/img/gemeinde-aktuell.webp`.
 Die Startseite im Theme bevorzugt weiterhin ein individuell gepflegtes Beitragsbild.
+
+
+## Bereinigung (1.0.30)
+
+Nicht mehr eingebundene ältere Gemeinde- und Livestream-Bilder aus Website und
+Theme entfernt. Aktuell verwendet: `gemeinde-aktuell.webp`, `livestream-bibel.webp`
+sowie die Gruppenbilder, Logos und Favicons.
+Die Kundenbriefings liegen im Kundenordner unter `../Briefings/`, das ursprüngliche
+Gemeindefoto und die unbenutzte Gemeindehausaufnahme unter `../Bildbearbeitung/`
+(jeweils relativ zum Website-Ordner).
+Die veraltete lokale Ruby-/Claude-Startkonfiguration wurde entfernt.
+Theme-Templates, Quellcode, YouTube-Tests, Deployment-Konfiguration und dieses
+installierbare Theme-Paket bleiben Bestandteil des Projekts.
