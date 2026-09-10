@@ -149,7 +149,7 @@ Keine automatische Wiedergabe; reduzierte Bewegung bleibt bedienbar. Ohne
 JavaScript stehen alle vorhandenen Bilder als horizontal scrollbare Reihe bereit.
 
 
-## Livestream-Standbild (1.0.8)
+## Früheres Livestream-Standbild (1.0.8)
 
 Original-Videostandbild aus dem EFG-Gottesdienst vom 06.09.2026:
 https://www.youtube.com/watch?v=dQ_TlADxXw0
@@ -157,3 +157,18 @@ Bildquelle: https://i.ytimg.com/vi/dQ_TlADxXw0/maxres3.jpg (1280×720).
 Unverändert lokal als `assets/img/livestream-standbild.jpg` gespeichert.
 Die Abdunklung für lesbare Bedienelemente erfolgt ausschließlich per CSS;
 YouTube wird weiterhin erst beim Klick aufgerufen.
+
+
+## Livestream-Symbolbild (1.0.25)
+
+Seit 10.09.2026 zeigt die Vorschau eine KI-generierte offene Bibel im Morgenlicht.
+Das Motiv ist ein Symbolbild und keine Aufnahme der EFG-Räumlichkeiten.
+Erstellt mit dem integrierten OpenAI-imagegen-Tool, native Größe 1672 × 941 Pixel,
+keine Hochskalierung. WebP mit Qualität 85, unveränderte Bildabmessungen.
+Statische Website: `bilder/livestream-bibel.webp`; Theme: `assets/img/livestream-bibel.webp`.
+Das frühere YouTube-Standbild bleibt als Quelldatei erhalten. Play-Button, Text und
+YouTube-Link bleiben HTML; ein leichter CSS-Verlauf sichert die Lesbarkeit.
+
+Verwendeter Prompt:
+
+> Create one premium photorealistic landscape photograph for a German Christian congregation website's livestream preview, aspect ratio 16:9. A beautiful well-used open Bible rests on a simple natural oak wooden table, primarily in the lower right third of the composition. Warm soft morning daylight enters from the upper left, natural gentle shadows, quiet inviting atmosphere, realistic paper and wood textures. A restrained softly blurred interior background in muted warm neutrals with subtle slate blue shadows, not a recognizable actual church. The center and left two thirds should be calm unobstructed negative space of medium-dark tonal value so a white headline and a red play button can be overlaid later by the website. The book should be recognizable as a Bible but its small printed words are naturally indistinct from the camera angle and shallow depth of field. Editorial photography, understated and authentic, no dramatic fantasy rays, no artificial glowing objects. No people, no added typography, no logos, no watermark, no UI or play icon. Wide cinematic framing with ample breathing room, welcoming rather than gloomy.

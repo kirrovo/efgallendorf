@@ -21,7 +21,7 @@ get_template_part( 'template-parts/page-hero', null, array(
 		<a href="https://www.youtube.com/@efgallendorf/live" target="_blank" rel="noopener noreferrer"
 		   class="livestream-wrap" style="display:block;">
 			<div class="livestream-buehne">
-				<img class="livestream-standbild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/livestream-standbild.jpg' ); ?>" width="1280" height="720" fetchpriority="high" alt="Ein Redner am Pult im Gottesdienst der EFG Allendorf" />
+				<img class="livestream-standbild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/livestream-bibel.webp' ); ?>" width="1672" height="941" fetchpriority="high" alt="Offene Bibel auf einem Holztisch im warmen Morgenlicht" />
 				<span class="livestream-play"><?php efga_ico( 'play' ); ?></span>
 				<div>
 					<strong>Jetzt live auf YouTube ansehen</strong>

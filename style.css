@@ -1607,7 +1607,7 @@ a.predigt-row:hover .predigt-play { background: var(--blau); border-color: var(-
 }
 .livestream-buehne::before {
   content: ''; position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(180deg, rgba(10, 20, 30, .12), rgba(10, 20, 30, .58) 55%, rgba(10, 20, 30, .72));
+  background: linear-gradient(180deg, rgba(10, 20, 30, .08), rgba(10, 20, 30, .48) 52%, rgba(10, 20, 30, .55) 76%, rgba(10, 20, 30, .2));
 }
 .livestream-play {
   width: 78px; height: 78px;
@@ -1622,6 +1622,7 @@ a.predigt-row:hover .predigt-play { background: var(--blau); border-color: var(-
 .livestream-buehne strong { display: block; font-size: 1.2rem; font-weight: 650; margin-bottom: 6px; }
 .livestream-buehne > div span { font-size: .95rem; color: rgba(255, 255, 255, .9); }
 .livestream-buehne strong { color: #fff; }
+.livestream-buehne > div { text-shadow: 0 1px 4px rgba(0, 0, 0, .55); }
 @media (max-width: 620px) {
   .livestream-buehne { padding: 16px; gap: 12px; }
   .livestream-play { width: 50px; height: 50px; flex-shrink: 0; }
