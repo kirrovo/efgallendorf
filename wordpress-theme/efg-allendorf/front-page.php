@@ -260,7 +260,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/gottesdienst.jpg' ); ?>" width="1400" height="790" alt="" loading="lazy" decoding="async" />
 		    </div>
 		    <div class="woche-karte-koerper">
-		      <h3>Gottesdienst und Kindergottesdienst</h3>
+		      <h3><a class="woche-hauptlink" href="<?php echo esc_url( $gruppen_url ); ?>/gottesdienst/">Gottesdienst</a> und <a class="woche-zweitlink" href="<?php echo esc_url( $gruppen_url ); ?>/kindergottesdienst/">Kindergottesdienst</a></h3>
 		      <p>10:00 Uhr, Kinder ab 10:30 Uhr</p>
 		    </div>
 		    <div class="woche-karte-fuss">
@@ -278,7 +278,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/frauengebetskreis.jpg' ); ?>" width="1400" height="790" alt="" loading="lazy" decoding="async" />
 		    </div>
 		    <div class="woche-karte-koerper">
-		      <h3>Frauengebetskreis</h3>
+		      <h3><a class="woche-hauptlink" href="<?php echo esc_url( $gruppen_url ); ?>/frauengebetskreis/">Frauengebetskreis</a></h3>
 		      <p>Alle 14 Tage, abends</p>
 		    </div>
 		    <div class="woche-karte-fuss">
@@ -295,7 +295,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/wilde-fuechse.jpg' ); ?>" width="1400" height="790" alt="" loading="lazy" decoding="async" />
 		    </div>
 		    <div class="woche-karte-koerper">
-		      <h3>Wilde Füchse</h3>
+		      <h3><a class="woche-hauptlink" href="<?php echo esc_url( $gruppen_url ); ?>/wilde-fuechse/">Wilde Füchse</a></h3>
 		      <p>17:00 bis 18:30 Uhr</p>
 		    </div>
 		    <div class="woche-karte-fuss">
@@ -312,7 +312,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/bibelstunde.jpg' ); ?>" width="1400" height="790" alt="" loading="lazy" decoding="async" />
 		    </div>
 		    <div class="woche-karte-koerper">
-		      <h3>GLV und Bibelstunde</h3>
+		      <h3><a class="woche-hauptlink" href="<?php echo esc_url( $gruppen_url ); ?>/glv/">GLV</a> und <a class="woche-zweitlink" href="<?php echo esc_url( $gruppen_url ); ?>/bibelstunde/">Bibelstunde</a></h3>
 		      <p>Alle 14 Tage im Wechsel, abends</p>
 		    </div>
 		    <div class="woche-karte-fuss">
@@ -330,7 +330,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/knallerbsen.jpg' ); ?>" width="1400" height="790" alt="" loading="lazy" decoding="async" />
 		    </div>
 		    <div class="woche-karte-koerper">
-		      <h3>Knallerbsen</h3>
+		      <h3><a class="woche-hauptlink" href="<?php echo esc_url( $gruppen_url ); ?>/knallerbsen/">Knallerbsen</a></h3>
 		      <p>16:15 bis 17:45 Uhr</p>
 		    </div>
 		    <div class="woche-karte-fuss">
@@ -347,7 +347,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/crossroad.jpg' ); ?>" width="1400" height="790" alt="" loading="lazy" decoding="async" />
 		    </div>
 		    <div class="woche-karte-koerper">
-		      <h3>Crossroad und Biblischer Unterricht</h3>
+		      <h3><a class="woche-hauptlink" href="<?php echo esc_url( $gruppen_url ); ?>/crossroad/">Crossroad</a> und <a class="woche-zweitlink" href="<?php echo esc_url( $gruppen_url ); ?>/biblischer-unterricht/">Biblischer Unterricht</a></h3>
 		      <p>Crossroad ab 19:00 Uhr</p>
 		    </div>
 		    <div class="woche-karte-fuss">

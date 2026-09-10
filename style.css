@@ -968,6 +968,18 @@ a.karte:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
   white-space: nowrap;
 }
 
+
+/* Die Hauptgruppe ist über die ganze Karte erreichbar; weitere Links liegen darüber. */
+.woche-karte { isolation: isolate; }
+.woche-karte h3 a { color: inherit; }
+.woche-hauptlink::after { content: ''; position: absolute; inset: 0; z-index: 2; }
+.woche-karte h3 a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.woche-karte h3 .woche-zweitlink,
+.woche-karte .woche-links a { position: relative; z-index: 3; }
+.woche-karte .woche-links a:hover { z-index: 4; }
+.woche-hauptlink:focus-visible { outline: none; }
+.woche-hauptlink:focus-visible::after { outline: 3px solid currentColor; outline-offset: -5px; border-radius: var(--r-karte); }
+
 /* Der nächste anstehende Tag wird hervorgehoben */
 .woche-karte.betont {
   background: var(--blau);
