@@ -52,7 +52,6 @@ $gruppen_url = get_post_type_archive_link( 'gruppe' );
 					<ul class="footer-kontakt">
 						<li><?php efga_ico( 'ort' ); ?><span>Heimlingstraße 3<br />35753 Greifenstein-Allendorf</span></li>
 						<li><?php efga_ico( 'mail' ); ?><?php efga_email( 'info@eg-allendorf.de' ); ?></li>
-						<li><?php efga_ico( 'uhr' ); ?><span>Sonntags 10:00 Uhr</span></li>
 					</ul>
 				</div>
 			</div>

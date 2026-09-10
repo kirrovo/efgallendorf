@@ -199,7 +199,6 @@ function renderFooter(depth) {
             <ul class="footer-kontakt">
               <li>${ico('ort')}<span>Heimlingstraße 3<br />35753 Greifenstein-Allendorf</span></li>
               <li>${ico('mail')}<a href="#" class="ob-email" data-em="aW5mb0BlZy1hbGxlbmRvcmYuZGU=" rel="nofollow"></a></li>
-              <li>${ico('uhr')}<span>Sonntags 10:00 Uhr</span></li>
             </ul>
           </div>
         </div>
