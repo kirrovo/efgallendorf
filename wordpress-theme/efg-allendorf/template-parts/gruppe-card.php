@@ -12,10 +12,11 @@ $schedule = efga_get( 'efga_schedule' );
 $short    = efga_get( 'efga_short', wp_trim_words( get_the_excerpt(), 20 ) );
 $card_bild = '';
 $card_slug = get_post_field( 'post_name' );
-if ( in_array( $card_slug, array( 'gottesdienst', 'glv', 'bibelstunde', 'hauskreise' ), true ) ) {
+if ( in_array( $card_slug, array( 'gottesdienst', 'glv', 'bibelstunde', 'hauskreise', 'kindergottesdienst', 'knallerbsen', 'wilde-fuechse', 'biblischer-unterricht', 'crossroad', 'kreisjugend' ), true ) ) {
+	$card_bild_slug = 'kreisjugend' === $card_slug ? 'crossroad' : $card_slug;
 	$card_bild = has_post_thumbnail()
 		? get_the_post_thumbnail_url( null, 'medium_large' )
-		: get_template_directory_uri() . '/assets/img/angebote/' . $card_slug . '.webp';
+		: get_template_directory_uri() . '/assets/img/angebote/' . $card_bild_slug . '.webp';
 }
 ?>
 <a href="<?php the_permalink(); ?>" class="gruppe-card<?php echo $card_bild ? ' gruppe-card--mit-bild' : ''; ?>">
