@@ -66,3 +66,25 @@ test('API fallback is visibly marked stale and keeps a timestamp plus public COR
   assert.ok(Date.parse(res.data.updatedAt));
   assert.equal(headers['Access-Control-Allow-Origin'], '*');
 });
+
+test('restricted watch pages use duration badges and exclude upcoming or live cards', async () => {
+  const listing = { contents: ids.map((id, i) => ({ lockupViewModel: {
+    contentId: id,
+    contentImage: { thumbnailViewModel: { overlays: [{ thumbnailBottomOverlayViewModel: {
+      badges: [{ thumbnailBadgeViewModel: { text: i === 1 ? 'UPCOMING' : '1:05:50' } }],
+    } }] } },
+  } })) };
+  const fakeFetch = async url => ({ ok: true, text: async () => url === FEED_URL
+    ? feed(ids.map((id, i) => entry(id, 4 - i)).join(''))
+    : url.includes('/watch?') ? html({ playabilityStatus: { status: 'LOGIN_REQUIRED' } })
+    : `var ytInitialData = ${JSON.stringify(listing)};` });
+  const result = await loadLatest(fakeFetch);
+  assert.deepEqual(result.videos.map(video => video.id), [ids[0], ids[2], ids[3]]);
+});
+
+test('unknown card metadata cannot silently drop newer videos', async () => {
+  const fakeFetch = async url => ({ ok: true, text: async () => url === FEED_URL
+    ? feed(ids.map((id, i) => entry(id, 4 - i)).join(''))
+    : 'var ytInitialData = {"contents":[]};' });
+  await assert.rejects(loadLatest(fakeFetch));
+});

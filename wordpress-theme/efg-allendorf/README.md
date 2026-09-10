@@ -128,8 +128,10 @@ Die Startseite lädt die drei neuesten veröffentlichten Videos des Kanals
 `UCuJKSbQamH2tmewkiZJICmA` über den öffentlichen JSON-Endpunkt
 `https://efgallendorf.vercel.app/api/predigten`. Dieser Dienst gehört zum
 Website-Repository und muss für die automatische Aktualisierung erreichbar bleiben.
-Er liest den YouTube-Feed und prüft die Video-Metadaten, damit angekündigte oder
-noch laufende Livestreams nicht als fertige Predigten erscheinen. Cache: fünf Minuten;
+Er liest den YouTube-Feed und prüft die Video-Metadaten. Falls YouTube einzelne
+Videoabfragen vom Hosting aus einschränkt, prüft er die Laufzeit-Anzeigen in den
+öffentlichen Kanalübersichten. Angekündigte und noch laufende Livestreams werden
+ausgeschlossen; unbekannte Zustände führen zum gekennzeichneten Rückfall. Cache: fünf Minuten;
 offene sichtbare Seiten aktualisieren sich ebenfalls alle fünf Minuten.
 
 Bei einem Ausfall bleiben die zuletzt geladenen beziehungsweise mitgelieferten,
