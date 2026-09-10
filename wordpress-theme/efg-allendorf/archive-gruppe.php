@@ -97,7 +97,7 @@ $kontakt_url = ( $p = get_page_by_path( 'kontakt' ) ) ? get_permalink( $p ) : ho
 		endforeach;
 		?>
 
-		<div class="woche-fuss" style="margin-top: 40px;">
+		<div class="gruppen-kontakt-hinweis" style="margin-top: 40px;">
 			<p><strong>Fragen zu einer Gruppe?</strong> Wende dich direkt an die Gruppenleitung oder schreib uns eine Nachricht.</p>
 			<a href="<?php echo esc_url( $kontakt_url ); ?>" class="btn btn-blau">Kontakt aufnehmen</a>
 		</div>
