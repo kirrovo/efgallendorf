@@ -63,11 +63,11 @@ for(const file of files){
   const src=tag.match(/src="([^"]+)"/)?.[1];if(!src)return tag;
   if(src.includes('bilder/angebote/')&&src.endsWith('.webp')){
    const base=src.slice(0,-5);
-   const sizes=tag.includes('woche-karte-bild')||tag.includes('gruppe-card-fadebild')?'(max-width: 620px) 180px, 280px':file.startsWith('gruppen/')?'(max-width: 1240px) calc(100vw - 40px), 1160px':tag.includes('width="400"')?'320px':'(max-width: 700px) calc(100vw - 40px), 380px';
+   const sizes=tag.includes('woche-karte-bild')||tag.includes('gruppe-card-fadebild')?'(max-width: 620px) 180px, 280px':file.startsWith('gruppen/')?'(max-width: 1240px) calc(100vw - 40px), 1160px':tag.includes('width="400"')?'(max-width: 620px) 240px, (max-width: 1154px) 26vw, 300px':'(max-width: 700px) calc(100vw - 40px), 380px';
    tag=tag.replace(/ (?:srcset|sizes)="[^"]*"/g,'').replace(/\s*\/?>$/,` srcset="${base}-480.webp 480w, ${base}-960.webp 960w, ${src} 1400w" sizes="${sizes}" />`);
   }else if(/(?:gemeinde-aktuell|livestream-bibel)\.webp$/.test(src)){
    const base=src.slice(0,-5);
-   tag=tag.replace(/ (?:srcset|sizes)="[^"]*"/g,'').replace(/\s*\/?>$/,` srcset="${base}-640.webp 640w, ${base}-1024.webp 1024w, ${src} 1672w" sizes="(max-width: 1240px) calc(100vw - 40px), ${file==='index.html'?'980':'1160'}px" />`);
+   tag=tag.replace(/ (?:srcset|sizes)="[^"]*"/g,'').replace(/\s*\/?>$/,` srcset="${base}-640.webp 640w, ${base}-1024.webp 1024w, ${src} 1672w" sizes="${file==='index.html'?'(max-width: 620px) calc(100vw - 56px), (max-width: 1040px) calc(100vw - 72px), 956px':'(max-width: 1240px) calc(100vw - 40px), 1160px'}" />`);
   }
   if(!tag.includes('decoding='))tag=tag.replace(/\s*\/?>$/,' decoding="async" />');
   return tag;

@@ -1442,7 +1442,7 @@ a.predigt-row:hover .predigt-play { background: var(--blau); border-color: var(-
   border-radius: var(--r-karte);
   padding: 20px;
 }
-.kontakt-karte-mini h4 { font-size: .95rem; color: var(--text-leise); margin-bottom: 14px; }
+.kontakt-karte-mini h3 { font-size: .95rem; color: var(--text-leise); margin-bottom: 14px; }
 .kontakt-person { display: flex; align-items: center; gap: 13px; margin-bottom: 14px; }
 .kontakt-avatar {
   width: 44px; height: 44px; flex-shrink: 0;
@@ -1652,7 +1652,7 @@ a.predigt-row:hover .predigt-play { background: var(--blau); border-color: var(-
   border-radius: var(--r-karte);
   padding: 24px;
 }
-.info-box h3 { font-size: 1.1rem; margin-bottom: 8px; }
+.info-box h2 { font-size: 1.1rem; margin-bottom: 8px; }
 .info-box p { color: var(--text-leise); }
 
 .archive-hint {
@@ -1785,4 +1785,18 @@ footer#site-footer { padding: 0 24px 24px; }
 .besucher-fragen details p { margin: 12px 0 8px; color: var(--text-leise); }
 .besucher-fragen details a { color: var(--blau); text-decoration: underline; text-underline-offset: 3px; }
 .wer-card .nummer { color: #657c9a; }
-.hero-auftritt > h1, .hero-rahmen { animation: none; }
+.hero-auftritt > *, .hero-rahmen { animation: none; }
+
+/* Reserve the carousel geometry before deferred JavaScript starts. */
+@media (scripting: enabled) {
+  .faecher:not(.faecher-bereit) .faecher-buehne { display: block; position: relative; height: 460px; padding: 0; overflow: hidden; }
+  .faecher:not(.faecher-bereit) .faecher-karte { position: absolute; top: 46%; left: 50%; width: clamp(240px, 26vw, 300px); transform: translate(-50%, -50%); }
+  .faecher:not(.faecher-bereit) .faecher-karte:not(:first-child) { display: none; }
+  .faecher:not(.faecher-bereit) .faecher-steuerung { display: flex; height: 48px; margin-top: 12px; visibility: hidden; }
+  @media (max-width: 620px) {
+    .faecher:not(.faecher-bereit) .faecher-buehne { height: 366px; }
+    .faecher:not(.faecher-bereit) .faecher-karte { width: min(240px, 74vw); top: 47%; }
+    .faecher:not(.faecher-bereit) .faecher-steuerung { margin-top: 0; }
+  }
+}
+.faecher-bereit .faecher-karte:not(.ist-sichtbar) { visibility: hidden; }

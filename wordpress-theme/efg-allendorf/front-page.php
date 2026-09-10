@@ -50,7 +50,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 		} else {
             $photo = get_template_directory_uri() . '/assets/img/gemeinde-aktuell.webp';
             echo '<img src="' . esc_url($photo) . '" width="1672" height="941" fetchpriority="high" decoding="async" alt="Menschen der Gemeinde Allendorf beim gemeinsamen Gruppenfoto"';
-            efga_responsive_attrs($photo, '(max-width: 1040px) calc(100vw - 40px), 980px');
+            efga_responsive_attrs($photo, '(max-width: 620px) calc(100vw - 56px), (max-width: 1040px) calc(100vw - 72px), 956px');
             echo ' />';
 		}
 		?>

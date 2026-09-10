@@ -131,7 +131,7 @@ while ( have_posts() ) :
 
 					<?php if ( $name ) : ?>
 					<div class="kontakt-karte-mini">
-						<h4>Ansprechperson</h4>
+						<h3>Ansprechperson</h3>
 						<div class="kontakt-person">
 							<div class="kontakt-avatar"><?php echo esc_html( $initials ); ?></div>
 							<div class="kontakt-person-info">

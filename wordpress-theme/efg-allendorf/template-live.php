@@ -37,11 +37,11 @@ get_template_part( 'template-parts/page-hero', null, array(
 
 		<div class="info-grid">
 			<div class="info-box">
-				<h3>Wann findet der Gottesdienst statt?</h3>
+				<h2>Wann findet der Gottesdienst statt?</h2>
 				<p>Jeden <strong>Sonntag</strong> um <strong>10:00 Uhr</strong> beginnt der Gottesdienst im Gemeindehaus Allendorf. Gleichzeitig läuft die Live-Übertragung auf YouTube.</p>
 			</div>
 			<div class="info-box">
-				<h3>Persönlich dabei sein</h3>
+				<h2>Persönlich dabei sein</h2>
 				<p>Du bist herzlich eingeladen, auch persönlich zu kommen.<br>
 					<strong>Heimlingstraße 3</strong><br>35753 Greifenstein-Allendorf</p>
 			</div>

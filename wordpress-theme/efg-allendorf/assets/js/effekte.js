@@ -35,6 +35,7 @@
         karte.style.setProperty('--fop', sichtbar ? 1 : 0);
         karte.style.zIndex = 10 - abstand;
         karte.classList.toggle('ist-aktiv', d === 0);
+        karte.classList.toggle('ist-sichtbar', sichtbar);
         karte.style.pointerEvents = sichtbar ? 'auto' : 'none';
         karte.setAttribute('aria-hidden', d === 0 ? 'false' : 'true');
         karte.tabIndex = d === 0 ? 0 : -1;

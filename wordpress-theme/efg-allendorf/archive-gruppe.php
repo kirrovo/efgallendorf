@@ -53,9 +53,9 @@ $kontakt_url = ( $p = get_page_by_path( 'kontakt' ) ) ? get_permalink( $p ) : ho
 		<?php if ( count( $fan_karten ) > 2 ) : ?>
 		<div class="faecher" data-faecher role="group" aria-label="Bilder unserer Angebote">
 			<div class="faecher-buehne">
-				<?php foreach ( $fan_karten as $k ) : ?>
+				<?php foreach ( $fan_karten as $fan_index => $k ) : ?>
 					<a class="faecher-karte" href="<?php echo esc_url( $k['url'] ); ?>">
-						<img src="<?php echo esc_url( $k['bild'] ); ?>"<?php efga_responsive_attrs( $k['bild'], '320px' ); ?> width="400" height="533" loading="lazy" alt="" decoding="async" />
+						<img src="<?php echo esc_url( $k['bild'] ); ?>"<?php efga_responsive_attrs( $k['bild'], '(max-width: 620px) 240px, (max-width: 1154px) 26vw, 300px' ); ?> width="400" height="533" loading="<?php echo 0 === $fan_index ? 'eager' : 'lazy'; ?>"<?php if ( 0 === $fan_index ) echo ' fetchpriority="high"'; ?> alt="" decoding="async" />
 						<span class="faecher-titel"><?php echo esc_html( $k['titel'] ); ?></span>
 					</a>
 				<?php endforeach; ?>
