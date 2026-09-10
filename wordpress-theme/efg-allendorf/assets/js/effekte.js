@@ -114,6 +114,10 @@
     if (wenigerBewegung.matches) return;
     var links = document.querySelectorAll('#hauptnavigation a');
     Array.prototype.forEach.call(links, function (a) {
+      // Nach dem Seitenwechsel bleibt der aktive Menüpunkt ruhig, auch
+      // wenn der Mauszeiger noch über dem gerade angeklickten Link steht.
+      if (a.matches('.active, [aria-current="page"]') ||
+          a.closest('.current-menu-item, .current_page_item')) return;
       if (a.querySelector('.nav-gleit')) return;
       // Nur reine Textknoten ersetzen, Icons bleiben unangetastet
       Array.prototype.slice.call(a.childNodes).forEach(function (knoten) {
