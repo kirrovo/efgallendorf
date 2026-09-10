@@ -119,4 +119,4 @@ efg-allendorf/
 
 ---
 
-Version 1.0.2 · benötigt WordPress ≥ 6.0 und PHP ≥ 7.4
+Version 1.0.3 · benötigt WordPress ≥ 6.0 und PHP ≥ 7.4

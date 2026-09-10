@@ -323,7 +323,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 		  <article class="woche-karte" data-wochentag="0">
 		    <div class="woche-karte-kopf">
 		      <span class="tag">Sonntag</span>
-		      <svg class="ico" aria-hidden="true"><use href="#i-kirche"></use></svg>
+		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/gottesdienst.jpg' ); ?>" width="1400" height="790" alt="" loading="lazy" decoding="async" />
 		    </div>
 		    <div class="woche-karte-koerper">
 		      <h3>Gottesdienst und Kindergottesdienst</h3>
@@ -341,7 +341,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 		  <article class="woche-karte" data-wochentag="1">
 		    <div class="woche-karte-kopf">
 		      <span class="tag">Montag</span>
-		      <svg class="ico" aria-hidden="true"><use href="#i-herz"></use></svg>
+		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/frauengebetskreis.jpg' ); ?>" width="1400" height="790" alt="" loading="lazy" decoding="async" />
 		    </div>
 		    <div class="woche-karte-koerper">
 		      <h3>Frauengebetskreis</h3>
@@ -358,7 +358,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 		  <article class="woche-karte" data-wochentag="2">
 		    <div class="woche-karte-kopf">
 		      <span class="tag">Dienstag</span>
-		      <svg class="ico" aria-hidden="true"><use href="#i-stern"></use></svg>
+		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/wilde-fuechse.jpg' ); ?>" width="1400" height="790" alt="" loading="lazy" decoding="async" />
 		    </div>
 		    <div class="woche-karte-koerper">
 		      <h3>Wilde Füchse</h3>
@@ -375,7 +375,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 		  <article class="woche-karte" data-wochentag="3">
 		    <div class="woche-karte-kopf">
 		      <span class="tag">Mittwoch</span>
-		      <svg class="ico" aria-hidden="true"><use href="#i-buch"></use></svg>
+		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/bibelstunde.jpg' ); ?>" width="1400" height="790" alt="" loading="lazy" decoding="async" />
 		    </div>
 		    <div class="woche-karte-koerper">
 		      <h3>GLV und Bibelstunde</h3>
@@ -393,7 +393,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 		  <article class="woche-karte" data-wochentag="4">
 		    <div class="woche-karte-kopf">
 		      <span class="tag">Donnerstag</span>
-		      <svg class="ico" aria-hidden="true"><use href="#i-pflanze"></use></svg>
+		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/knallerbsen.jpg' ); ?>" width="1400" height="790" alt="" loading="lazy" decoding="async" />
 		    </div>
 		    <div class="woche-karte-koerper">
 		      <h3>Knallerbsen</h3>
@@ -410,7 +410,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 		  <article class="woche-karte" data-wochentag="5">
 		    <div class="woche-karte-kopf">
 		      <span class="tag">Freitag</span>
-		      <svg class="ico" aria-hidden="true"><use href="#i-kompass"></use></svg>
+		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/crossroad.jpg' ); ?>" width="1400" height="790" alt="" loading="lazy" decoding="async" />
 		    </div>
 		    <div class="woche-karte-koerper">
 		      <h3>Crossroad und Biblischer Unterricht</h3>

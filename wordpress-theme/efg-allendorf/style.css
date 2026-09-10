@@ -4,7 +4,7 @@ Theme URI: https://scaleyourvision1-lab.github.io/efgallendorf/
 Author: Evangelische Freie Gemeinde Allendorf
 Author URI: https://www.eg-allendorf.de
 Description: Klassisches WordPress-Theme der Evangelischen Freien Gemeinde Allendorf. Enthält Custom Post Types für Gruppen und Veranstaltungen, einen Webcrawler-Schutz für Kontaktdaten sowie alle Unterseiten (Wer wir sind, Gruppen, Gottesdienst Live, Kontakt, Impressum, Datenschutz).
-Version: 1.0.2
+Version: 1.0.3
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
@@ -1074,6 +1074,7 @@ a.karte:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
 @media (max-width: 560px) { .woche-grid { grid-template-columns: 1fr; } }
 
 .woche-karte {
+  position: relative; overflow: hidden;
   display: flex; flex-direction: column;
   background: var(--flaeche);
   border: 1px solid var(--linie);
@@ -1088,7 +1089,8 @@ a.karte:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
 }
 
 .woche-karte-kopf {
-  display: flex; align-items: center; justify-content: space-between;
+  min-height: 60px;
+  display: flex; align-items: flex-start; justify-content: space-between;
   gap: 12px; margin-bottom: 14px;
 }
 .woche-karte-kopf .tag {
@@ -1096,7 +1098,20 @@ a.karte:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
   text-transform: uppercase; letter-spacing: .08em;
   color: var(--akzent);
 }
-.woche-karte-kopf .ico { color: color-mix(in srgb, var(--akzent) 55%, transparent); }
+
+/* Kleine Gruppenbilder laufen nach links und unten in die Kartenfarbe aus. */
+.woche-karte-bild {
+  position: absolute; top: 0; right: 0;
+  width: 47%; height: 108px;
+  object-fit: cover; object-position: center;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 40%), linear-gradient(to bottom, #000 35%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 40%), linear-gradient(to bottom, #000 35%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+.woche-karte-kopf .tag { position: relative; z-index: 1; }
+
 
 .woche-karte-koerper { flex: 1; margin-bottom: 16px; }
 .woche-karte-koerper h3 { font-size: 1.05rem; font-weight: 650; margin-bottom: 4px; }
