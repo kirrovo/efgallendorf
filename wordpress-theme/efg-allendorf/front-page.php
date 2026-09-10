@@ -10,7 +10,6 @@ get_header();
 $wer_url     = ( $p = get_page_by_path( 'wer-wir-sind' ) ) ? get_permalink( $p ) : '#wer-wir-sind';
 $gruppen_url = get_post_type_archive_link( 'gruppe' );
 $live_url    = ( $p = get_page_by_path( 'gottesdienst-live' ) ) ? get_permalink( $p ) : '#';
-$kal_url     = ( $p = get_page_by_path( 'kalender' ) ) ? get_permalink( $p ) : '#kalender';
 ?>
 
 <!-- ══════════════════ HERO ══════════════════════════ -->
@@ -360,13 +359,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 		  </article>
 		</div>
 
-		<div class="woche-fuss">
-			<p>Hauskreise, Männertreffen und Seniorenkaffee laufen nach Absprache. Einzeltermine und Sondertage stehen im Gemeindekalender.</p>
-			<a href="<?php echo esc_url( $kal_url ); ?>" class="btn btn-sekundaer">
-				<?php efga_ico( 'kalender', 'ico-sm' ); ?>
-				Zum Gemeindekalender
-			</a>
-		</div>
+
 	</div>
 </section>
 

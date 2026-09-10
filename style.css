@@ -1007,16 +1007,6 @@ a.karte:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
   .woche-karte:hover, .woche-links a:hover { transform: none; }
 }
 
-.woche-fuss {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 18px; flex-wrap: wrap;
-  background: var(--flaeche);
-  border: 1px solid var(--linie);
-  border-radius: var(--r-karte);
-  padding: 20px 24px;
-}
-.woche-fuss p { color: var(--text-leise); max-width: 52ch; }
-
 /* ─── Predigten ──────────────────────────────────── */
 #predigten .section-inner { max-width: 800px; text-align: center; }
 #predigten .section-header { margin-left: auto; margin-right: auto; }
