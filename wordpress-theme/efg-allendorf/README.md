@@ -172,3 +172,13 @@ YouTube-Link bleiben HTML; ein leichter CSS-Verlauf sichert die Lesbarkeit.
 Verwendeter Prompt:
 
 > Create one premium photorealistic landscape photograph for a German Christian congregation website's livestream preview, aspect ratio 16:9. A beautiful well-used open Bible rests on a simple natural oak wooden table, primarily in the lower right third of the composition. Warm soft morning daylight enters from the upper left, natural gentle shadows, quiet inviting atmosphere, realistic paper and wood textures. A restrained softly blurred interior background in muted warm neutrals with subtle slate blue shadows, not a recognizable actual church. The center and left two thirds should be calm unobstructed negative space of medium-dark tonal value so a white headline and a red play button can be overlaid later by the website. The book should be recognizable as a Bible but its small printed words are naturally indistinct from the camera angle and shallow depth of field. Editorial photography, understated and authentic, no dramatic fantasy rays, no artificial glowing objects. No people, no added typography, no logos, no watermark, no UI or play icon. Wide cinematic framing with ample breathing room, welcoming rather than gloomy.
+
+
+## Aktualisiertes Gemeindefoto (1.0.29)
+
+Auf Nutzerwunsch am 10.09.2026 durch die angehängte Datei
+`Codex-Bild 10. Sept. 2026, 15_02_34.png` ersetzt.
+Unverändertes Motiv und native Abmessungen 1672 × 941 Pixel, nur als WebP
+(Qualität 90) komprimiert. Startseite und Wer wir sind verwenden
+`bilder/gemeinde-aktuell.webp`, im Theme `assets/img/gemeinde-aktuell.webp`.
+Die Startseite im Theme bevorzugt weiterhin ein individuell gepflegtes Beitragsbild.

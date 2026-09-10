@@ -14,7 +14,7 @@ get_template_part( 'template-parts/page-hero', null, array(
 	'crumbs'   => array( array( 'label' => 'Wer wir sind' ) ),
 ) );
 
-$photo = get_template_directory_uri() . '/assets/img/gemeinde.jpg';
+$photo = get_template_directory_uri() . '/assets/img/gemeinde-aktuell.webp';
 ?>
 
 <section class="section">
@@ -22,7 +22,7 @@ $photo = get_template_directory_uri() . '/assets/img/gemeinde.jpg';
 
 		<div class="wws-intro">
 			<figure class="wws-intro-bild">
-				<img src="<?php echo esc_url( $photo ); ?>" width="1572" height="1001" alt="Gemeinde EFG Allendorf" />
+				<img src="<?php echo esc_url( $photo ); ?>" width="1672" height="941" alt="Gemeinde EFG Allendorf" />
 			</figure>
 			<div class="wws-intro-text">
 				<p>Die Evangelische Freie Gemeinde Allendorf ist eine freie christliche Gemeinde, die ihre Wurzeln in der Gemeinschaftsbewegung hat und seit <strong>1884</strong> besteht.</p>
