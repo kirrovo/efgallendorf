@@ -110,3 +110,16 @@ fs.writeFileSync(wp+'/assets/css/site.min.css',transformSync(fs.readFileSync(wp+
 for(const name of ['nav','contacts','effekte','predigten']){
  fs.writeFileSync(`${wp}/assets/js/${name}.min.js`,transformSync(fs.readFileSync(`${wp}/assets/js/${name}.js`,'utf8'),{loader:'js',minify:true,target:'es2020'}).code);
 }
+
+// Deployment output contains public website files only; API dependencies stay in source.
+fs.mkdirSync('public',{recursive:true});
+for(const name of [...files,'robots.txt','sitemap.xml','efga-logo_new-e1520008237499.png']){
+ const target=path.join('public',name);fs.mkdirSync(path.dirname(target),{recursive:true});fs.copyFileSync(name,target);
+}
+for(const name of ['assets','bilder','favicon']){
+ fs.cpSync(name,path.join('public',name),{recursive:true});
+}
+// Drop only superseded generated bundles from the output, never user-authored files.
+for(const name of fs.readdirSync('public/assets')){
+ if(/^(style|nav|effekte|predigten)\.[a-f0-9]{12}\.(css|js)$/.test(name)&&!Object.values(bundles).includes('assets/'+name))fs.unlinkSync('public/assets/'+name);
+}

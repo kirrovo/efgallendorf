@@ -6,6 +6,7 @@
 - Navigation und Footer zentral in `nav.js` ändern; CSS in `style.css`.
 - Domain, Beschreibungen und Besucherfragen zentral in `data/site.json` ändern.
 - Danach `npm ci`, `npm run build` und `npm run check` ausführen. Vercel baut beim Deployment ebenfalls automatisch.
+- `public/` enthält ausschließlich die fertigen öffentlichen Dateien für Vercel und wird beim Build erstellt; Quellcode und WordPress-Paket bleiben außerhalb.
 - `assets/` enthält minimierte Dateien mit Inhalts-Hash. Sie werden beim Build aktualisiert; diese Dateien nicht von Hand bearbeiten.
 - Der Build schreibt Navigation, Footer, Kontakte und Metadaten direkt ins HTML. JavaScript ergänzt Menübedienung, Bildslider und aktuelle Predigten.
 - Für Bildvarianten gelten 480/960/1400 px bei Gruppenbildern und 640/1024/1672 px beim Gemeinde-/Livestreambild. Nur existierende Varianten in srcset eintragen. Ausgangsbilder liegen im Kundenordner `Bildbearbeitung/Website-Originalbilder`.
