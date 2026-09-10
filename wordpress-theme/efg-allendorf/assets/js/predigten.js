@@ -43,9 +43,12 @@
     const date = document.createElement('time');
     date.dateTime = video.recordedAt || video.publishedAt;
     date.textContent = dateFormat.format(new Date(date.dateTime));
-    const dateLabel = document.createElement('span');
-    dateLabel.textContent = video.recordedAt ? 'Aufzeichnung' : 'Veröffentlicht';
-    meta.append(date, dateLabel);
+    meta.append(date);
+    if (video.recordedAt) {
+      const dateLabel = document.createElement('span');
+      dateLabel.textContent = 'Aufzeichnung';
+      meta.append(dateLabel);
+    }
     link.append(play, info, meta);
     return link;
   }
