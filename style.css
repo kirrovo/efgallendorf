@@ -1006,6 +1006,9 @@ a.karte:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
 .woche-fuss p { color: var(--text-leise); max-width: 52ch; }
 
 /* ─── Predigten ──────────────────────────────────── */
+#predigten .section-inner { max-width: 800px; text-align: center; }
+#predigten .section-header { margin-left: auto; margin-right: auto; }
+#predigten .predigten-list { text-align: left; }
 .predigten-list {
   display: flex; flex-direction: column;
   max-width: 800px;
