@@ -119,4 +119,19 @@ efg-allendorf/
 
 ---
 
-Version 1.0.3 · benötigt WordPress ≥ 6.0 und PHP ≥ 7.4
+Version 1.0.4 · benötigt WordPress ≥ 6.0 und PHP ≥ 7.4
+
+
+## Automatische YouTube-Predigten (1.0.4)
+
+Die Startseite lädt die drei neuesten veröffentlichten Videos des Kanals
+`UCuJKSbQamH2tmewkiZJICmA` über den öffentlichen JSON-Endpunkt
+`https://efgallendorf.vercel.app/api/predigten`. Dieser Dienst gehört zum
+Website-Repository und muss für die automatische Aktualisierung erreichbar bleiben.
+Er liest den YouTube-Feed und prüft die Video-Metadaten, damit angekündigte oder
+noch laufende Livestreams nicht als fertige Predigten erscheinen. Cache: fünf Minuten;
+offene sichtbare Seiten aktualisieren sich ebenfalls alle fünf Minuten.
+
+Bei einem Ausfall bleiben die zuletzt geladenen beziehungsweise mitgelieferten,
+verifizierten Videos sichtbar; der Hinweis nennt den Stand und verlinkt den Kanal.
+Das Theme enthält keine Zugangsdaten. YouTube wird erst beim Klick geöffnet.

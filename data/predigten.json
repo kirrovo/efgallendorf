@@ -1,0 +1,28 @@
+{
+  "channelId": "UCuJKSbQamH2tmewkiZJICmA",
+  "channelUrl": "https://www.youtube.com/@efgallendorf",
+  "updatedAt": "2026-09-10T12:48:36.735846+00:00",
+  "videos": [
+    {
+      "id": "dQ_TlADxXw0",
+      "title": "EFGA Gottesdienst mit Hartmut Pöpke am 06.09.2026",
+      "publishedAt": "2026-09-06T21:11:46Z",
+      "recordedAt": "2026-09-06T07:59:42Z",
+      "url": "https://www.youtube.com/watch?v=dQ_TlADxXw0"
+    },
+    {
+      "id": "xW2Cr0kpC24",
+      "title": "GLV mit dem Thema: \"Berichte Mission - Teil 2\" am 02.09.2026",
+      "publishedAt": "2026-09-03T06:54:36Z",
+      "recordedAt": "2026-09-02T18:02:22Z",
+      "url": "https://www.youtube.com/watch?v=xW2Cr0kpC24"
+    },
+    {
+      "id": "SRKFsq0awAg",
+      "title": "EFGA Gottesdienst mit Simon Droß am 30.08.2026",
+      "publishedAt": "2026-08-30T21:11:59Z",
+      "recordedAt": "2026-08-30T08:01:12Z",
+      "url": "https://www.youtube.com/watch?v=SRKFsq0awAg"
+    }
+  ]
+}

@@ -1203,6 +1203,10 @@ a.predigt-row:hover .predigt-play { background: var(--blau); border-color: var(-
 .predigt-info span { font-size: .9rem; color: var(--text-leise); }
 .predigt-meta { flex-shrink: 0; text-align: right; font-size: .88rem; color: var(--text-leise); }
 .predigt-meta strong { display: block; font-size: .93rem; font-weight: 650; color: var(--text); }
+.predigt-meta time { font-size: .93rem; font-weight: 650; color: var(--text); white-space: nowrap; }
+.predigt-info strong { overflow-wrap: anywhere; }
+.predigten-status { margin: 14px 0; max-width: 800px; font-size: .9rem; color: var(--text-leise); }
+.predigten-status:empty { margin: 16px 0 0; }
 
 @media (max-width: 620px) {
   .predigt-row { flex-wrap: wrap; gap: 12px; }

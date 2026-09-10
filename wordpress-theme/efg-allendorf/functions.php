@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Direktaufruf verhindern.
 }
 
-define( 'EFGA_VERSION', '1.0.3' );
+define( 'EFGA_VERSION', '1.0.4' );
 
 /* ════════════════════════════════════════════════════════
    1. THEME-SETUP
@@ -61,6 +61,9 @@ function efga_assets() {
 	wp_enqueue_script( 'efga-contacts', get_template_directory_uri() . '/assets/js/contacts.js', array(), EFGA_VERSION, true );
 	wp_enqueue_script( 'efga-nav', get_template_directory_uri() . '/assets/js/nav.js', array(), EFGA_VERSION, true );
 	wp_enqueue_script( 'efga-effekte', get_template_directory_uri() . '/assets/js/effekte.js', array(), EFGA_VERSION, true );
+	if ( is_front_page() ) {
+		wp_enqueue_script( 'efga-predigten', get_template_directory_uri() . '/assets/js/predigten.js', array(), EFGA_VERSION, true );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'efga_assets' );
 

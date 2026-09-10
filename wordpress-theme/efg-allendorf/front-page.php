@@ -275,40 +275,33 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 </section>
 
 <!-- ══════════════════ PREDIGTEN ═════════════════════ -->
-<section class="section section-alt" id="predigten">
-	<div class="section-inner">
-		<div class="section-header">
-			<h2>Predigten</h2>
-			<p>Die neuesten Predigten aus unseren Gottesdiensten, zum Nachhören und Weitergeben.</p>
-		</div>
-
-		<div class="predigten-list">
-			<div class="predigt-row">
-				<span class="predigt-play"><?php efga_ico( 'play' ); ?></span>
-				<div class="predigt-info">
-					<strong>Erwählung: Aus „Niemand“ wird „Jemand“</strong>
-					<span>1. Samuel 16, Markus Wäsch</span>
-				</div>
-				<div class="predigt-meta"><strong>03.05.2026</strong>Bibeltage</div>
-			</div>
-			<div class="predigt-row">
-				<span class="predigt-play"><?php efga_ico( 'play' ); ?></span>
-				<div class="predigt-info">
-					<strong>Freundschaft durch dick und dünn</strong>
-					<span>1. Samuel 18 bis 23, Markus Wäsch</span>
-				</div>
-				<div class="predigt-meta"><strong>04.05.2026</strong>Bibeltage</div>
-			</div>
-			<div class="predigt-row">
-				<span class="predigt-play"><?php efga_ico( 'play' ); ?></span>
-				<div class="predigt-info">
-					<strong>Ausruhen: Neue Kraft für Müde</strong>
-					<span>1. Samuel 30, Markus Wäsch</span>
-				</div>
-				<div class="predigt-meta"><strong>06.05.2026</strong>Bibeltage</div>
-			</div>
-		</div>
-	</div>
+<section class="section section-alt" id="predigten" data-predigten-endpoint="https://efgallendorf.vercel.app/api/predigten" data-predigten-updated="2026-09-10T12:48:36.735846+00:00">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>Predigten</h2>
+      <p>Die drei neuesten Videos von unserem YouTube-Kanal, zum Nachhören und Weitergeben.</p>
+    </div>
+    <div class="predigten-list" aria-label="Die letzten drei Predigten und Videos">
+      <a class="predigt-row" href="https://www.youtube.com/watch?v=dQ_TlADxXw0" target="_blank" rel="noopener noreferrer">
+        <span class="predigt-play"><svg class="ico" aria-hidden="true"><use href="#i-play"></use></svg></span>
+        <div class="predigt-info"><strong>EFGA Gottesdienst mit Hartmut Pöpke am 06.09.2026</strong><span>Auf YouTube ansehen</span></div>
+        <div class="predigt-meta"><time datetime="2026-09-06T07:59:42Z">06.09.2026</time></div>
+      </a>
+      <a class="predigt-row" href="https://www.youtube.com/watch?v=xW2Cr0kpC24" target="_blank" rel="noopener noreferrer">
+        <span class="predigt-play"><svg class="ico" aria-hidden="true"><use href="#i-play"></use></svg></span>
+        <div class="predigt-info"><strong>GLV mit dem Thema: &quot;Berichte Mission - Teil 2&quot; am 02.09.2026</strong><span>Auf YouTube ansehen</span></div>
+        <div class="predigt-meta"><time datetime="2026-09-02T18:02:22Z">02.09.2026</time></div>
+      </a>
+      <a class="predigt-row" href="https://www.youtube.com/watch?v=SRKFsq0awAg" target="_blank" rel="noopener noreferrer">
+        <span class="predigt-play"><svg class="ico" aria-hidden="true"><use href="#i-play"></use></svg></span>
+        <div class="predigt-info"><strong>EFGA Gottesdienst mit Simon Droß am 30.08.2026</strong><span>Auf YouTube ansehen</span></div>
+        <div class="predigt-meta"><time datetime="2026-08-30T08:01:12Z">30.08.2026</time></div>
+      </a>
+    </div>
+    <p class="predigten-status" data-predigten-status role="status">Aktuelle Videos werden geladen …</p>
+    <a class="text-link" href="https://www.youtube.com/@efgallendorf" target="_blank" rel="noopener noreferrer">Alle Videos auf YouTube ansehen</a>
+    <noscript><p>Automatische Aktualisierung benötigt JavaScript. Die neuesten Videos findest du direkt auf unserem YouTube-Kanal.</p></noscript>
+  </div>
 </section>
 
 <!-- ══════════════════ WOCHE & KALENDER ══════════════ -->
