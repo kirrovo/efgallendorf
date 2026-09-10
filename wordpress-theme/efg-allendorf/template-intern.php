@@ -1,46 +1,17 @@
 <?php
 /**
- * Template Name: Interner Bereich
+ * Kompatibilität für bestehende Seitenzuweisungen: ausschließlich 404 ausgeben.
+ * Kein auswählbares Seitentemplate mehr; gespeicherte Inhalte nie rendern.
  *
  * @package EFG_Allendorf
  */
 
-get_header();
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-get_template_part( 'template-parts/page-hero', null, array(
-	'title'    => 'Interner Bereich',
-	'subtitle' => 'Formulare, Protokolle, Predigten-Archiv und mehr, nur für angemeldete Mitglieder.',
-	'badge'    => 'Für Gemeindeglieder',
-	'crumbs'   => array( array( 'label' => 'Interner Bereich' ) ),
-) );
-?>
-
-<section class="section">
-	<div class="section-inner">
-		<?php if ( is_user_logged_in() ) : ?>
-			<div class="legal-body">
-				<p style="text-align:center;">Willkommen, <strong><?php echo esc_html( wp_get_current_user()->display_name ); ?></strong>!</p>
-				<?php
-				if ( have_posts() ) :
-					while ( have_posts() ) : the_post();
-						echo apply_filters( 'the_content', get_the_content() ); // phpcs:ignore
-					endwhile;
-				endif;
-				?>
-				<p style="text-align:center;margin-top:24px;"><a href="<?php echo esc_url( wp_logout_url( home_url() ) ); ?>" class="btn btn-blau">Abmelden</a></p>
-			</div>
-		<?php else : ?>
-			<div class="intern-banner">
-				<?php efga_ico( 'schloss' ); ?>
-				<div class="intern-text">
-					<h3>Mitglieder-Login</h3>
-					<p>Im internen Bereich findest du Predigten-Archiv, Gemeindeformulare, Protokolle und passwortgeschützte Inhalte.</p>
-					<a href="<?php echo esc_url( wp_login_url( get_permalink() ) ); ?>" class="btn btn-blau">Zum Login</a>
-				</div>
-			</div>
-		<?php endif; ?>
-	</div>
-</section>
-
-<?php
-get_footer();
+global $wp_query;
+$wp_query->set_404();
+status_header( 404 );
+nocache_headers();
+require get_template_directory() . '/404.php';

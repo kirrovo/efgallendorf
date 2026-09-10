@@ -4,7 +4,7 @@ Theme URI: https://scaleyourvision1-lab.github.io/efgallendorf/
 Author: Evangelische Freie Gemeinde Allendorf
 Author URI: https://www.eg-allendorf.de
 Description: Klassisches WordPress-Theme der Evangelischen Freien Gemeinde Allendorf. Enthält Custom Post Types für Gruppen und Veranstaltungen, einen Webcrawler-Schutz für Kontaktdaten sowie alle Unterseiten (Wer wir sind, Gruppen, Gottesdienst Live, Kontakt, Impressum, Datenschutz).
-Version: 1.0.0
+Version: 1.0.1
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
@@ -216,14 +216,6 @@ nav ul.primary-menu li.nav-live a { color: #c62828; font-weight: 650; }
 .nav-live:hover,
 nav ul.primary-menu li.nav-live a:hover { background: rgba(198,40,40,.09); color: #c62828; }
 
-.nav-intern,
-nav ul.primary-menu li.nav-intern a {
-  background: var(--blau); color: #fff !important;
-  font-weight: 600; margin-left: 6px;
-}
-.nav-intern:hover,
-nav ul.primary-menu li.nav-intern a:hover { background: var(--blau-hell); color: #fff !important; }
-
 /* Mobil-Umschalter */
 .nav-toggle {
   display: none;
@@ -295,8 +287,6 @@ nav a:focus-visible .nav-gleit span { transform: translateY(-1.25em); }
   nav ul.primary-menu li a { padding: 12px 14px; font-size: 1.02rem; justify-content: center; }
   .nav-gleit { height: auto; overflow: visible; }
   .nav-gleit span:last-child { display: none; }
-  .nav-intern,
-  nav ul.primary-menu li.nav-intern a { margin-left: 0; justify-content: center; margin-top: 6px; }
 }
 
 /* ─── Buttons ────────────────────────────────────────
@@ -1213,12 +1203,6 @@ a.predigt-row:hover .predigt-play { background: var(--blau); border-color: var(-
 .predigt-info span { font-size: .9rem; color: var(--text-leise); }
 .predigt-meta { flex-shrink: 0; text-align: right; font-size: .88rem; color: var(--text-leise); }
 .predigt-meta strong { display: block; font-size: .93rem; font-weight: 650; color: var(--text); }
-.predigt-row-gesperrt { background: var(--flaeche-2); }
-.predigt-row-gesperrt .predigt-play { color: var(--text-leise); }
-.predigt-lock {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: .86rem; color: var(--text-leise);
-}
 
 @media (max-width: 620px) {
   .predigt-row { flex-wrap: wrap; gap: 12px; }
@@ -1263,23 +1247,6 @@ a.predigt-row:hover .predigt-play { background: var(--blau); border-color: var(-
   background: var(--flaeche);
 }
 .kalender-embed iframe { display: block; width: 100%; min-height: 620px; border: 0; }
-
-/* ─── Interner Bereich ───────────────────────────── */
-.intern-banner {
-  background: var(--flaeche);
-  border: 1px solid var(--linie);
-  border-radius: var(--r-karte);
-  padding: 36px;
-  max-width: 760px;
-  display: flex; align-items: flex-start; gap: 26px;
-}
-.intern-banner .ico { color: var(--akzent); width: 2.2rem; height: 2.2rem; }
-.intern-text h3 { margin-bottom: 8px; }
-.intern-text p { color: var(--text-leise); margin-bottom: 20px; max-width: 52ch; }
-
-@media (max-width: 600px) {
-  .intern-banner { flex-direction: column; padding: 26px; gap: 16px; }
-}
 
 /* ─── Kontakt ────────────────────────────────────── */
 .kontakt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }

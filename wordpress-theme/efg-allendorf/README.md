@@ -21,7 +21,7 @@ und Veranstaltungen sowie **Webcrawler-Schutz** für alle Kontaktdaten.
 > **Beim Aktivieren** legt das Theme automatisch an:
 > - 8 Gruppen (CPT „Gruppen")
 > - 3 Veranstaltungen (CPT „Veranstaltungen")
-> - alle Seiten (Wer wir sind, Gottesdienst Live, Kalender, Intern, Kontakt, Impressum, Datenschutz)
+> - alle Seiten (Wer wir sind, Gottesdienst Live, Kalender, Kontakt, Impressum, Datenschutz)
 > - die Startseite (als statische Front-Page)
 > - das Hauptmenü „Hauptnavigation"
 >
@@ -31,6 +31,15 @@ und Veranstaltungen sowie **Webcrawler-Schutz** für alle Kontaktdaten.
 ---
 
 ## Inhalte pflegen
+
+### Update auf 1.0.1
+
+Der Mitglieder-Login und seine Verweise wurden entfernt. Die Datei
+`template-intern.php` bleibt nur als 404-Schutz für bestehende
+Seitenzuweisungen erhalten und gibt keine gespeicherten Inhalte aus.
+Bereits vorhandene Menüeinträge zu dieser Seite werden ausgeblendet.
+Die alte Seite im WordPress-Backend unter **Seiten** in den Papierkorb
+verschieben. Der WordPress-Admin-Zugang zur Inhaltspflege bleibt erhalten.
 
 | Bereich | Wo im Admin |
 |---|---|
@@ -103,4 +112,4 @@ efg-allendorf/
 
 ---
 
-Version 1.0.0 · benötigt WordPress ≥ 6.0 und PHP ≥ 7.4
+Version 1.0.1 · benötigt WordPress ≥ 6.0 und PHP ≥ 7.4

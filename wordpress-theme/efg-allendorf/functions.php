@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Direktaufruf verhindern.
 }
 
-define( 'EFGA_VERSION', '1.0.0' );
+define( 'EFGA_VERSION', '1.0.1' );
 
 /* ════════════════════════════════════════════════════════
    1. THEME-SETUP
@@ -34,6 +34,24 @@ function efga_setup() {
 	load_theme_textdomain( 'efg-allendorf', get_template_directory() . '/languages' );
 }
 add_action( 'after_setup_theme', 'efga_setup' );
+
+/** Alte Menüeinträge auch bei bereits installiertem Theme ausblenden. */
+function efga_public_menu_items( $items ) {
+	return array_filter( $items, function ( $item ) {
+		if ( in_array( 'nav-intern', (array) $item->classes, true ) ) {
+			return false;
+		}
+		if ( 'page' === $item->object ) {
+			$page = get_post( $item->object_id );
+			if ( $page && ( 'intern' === $page->post_name || 'template-intern.php' === get_page_template_slug( $page ) ) ) {
+				return false;
+			}
+		}
+		$path = wp_parse_url( $item->url, PHP_URL_PATH );
+		return ! preg_match( '~/(?:intern(?:\.html)?|wp-login\.php)/?$~i', (string) $path );
+	} );
+}
+add_filter( 'wp_nav_menu_objects', 'efga_public_menu_items' );
 
 /* ════════════════════════════════════════════════════════
    2. STYLES & SCRIPTS
@@ -77,7 +95,6 @@ function efga_icon_namen() {
 		'kalender'  => 'Kalender (Termine)',
 		'mail'      => 'Briefumschlag',
 		'telefon'   => 'Telefon',
-		'schloss'   => 'Schloss (intern)',
 		'video'     => 'Video (Live)',
 		'play'      => 'Play (Predigt)',
 		'chronik'   => 'Chronik (Geschichte)',
@@ -337,7 +354,6 @@ function efga_default_menu() {
 	echo '<a href="' . esc_url( get_permalink( get_page_by_path( 'wer-wir-sind' ) ) ) . '">Wer wir sind</a>';
 	echo '<a href="' . esc_url( get_post_type_archive_link( 'gruppe' ) ) . '">Gruppen</a>';
 	echo '<a href="' . esc_url( get_permalink( get_page_by_path( 'gottesdienst-live' ) ) ) . '" class="nav-live">' . efga_ico( 'video', 'ico-sm', false ) . 'Live</a>';
-	echo '<a href="' . esc_url( get_permalink( get_page_by_path( 'intern' ) ) ) . '" class="nav-intern">' . efga_ico( 'schloss', 'ico-sm', false ) . 'Intern</a>';
 	echo '</nav>';
 }
 

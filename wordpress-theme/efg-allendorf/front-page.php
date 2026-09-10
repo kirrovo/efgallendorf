@@ -307,14 +307,6 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 				</div>
 				<div class="predigt-meta"><strong>06.05.2026</strong>Bibeltage</div>
 			</div>
-			<div class="predigt-row predigt-row-gesperrt">
-				<span class="predigt-play"><?php efga_ico( 'schloss' ); ?></span>
-				<div class="predigt-info">
-					<strong>Ältere Predigten im internen Bereich</strong>
-					<span>Vollständiges Archiv mit Suchfunktion</span>
-				</div>
-				<div class="predigt-meta"><span class="predigt-lock">Login erforderlich</span></div>
-			</div>
 		</div>
 	</div>
 </section>

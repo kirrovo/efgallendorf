@@ -6,13 +6,11 @@
  */
 
 $wer     = get_page_by_path( 'wer-wir-sind' );
-$intern  = get_page_by_path( 'intern' );
 $impr    = get_page_by_path( 'impressum' );
 $daten   = get_page_by_path( 'datenschutz' );
 $kal     = get_page_by_path( 'kalender' );
 
 $wer_url     = $wer ? get_permalink( $wer ) : '#';
-$intern_url  = $intern ? get_permalink( $intern ) : '#';
 $impr_url    = $impr ? get_permalink( $impr ) : '#';
 $daten_url   = $daten ? get_permalink( $daten ) : '#';
 $kal_url     = $kal ? get_permalink( $kal ) : '#';
@@ -68,7 +66,6 @@ $gruppen_url = get_post_type_archive_link( 'gruppe' );
 				</div>
 				<span>&copy; <?php echo esc_html( date( 'Y' ) ); ?> Evangelische Freie Gemeinde Allendorf</span>
 				<div class="footer-rechtliches">
-					<a href="<?php echo esc_url( $intern_url ); ?>">Interner Bereich</a>
 					<a href="<?php echo esc_url( $impr_url ); ?>">Impressum</a>
 					<a href="<?php echo esc_url( $daten_url ); ?>">Datenschutzerklärung</a>
 				</div>
