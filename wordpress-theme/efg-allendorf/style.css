@@ -4,7 +4,7 @@ Theme URI: https://scaleyourvision1-lab.github.io/efgallendorf/
 Author: Evangelische Freie Gemeinde Allendorf
 Author URI: https://www.eg-allendorf.de
 Description: Klassisches WordPress-Theme der Evangelischen Freien Gemeinde Allendorf. Enthält Custom Post Types für Gruppen und Veranstaltungen, einen Webcrawler-Schutz für Kontaktdaten sowie alle Unterseiten (Wer wir sind, Gruppen, Gottesdienst Live, Kontakt, Impressum, Datenschutz).
-Version: 1.0.6
+Version: 1.0.7
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
@@ -633,115 +633,63 @@ nav a:focus-visible .nav-gleit span { transform: translateY(-1.25em); }
 }
 a.karte:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
 
-/* ─── Kartenfächer (Gruppen-Schaufenster) ────────────
-   Sieben sichtbare Karten, gefächert. Positionen aus der Vorlage,
-   umgesetzt mit CSS-Transforms statt GSAP, damit kein 70-KB-Paket
-   für ein dekoratives Element geladen werden muss.
-*/
+/* ─── Gruppen-Slider: klare Mitte, ruhige Bildvorschau ─── */
 .faecher { position: relative; margin-bottom: 56px; }
-
 .faecher-buehne {
-  position: relative;
-  height: 28rem;
-  max-width: 80rem; margin: 0 auto;
-  overflow: hidden;
+  display: flex; gap: 20px; overflow-x: auto;
+  padding: 20px 8px; scroll-snap-type: x mandatory;
 }
-
 .faecher-karte {
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 14rem;
-  aspect-ratio: 3 / 4;
-  border-radius: 18px;
-  overflow: hidden;
-  background: var(--flaeche-3);
-  box-shadow: 0 18px 40px -18px rgba(31, 41, 55, .45);
-  /* Drehpunkt unterhalb der Karte erzeugt den Bogen des Fächers */
-  transform-origin: 50% 112%;
-  transform:
-    translate(-50%, -50%)
-    translate(var(--fx, 0), var(--fy, 0))
-    rotate(var(--frot, 0deg))
-    scale(var(--fscale, 1));
-  opacity: var(--fop, 1);
-  z-index: var(--fz, 1);
-  transition: transform .55s cubic-bezier(.22, 1, .36, 1), opacity .4s ease;
-  will-change: transform;
-  color: #fff;
+  position: relative; flex: 0 0 260px; aspect-ratio: 3 / 4;
+  border-radius: 20px; overflow: hidden; scroll-snap-align: center;
+  background: var(--flaeche-3); color: #fff;
+  box-shadow: 0 16px 36px -18px rgba(31, 41, 55, .38);
+  user-select: none;
 }
-/* Auftritt und Blättern schwingen leicht über, wie das elastische
-   Easing der Vorlage. Danach greift wieder die ruhige Kurve oben. */
-.faecher-karte.faecher-auftritt {
-  transition: transform 1s cubic-bezier(.16, 1.4, .38, 1), opacity .5s ease;
-}
-.faecher-karte img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-}
-/* Beschriftung: die Vorlage zeigt reine Bilder, ohne Namen ist der
-   Fächer auf einer Gemeindeseite aber nicht verständlich. */
+.faecher-karte img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .faecher-titel {
-  position: absolute; inset: auto 0 0 0;
-  padding: 46px 16px 16px;
-  font-size: .98rem; font-weight: 650; line-height: 1.25;
-  background: linear-gradient(to top, rgba(15, 23, 35, .82) 30%, transparent);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+  position: absolute; inset: auto 0 0;
+  padding: 72px 24px 24px;
+  font-size: 1.18rem; font-weight: 650; line-height: 1.35;
+  background: linear-gradient(transparent, rgba(15, 23, 35, .92));
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .35);
 }
-.faecher-karte:focus-visible { outline: 3px solid var(--akzent); outline-offset: 3px; }
-
-.faecher-steuerung {
-  display: flex; align-items: center; justify-content: center; gap: 16px;
-  margin-top: 20px;
+.faecher-titel::after { content: 'Angebot ansehen →'; display: block; margin-top: 8px; font-size: .85rem; font-weight: 450; }
+.faecher-karte:focus-visible { outline: 3px solid var(--akzent); outline-offset: 5px; }
+.faecher-bereit .faecher-buehne {
+  display: block; position: relative; height: 460px;
+  padding: 0; overflow: hidden; scroll-snap-type: none; touch-action: pan-y;
 }
+.faecher-bereit .faecher-karte {
+  position: absolute; top: 46%; left: 50%; width: clamp(240px, 26vw, 300px);
+  transform: translate(-50%, -50%) translate(var(--fx, 0px), var(--fy, 0px)) rotate(var(--frot, 0deg)) scale(var(--fscale, 1));
+  transform-origin: center;
+  opacity: var(--fop, 0);
+  transition: transform .45s cubic-bezier(.22, 1, .36, 1), opacity .3s ease;
+}
+.faecher-bereit .faecher-karte:not(.ist-aktiv) .faecher-titel { opacity: 0; }
+.faecher-bereit .faecher-karte:not(.ist-aktiv)::after { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,.18); }
+.faecher-bereit .ist-aktiv { box-shadow: 0 20px 40px -18px rgba(31, 41, 55, .5); }
+.faecher-steuerung { display: none; }
+.faecher-bereit .faecher-steuerung { display: flex; align-items: center; justify-content: center; gap: 24px; margin-top: 12px; }
 .faecher-pfeil {
-  width: 46px; height: 46px;
+  width: 48px; height: 48px; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
-  border: 1.5px solid var(--linie-stark);
-  border-radius: 50%;
-  background: var(--flaeche);
-  color: var(--text-leise);
-  cursor: pointer;
-  transition: border-color .3s, color .3s, background .3s;
+  border: 1px solid var(--linie-stark); border-radius: 50%;
+  background: var(--flaeche); color: var(--akzent); cursor: pointer;
+  transition: background .2s, border-color .2s;
 }
-.faecher-pfeil:hover { border-color: var(--akzent); color: var(--akzent); background: var(--flaeche-2); }
-.faecher-pfeil:active { opacity: .7; }
-
-.faecher-punkte { display: flex; align-items: center; gap: 8px; }
-.faecher-punkt {
-  width: 8px; height: 8px; padding: 0;
-  border: none; border-radius: 50%;
-  background: color-mix(in srgb, var(--text) 15%, transparent);
-  cursor: pointer;
-  transition: background .3s, transform .3s;
+.faecher-pfeil:hover { background: var(--flaeche-2); border-color: var(--akzent); }
+.faecher-pfeil:disabled { opacity: .4; cursor: default; }
+.faecher-status { min-width: 72px; text-align: center; font-variant-numeric: tabular-nums; font-size: .9rem; color: var(--text-leise); }
+@media (max-width: 620px) {
+  .faecher-bereit .faecher-buehne { height: 366px; }
+  .faecher-bereit .faecher-karte { width: min(240px, 74vw); top: 47%; }
+  .faecher-titel { padding: 60px 18px 20px; font-size: 1.05rem; }
+  .faecher-bereit .faecher-steuerung { margin-top: 0; }
 }
-.faecher-punkt[aria-current="true"] {
-  background: color-mix(in srgb, var(--text) 70%, transparent);
-  transform: scale(1.3);
-}
-
-@media (max-width: 1023px) { .faecher-buehne { height: 23rem; } }
-@media (max-width: 767px)  { .faecher-buehne { height: 19rem; } .faecher-karte { width: 11rem; } }
-@media (max-width: 479px)  { .faecher-buehne { height: 15rem; } .faecher-karte { width: 8.5rem; } }
-
-/* Ohne Bewegung: aus dem Fächer wird eine schlichte Scrollreihe */
 @media (prefers-reduced-motion: reduce) {
-  .faecher-buehne {
-    height: auto;
-    display: flex; justify-content: flex-start;
-    gap: 16px; overflow-x: auto;
-    padding-bottom: 12px;
-    scroll-snap-type: x mandatory;
-  }
-  .faecher-karte {
-    position: static;
-    transform: none !important;
-    opacity: 1 !important;
-    flex: 0 0 14rem;
-    scroll-snap-align: start;
-    transition: none;
-  }
-  .faecher-steuerung { display: none; }
+  .faecher-bereit .faecher-karte, .faecher-pfeil { transition: none; }
 }
 
 /* ─── Veranstaltungen ────────────────────────────── */

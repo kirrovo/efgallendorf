@@ -137,3 +137,13 @@ offene sichtbare Seiten aktualisieren sich ebenfalls alle fünf Minuten.
 Bei einem Ausfall bleiben die zuletzt geladenen beziehungsweise mitgelieferten,
 verifizierten Videos sichtbar; der Hinweis nennt den Stand und verlinkt den Kanal.
 Das Theme enthält keine Zugangsdaten. YouTube wird erst beim Klick geöffnet.
+
+
+## Gruppen-Slider (1.0.7)
+
+Der Kartenfächer zeigt eine große aktive Karte und bis zu zwei Bildvorschauen je
+Seite. Vorschauen zuerst auswählen, die aktive Karte öffnet das Gruppenangebot.
+Pfeile, horizontales Wischen/Ziehen und Tastatur (Pfeile, Pos1, Ende) wechseln
+umlaufend durch die vorhandenen Bilder. Der Zähler ersetzt die kleinen Punkte.
+Keine automatische Wiedergabe; reduzierte Bewegung bleibt bedienbar. Ohne
+JavaScript stehen alle vorhandenen Bilder als horizontal scrollbare Reihe bereit.

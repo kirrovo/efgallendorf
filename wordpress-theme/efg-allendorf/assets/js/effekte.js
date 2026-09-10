@@ -1,258 +1,109 @@
 /* Interaktive Elemente: Kartenfächer, Kartenneigung, Navigation.
-   Ohne Framework, ohne externe Bibliothek. Alle Effekte schalten sich
-   ab, wenn der Nutzer reduzierte Bewegung eingestellt hat. */
+   Ohne Framework, ohne externe Bibliothek. Dekorative Bewegung entfällt bei reduzierter Bewegung;
+   die Slider-Bedienung bleibt vollständig verfügbar. */
 (function () {
   'use strict';
 
   var wenigerBewegung = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  /* ── Kartenfächer ─────────────────────────────────────────────────
-     Positionen und Reihenfolge entsprechen der Vorlage: sieben
-     sichtbare Karten, die mittlere vorne, die äußeren gedreht und
-     verkleinert. Statt GSAP übernehmen CSS-Transitions das Weiche.
-  ──────────────────────────────────────────────────────────────── */
-  var SICHTBAR = 7;
-  var HAELFTE = 3;
-
-  var PLAETZE = [
-    { rot: -21, scale: 0.7756, x: -30, y: 7.3, z: 1 },
-    { rot: -14, scale: 0.8498, x: -22, y: 4.0, z: 2 },
-    { rot: -7,  scale: 0.9346, x: -11, y: 1.3, z: 3 },
-    { rot: 0,   scale: 1.0,    x: 0,   y: 0.0, z: 10 },
-    { rot: 7,   scale: 0.9346, x: 11,  y: 1.3, z: 3 },
-    { rot: 14,  scale: 0.8498, x: 22,  y: 4.0, z: 2 },
-    { rot: 21,  scale: 0.7756, x: 30,  y: 7.3, z: 1 }
-  ];
-
-  function breitenFaktor(b) {
-    if (b < 480) return 0.28;
-    if (b < 640) return 0.38;
-    if (b < 768) return 0.5;
-    if (b < 1024) return 0.75;
-    return 1.0;
-  }
-
-  /** Kürzt die Höhenversätze, wenn der Bildschirm flach ist. */
-  function hoehenFaktor(b) {
-    var ideal = b < 480 ? 352 : b < 640 ? 416 : b < 768 ? 448 : b < 1024 ? 544 : 608;
-    var da = window.innerHeight * 0.7;
-    return da >= ideal ? 1 : da / ideal;
-  }
-
-  /** Platzwerte für Fächer mit weniger als sieben Karten. */
-  function platz(anzahl, slot) {
-    if (anzahl >= SICHTBAR) return PLAETZE[slot];
-    var mitte = anzahl >> 1;
-    var d = anzahl > 1 ? (slot - mitte) / mitte : 0;
-    var ad = Math.abs(d);
-    return {
-      rot: d * 21,
-      scale: 1 - 0.2244 * ad * ad,
-      x: d * 30,
-      y: ad * ad * 7.3,
-      z: 10 - Math.abs(slot - mitte)
-    };
-  }
-
+  /* Ruhiger Kartenfächer: eine aktive Karte, Nachbarn als Vorschau.
+     Ohne JavaScript bleibt die vollständige Bildreihe scrollbar. */
   function faecherStarten(wurzel) {
     var buehne = wurzel.querySelector('.faecher-buehne');
     var karten = Array.prototype.slice.call(wurzel.querySelectorAll('.faecher-karte'));
-    var punkte = Array.prototype.slice.call(wurzel.querySelectorAll('.faecher-punkt'));
-    var anzahl = karten.length;
-    if (!buehne || !anzahl) return;
+    var status = wurzel.querySelector('.faecher-status');
+    if (!buehne || !karten.length) return;
+    var mitte = 0;
+    var start = null;
+    var klickSperreBis = 0;
+    wurzel.classList.add('faecher-bereit');
+    wurzel.setAttribute('aria-roledescription', 'Karussell');
 
-    var blaettern = anzahl > SICHTBAR;
-    var plaetze = blaettern ? SICHTBAR : anzahl;
-    var mitte = blaettern ? HAELFTE : anzahl >> 1;
-    var gehoverter = null;
-    var sperrTimer;
-    var vorherSichtbar = {};
-    var ersterAuftritt = true;
-    var laeuft = false;   // sperrt Hover und Neuzeichnen während Auftritt/Blättern
-
-    /** Werte setzen, ohne dass die laufende Transition sie weichzeichnet. */
-    function sofort(karte, werte) {
-      karte.style.transition = 'none';
-      setzen(karte, werte);
-      void karte.offsetWidth;          // Layout erzwingen
-      karte.style.transition = '';
-    }
-
-    function setzen(karte, w) {
-      if (w.x !== undefined)     karte.style.setProperty('--fx', w.x + 'rem');
-      if (w.y !== undefined)     karte.style.setProperty('--fy', w.y + 'rem');
-      if (w.rot !== undefined)   karte.style.setProperty('--frot', w.rot + 'deg');
-      if (w.scale !== undefined) karte.style.setProperty('--fscale', w.scale);
-      if (w.op !== undefined)    karte.style.setProperty('--fop', w.op);
-      if (w.z !== undefined)     karte.style.setProperty('--fz', w.z);
-    }
-
-    /** Welche Karte liegt auf welchem Platz? */
-    function belegung() {
-      var m = {};
-      if (!blaettern) {
-        karten.forEach(function (_, i) { m[i] = i; });
-        return m;
-      }
-      for (var s = 0; s < SICHTBAR; s++) {
-        m[((mitte + s - HAELFTE) % anzahl + anzahl) % anzahl] = s;
-      }
-      return m;
-    }
-
-    function zeichnen(richtung) {
-      var m = belegung();
-      var fb = breitenFaktor(window.innerWidth);
-      var fh = hoehenFaktor(window.innerWidth);
-      var mittlererSlot = plaetze >> 1;
-
-      var summe = 0;
-      for (var q = 0; q < plaetze; q++) { summe += platz(plaetze, q).y; }
-      // zusätzlicher Hub, damit die äußeren Karten nicht am Bühnenrand anstoßen
-      var ausgleich = summe / plaetze + 1.4;
-
+    function zeichnen() {
+      var breite = karten[0].offsetWidth;
+      var nachbarn = buehne.clientWidth < 640 ? 1 : 2;
       karten.forEach(function (karte, i) {
-        var slot = m[i];
-
-        var warSichtbar = vorherSichtbar[i];
-
-        if (slot === undefined) {
-          // Gerichteter Abgang: die Karte fliegt zur Gegenseite hinaus
-          if (warSichtbar && richtung) {
-            setzen(karte, {
-              x: richtung === 'rechts' ? -40 : 40,
-              rot: richtung === 'rechts' ? -30 : 30,
-              scale: 0.5, op: 0, z: 0
-            });
-          } else {
-            setzen(karte, { scale: 0.5, op: 0, z: 0 });
-          }
-          karte.setAttribute('aria-hidden', 'true');
-          karte.tabIndex = -1;
-          return;
-        }
-
-        var p = platz(plaetze, slot);
-        var x = p.x * fb;
-        // Der Bogen wird um seinen eigenen Mittelwert nach oben geschoben,
-        // sonst hängt der ganze Fächer am unteren Rand der Bühne.
-        var y = (p.y - ausgleich) * fh;
-        var rot = p.rot;
-        var sc = p.scale;
-
-        // Beim Hover weicht die Nachbarschaft aus, die Karte hebt sich
-        if (gehoverter !== null) {
-          var dist = Math.abs(slot - gehoverter);
-          if (slot === gehoverter) {
-            y -= 2.5 * fh;
-            sc *= 1.08;
-          } else {
-            var norm = mittlererSlot > 0 ? (slot - mittlererSlot) / mittlererSlot : 0;
-            var schub = 8 * (1 - Math.abs(norm)) * (1 + 0.2 * Math.max(0, 3 - dist));
-            if (slot < gehoverter) { x -= schub * fb; rot -= 3 / (dist + 1); }
-            else                   { x += schub * fb; rot += 3 / (dist + 1); }
-          }
-        }
-
-        var ziel = { x: x, y: y, rot: rot, scale: sc, op: 1, z: p.z };
-
-        if (ersterAuftritt) {
-          // Auftritt: von unten, klein und unsichtbar, gestaffelt pro Platz
-          sofort(karte, { x: 0, y: 12 * fh, rot: 0, scale: 0.5, op: 0, z: p.z });
-          karte.classList.add('faecher-auftritt');
-          karte.style.transitionDelay = (0.2 + slot * 0.06) + 's';
-          requestAnimationFrame(function () {
-            requestAnimationFrame(function () { setzen(karte, ziel); });
-          });
-        } else if (!warSichtbar && richtung) {
-          // Eintritt von der Seite, aus der geblättert wurde
-          sofort(karte, {
-            x: richtung === 'rechts' ? 40 : -40,
-            y: y,
-            rot: richtung === 'rechts' ? 30 : -30,
-            scale: 0.5, op: 0, z: p.z
-          });
-          karte.classList.add('faecher-auftritt');
-          karte.style.transitionDelay = '0s';
-          requestAnimationFrame(function () { setzen(karte, ziel); });
-        } else {
-          karte.classList.remove('faecher-auftritt');
-          karte.style.transitionDelay = '0s';
-          setzen(karte, ziel);
-        }
-
-        karte.removeAttribute('aria-hidden');
-        karte.tabIndex = 0;
+        var d = (i - mitte + karten.length) % karten.length;
+        if (d > karten.length / 2) d -= karten.length;
+        var abstand = Math.abs(d);
+        var sichtbar = abstand <= nachbarn;
+        var seite = Math.sign(d);
+        karte.style.setProperty('--fx', seite * Math.min(abstand, 3) * breite * .68 + 'px');
+        karte.style.setProperty('--fy', Math.min(abstand, 3) * 16 + 'px');
+        karte.style.setProperty('--frot', seite * Math.min(abstand, 3) * 5 + 'deg');
+        karte.style.setProperty('--fscale', 1 - Math.min(abstand, 3) * .1);
+        karte.style.setProperty('--fop', sichtbar ? 1 : 0);
+        karte.style.zIndex = 10 - abstand;
+        karte.classList.toggle('ist-aktiv', d === 0);
+        karte.style.pointerEvents = sichtbar ? 'auto' : 'none';
+        karte.setAttribute('aria-hidden', d === 0 ? 'false' : 'true');
+        karte.tabIndex = d === 0 ? 0 : -1;
       });
-
-      vorherSichtbar = {};
-      Object.keys(m).forEach(function (i) { vorherSichtbar[i] = true; });
-
-      // Während Auftritt und Blättern ruht die Interaktion, sonst
-      // überschreibt ein Hover die gestaffelte Bewegung.
-      if (ersterAuftritt || richtung) {
-        laeuft = true;
-        clearTimeout(sperrTimer);
-        sperrTimer = setTimeout(function () { laeuft = false; },
-          ersterAuftritt ? 1600 : 700);
-      }
-      ersterAuftritt = false;
-
-      punkte.forEach(function (pt, i) {
-        pt.setAttribute('aria-current', i === mitte ? 'true' : 'false');
-      });
+      if (status) status.textContent = String(mitte + 1).padStart(2, '0') + ' / ' + String(karten.length).padStart(2, '0');
     }
 
-    function weiter(richtung) {
-      if (!blaettern || laeuft) return;
-      mitte = richtung === 'rechts'
-        ? (mitte + 1) % anzahl
-        : (mitte - 1 + anzahl) % anzahl;
-      gehoverter = null;
-      zeichnen(richtung);
+    function wechseln(index) {
+      var fokusAufKarte = karten.indexOf(document.activeElement) !== -1;
+      mitte = (index + karten.length) % karten.length;
+      zeichnen();
+      if (fokusAufKarte) karten[mitte].focus({ preventScroll: true });
     }
-
-    wurzel.querySelectorAll('.faecher-pfeil').forEach(function (b) {
-      b.addEventListener('click', function () { weiter(b.dataset.richtung); });
+    wurzel.querySelectorAll('.faecher-pfeil').forEach(function (button) {
+      button.disabled = karten.length < 2;
+      button.addEventListener('click', function () {
+        wechseln(mitte + (button.dataset.richtung === 'rechts' ? 1 : -1));
+      });
     });
-    punkte.forEach(function (pt, i) {
-      pt.addEventListener('click', function () { mitte = i; gehoverter = null; zeichnen(); });
-    });
-
     karten.forEach(function (karte, i) {
-      karte.addEventListener('mouseenter', function () {
-        if (laeuft) return;
-        var slot = belegung()[i];
-        if (slot === undefined) return;
-        gehoverter = slot; zeichnen();
-      });
-      // Tastaturbedienung: die fokussierte Karte kommt nach vorne
-      karte.addEventListener('focus', function () {
-        var slot = belegung()[i];
-        if (slot === undefined) { mitte = i; }
-        gehoverter = null; zeichnen();
+      karte.draggable = false;
+      var bild = karte.querySelector('img');
+      if (bild) bild.draggable = false;
+      karte.addEventListener('click', function (event) {
+        if (Date.now() < klickSperreBis) { event.preventDefault(); return; }
+        if (i !== mitte) { event.preventDefault(); wechseln(i); }
       });
     });
-    buehne.addEventListener('mouseleave', function () {
-      if (laeuft) return;
-      gehoverter = null; zeichnen();
+    wurzel.addEventListener('keydown', function (event) {
+      if (event.altKey || event.ctrlKey || event.metaKey) return;
+      if (event.key === 'ArrowLeft') wechseln(mitte - 1);
+      else if (event.key === 'ArrowRight') wechseln(mitte + 1);
+      else if (event.key === 'Home') wechseln(0);
+      else if (event.key === 'End') wechseln(karten.length - 1);
+      else return;
+      event.preventDefault();
     });
 
-    // Pfeiltasten steuern den Fächer, wenn er den Fokus hat
-    wurzel.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowLeft') { weiter('links'); e.preventDefault(); }
-      if (e.key === 'ArrowRight') { weiter('rechts'); e.preventDefault(); }
+    // Horizontal wischen oder ziehen; vertikales Scrollen bleibt dem Browser.
+    buehne.addEventListener('pointerdown', function (event) {
+      if (!event.isPrimary || event.button !== 0) return;
+      start = { x: event.clientX, y: event.clientY, id: event.pointerId, zieht: false };
     });
-
-    var timer;
-    window.addEventListener('resize', function () {
-      clearTimeout(timer);
-      timer = setTimeout(zeichnen, 120);
+    buehne.addEventListener('pointermove', function (event) {
+      if (!start || start.id !== event.pointerId) return;
+      var dx = event.clientX - start.x, dy = event.clientY - start.y;
+      if (Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy) * 1.25) {
+        start.zieht = true;
+        buehne.setPointerCapture(event.pointerId);
+      }
     });
-
+    function loslassen(event) {
+      if (!start || start.id !== event.pointerId) return;
+      var dx = event.clientX - start.x, dy = event.clientY - start.y;
+      if (start.zieht) {
+        klickSperreBis = Date.now() + 400;
+        if (event.type === 'pointerup' && Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.25) {
+          wechseln(mitte + (dx < 0 ? 1 : -1));
+        }
+      }
+      start = null;
+      if (buehne.hasPointerCapture(event.pointerId)) buehne.releasePointerCapture(event.pointerId);
+    }
+    buehne.addEventListener('pointerup', loslassen);
+    buehne.addEventListener('pointercancel', loslassen);
+    window.addEventListener('pointerup', function () { start = null; });
+    new ResizeObserver(zeichnen).observe(buehne);
     zeichnen();
   }
-
 
   /* ── Gleitender Text in der Navigation ────────────────────────────
      Die Vorlage hinterlegt jeden Link doppelt. Statt das im Markup zu
@@ -358,7 +209,7 @@
     navGleitenStarten();
     setTimeout(navGleitenStarten, 0);
     document.querySelectorAll('[data-faecher]').forEach(function (el) {
-      if (!wenigerBewegung.matches) faecherStarten(el);
+      faecherStarten(el);
     });
   });
 })();

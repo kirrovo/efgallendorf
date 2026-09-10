@@ -62,11 +62,7 @@ $kontakt_url = ( $p = get_page_by_path( 'kontakt' ) ) ? get_permalink( $p ) : ho
 			</div>
 			<div class="faecher-steuerung">
 				<button class="faecher-pfeil" type="button" data-richtung="links" aria-label="Vorheriges Angebot"><?php efga_ico( 'pfeil-links' ); ?></button>
-				<div class="faecher-punkte">
-					<?php foreach ( $fan_karten as $k ) : ?>
-						<button class="faecher-punkt" type="button" aria-label="<?php echo esc_attr( $k['titel'] ); ?>"></button>
-					<?php endforeach; ?>
-				</div>
+				<span class="faecher-status" role="status" aria-live="polite" aria-atomic="true"></span>
 				<button class="faecher-pfeil" type="button" data-richtung="rechts" aria-label="Nächstes Angebot"><?php efga_ico( 'pfeil-rechts' ); ?></button>
 			</div>
 		</div>
