@@ -147,3 +147,13 @@ Pfeile, horizontales Wischen/Ziehen und Tastatur (Pfeile, Pos1, Ende) wechseln
 umlaufend durch die vorhandenen Bilder. Der Zähler ersetzt die kleinen Punkte.
 Keine automatische Wiedergabe; reduzierte Bewegung bleibt bedienbar. Ohne
 JavaScript stehen alle vorhandenen Bilder als horizontal scrollbare Reihe bereit.
+
+
+## Livestream-Standbild (1.0.8)
+
+Original-Videostandbild aus dem EFG-Gottesdienst vom 06.09.2026:
+https://www.youtube.com/watch?v=dQ_TlADxXw0
+Bildquelle: https://i.ytimg.com/vi/dQ_TlADxXw0/maxres3.jpg (1280×720).
+Unverändert lokal als `assets/img/livestream-standbild.jpg` gespeichert.
+Die Abdunklung für lesbare Bedienelemente erfolgt ausschließlich per CSS;
+YouTube wird weiterhin erst beim Klick aufgerufen.

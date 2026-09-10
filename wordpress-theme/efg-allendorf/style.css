@@ -4,7 +4,7 @@ Theme URI: https://scaleyourvision1-lab.github.io/efgallendorf/
 Author: Evangelische Freie Gemeinde Allendorf
 Author URI: https://www.eg-allendorf.de
 Description: Klassisches WordPress-Theme der Evangelischen Freien Gemeinde Allendorf. Enthält Custom Post Types für Gruppen und Veranstaltungen, einen Webcrawler-Schutz für Kontaktdaten sowie alle Unterseiten (Wer wir sind, Gruppen, Gottesdienst Live, Kontakt, Impressum, Datenschutz).
-Version: 1.0.7
+Version: 1.0.8
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
@@ -1666,11 +1666,20 @@ a.predigt-row:hover .predigt-play { background: var(--blau); border-color: var(-
 .livestream-wrap:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
 .livestream-wrap iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: none; }
 .livestream-buehne {
+  position: relative; isolation: isolate; overflow: hidden; color: #fff;
   aspect-ratio: 16 / 9;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center; gap: 22px;
   text-align: center; padding: 24px;
   background: radial-gradient(circle at 50% 38%, var(--flaeche) 0%, var(--flaeche-3) 100%);
+}
+.livestream-standbild {
+  position: absolute; inset: 0; z-index: -2;
+  width: 100%; height: 100%; object-fit: cover;
+}
+.livestream-buehne::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(10, 20, 30, .12), rgba(10, 20, 30, .58) 55%, rgba(10, 20, 30, .72));
 }
 .livestream-play {
   width: 78px; height: 78px;
@@ -1683,7 +1692,15 @@ a.predigt-row:hover .predigt-play { background: var(--blau); border-color: var(-
 .livestream-play .ico { width: 34px; height: 34px; fill: currentColor; stroke: currentColor; }
 .livestream-wrap:hover .livestream-play { background: #b71c1c; transform: scale(1.04); }
 .livestream-buehne strong { display: block; font-size: 1.2rem; font-weight: 650; margin-bottom: 6px; }
-.livestream-buehne span { font-size: .95rem; color: var(--text-leise); }
+.livestream-buehne > div span { font-size: .95rem; color: rgba(255, 255, 255, .9); }
+.livestream-buehne strong { color: #fff; }
+@media (max-width: 620px) {
+  .livestream-buehne { padding: 16px; gap: 12px; }
+  .livestream-play { width: 50px; height: 50px; flex-shrink: 0; }
+  .livestream-play .ico { width: 24px; height: 24px; }
+  .livestream-buehne strong { font-size: 1rem; }
+  .livestream-buehne > div span { font-size: .75rem; }
+}
 .livestream-meta {
   background: var(--flaeche-2);
   border-top: 1px solid var(--linie);
