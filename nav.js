@@ -207,7 +207,7 @@ function renderFooter(depth) {
         <div class="footer-bottom">
           <div class="footer-social">
             <a href="https://www.youtube.com/@efgallendorf" target="_blank" rel="noopener noreferrer" aria-label="Gemeinde auf YouTube">${ico('youtube')}</a>
-            <a href="#" class="ob-email" data-nur-icon data-em="aW5mb0BlZy1hbGxlbmRvcmYuZGU=" rel="nofollow" aria-label="E-Mail an die Gemeinde">${ico('mail')}</a>
+            <a href="mailto:info@eg-allendorf.de" rel="nofollow" aria-label="E-Mail an die Gemeinde" title="E-Mail an info@eg-allendorf.de">${ico('mail')}</a>
           </div>
           <span>© ${new Date().getFullYear()} Evangelische Freie Gemeinde Allendorf</span>
           <div class="footer-rechtliches">

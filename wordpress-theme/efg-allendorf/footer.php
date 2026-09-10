@@ -60,7 +60,7 @@ $gruppen_url = get_post_type_archive_link( 'gruppe' );
 			<div class="footer-bottom">
 				<div class="footer-social">
 					<a href="https://www.youtube.com/@efgallendorf" target="_blank" rel="noopener noreferrer" aria-label="Gemeinde auf YouTube"><?php efga_ico( 'youtube' ); ?></a>
-					<a href="#" class="ob-email" data-nur-icon data-em="<?php echo esc_attr( base64_encode( 'info@eg-allendorf.de' ) ); ?>" rel="nofollow" aria-label="E-Mail an die Gemeinde"><?php efga_ico( 'mail' ); ?></a>
+					<a href="mailto:info@eg-allendorf.de" rel="nofollow" aria-label="E-Mail an die Gemeinde" title="E-Mail an info@eg-allendorf.de"><?php efga_ico( 'mail' ); ?></a>
 				</div>
 				<span>&copy; <?php echo esc_html( date( 'Y' ) ); ?> Evangelische Freie Gemeinde Allendorf</span>
 				<div class="footer-rechtliches">

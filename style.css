@@ -1730,6 +1730,9 @@ footer#site-footer { padding: 0 24px 24px; }
 .footer-social { display: flex; align-items: center; gap: 18px; }
 .footer-social a { display: flex; color: var(--text-leise); }
 .footer-social a:hover { color: var(--akzent); }
+.footer-social a[aria-label="E-Mail an die Gemeinde"] {
+  min-width: 44px; min-height: 44px; align-items: center; justify-content: center;
+}
 .footer-social .ico { width: 1.35rem; height: 1.35rem; }
 .footer-rechtliches { display: flex; gap: 18px; flex-wrap: wrap; }
 
