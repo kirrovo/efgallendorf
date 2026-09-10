@@ -4,7 +4,7 @@ Theme URI: https://scaleyourvision1-lab.github.io/efgallendorf/
 Author: Evangelische Freie Gemeinde Allendorf
 Author URI: https://www.eg-allendorf.de
 Description: Klassisches WordPress-Theme der Evangelischen Freien Gemeinde Allendorf. Enthält Custom Post Types für Gruppen und Veranstaltungen, einen Webcrawler-Schutz für Kontaktdaten sowie alle Unterseiten (Wer wir sind, Gruppen, Gottesdienst Live, Kontakt, Impressum, Datenschutz).
-Version: 1.0.8
+Version: 1.0.9
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
@@ -1733,25 +1733,6 @@ a.predigt-row:hover .predigt-play { background: var(--blau); border-color: var(-
 }
 .info-box h3 { font-size: 1.1rem; margin-bottom: 8px; }
 .info-box p { color: var(--text-leise); }
-
-.yt-link-box {
-  display: flex; align-items: center; gap: 18px;
-  background: var(--flaeche);
-  border: 1px solid var(--linie);
-  border-radius: var(--r-karte);
-  padding: 22px 24px; margin-bottom: 16px;
-  transition: border-color .15s, box-shadow .15s;
-}
-.yt-link-box:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
-.yt-icon {
-  flex-shrink: 0; width: 48px; height: 48px;
-  background: #ff0000; border-radius: var(--r-feld);
-  display: flex; align-items: center; justify-content: center;
-  color: #fff;
-}
-.yt-icon .ico { width: 26px; height: 26px; }
-.yt-link-text strong { display: block; font-size: 1.05rem; font-weight: 650; margin-bottom: 2px; }
-.yt-link-text span { font-size: .93rem; color: var(--text-leise); }
 
 .archive-hint {
   background: var(--flaeche-2);

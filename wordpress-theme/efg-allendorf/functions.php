@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Direktaufruf verhindern.
 }
 
-define( 'EFGA_VERSION', '1.0.8' );
+define( 'EFGA_VERSION', '1.0.9' );
 
 /* ════════════════════════════════════════════════════════
    1. THEME-SETUP

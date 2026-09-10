@@ -47,20 +47,6 @@ get_template_part( 'template-parts/page-hero', null, array(
 			</div>
 		</div>
 
-		<h2 style="margin-bottom:18px;">Unser YouTube-Kanal</h2>
-
-		<a href="https://www.youtube.com/@efgallendorf" target="_blank" rel="noopener noreferrer" class="yt-link-box">
-			<span class="yt-icon"><?php efga_ico( 'youtube' ); ?></span>
-			<div class="yt-link-text">
-				<strong>youtube.com/@efgallendorf</strong>
-				<span>Livestreams, Predigten und alle vergangenen Gottesdienste</span>
-			</div>
-		</a>
-
-		<div class="archive-hint">
-			<strong>Verpasst?</strong> Alle vergangenen Gottesdienste sind nach dem Livestream als Video auf unserem YouTube-Kanal verfügbar und können jederzeit nachgeschaut werden.
-		</div>
-
 	</div>
 </section>
 
