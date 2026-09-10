@@ -1322,15 +1322,6 @@ a.predigt-row:hover .predigt-play { background: var(--blau); border-color: var(-
   mix-blend-mode: screen;
   transition: opacity .5s ease;
 }
-@media (prefers-reduced-motion: no-preference) {
-  .angebot-hero-karte::after { animation: dither-drift 26s linear infinite; }
-  .angebot-hero-karte:hover::after { animation-duration: 9s; opacity: .46; }
-}
-@keyframes dither-drift {
-  from { transform: translate3d(0, 0, 0); }
-  to   { transform: translate3d(-64px, 40px, 0); }
-}
-
 .angebot-hero-inhalt {
   position: relative;
   max-width: 44rem;
@@ -1719,7 +1710,7 @@ footer#site-footer { padding: 0 24px 24px; }
 .footer-brand strong { display: block; font-size: 1.15rem; font-weight: 700; }
 .footer-brand p { font-size: .95rem; color: var(--text-leise); max-width: 36ch; }
 
-.footer-col h4 { font-size: 1.02rem; font-weight: 650; margin-bottom: 16px; }
+.footer-col h2 { font-size: 1.02rem; font-weight: 650; margin-bottom: 16px; }
 .footer-col a {
   display: block; margin-bottom: 10px;
   font-size: .95rem; color: var(--text-leise);

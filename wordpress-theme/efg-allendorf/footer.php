@@ -32,7 +32,7 @@ $gruppen_url = get_post_type_archive_link( 'gruppe' );
 				</div>
 
 				<div class="footer-col">
-					<h4>Gemeinde</h4>
+					<h2>Gemeinde</h2>
 					<a href="<?php echo esc_url( $wer_url ); ?>">Wer wir sind</a>
 					<a href="<?php echo esc_url( $wer_url ); ?>#glaube">Glaubensbekenntnis</a>
 					<a href="<?php echo esc_url( $wer_url ); ?>#leitbild">Leitbild</a>
@@ -40,14 +40,14 @@ $gruppen_url = get_post_type_archive_link( 'gruppe' );
 				</div>
 
 				<div class="footer-col">
-					<h4>Angebote</h4>
+					<h2>Angebote</h2>
 					<a href="<?php echo esc_url( $gruppen_url ); ?>">Gruppen</a>
 					<a href="<?php echo esc_url( home_url( '/#predigten' ) ); ?>">Predigten</a>
 					<a href="<?php echo esc_url( $kal_url ); ?>">Kalender</a>
 				</div>
 
 				<div class="footer-col">
-					<h4>Kontakt</h4>
+					<h2>Kontakt</h2>
 					<ul class="footer-kontakt">
 						<li><?php efga_ico( 'ort' ); ?><span>Heimlingstraße 3<br />35753 Greifenstein-Allendorf</span></li>
 						<li><?php efga_ico( 'mail' ); ?><?php efga_email( 'info@eg-allendorf.de' ); ?></li>

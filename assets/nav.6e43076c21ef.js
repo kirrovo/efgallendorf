@@ -58,7 +58,7 @@ function getRelPath(e){return e===0?"./":"../".repeat(e)}const EFGA_ICON_SPRITE=
           </div>
 
           <div class="footer-col">
-            <h4>Gemeinde</h4>
+            <h2>Gemeinde</h2>
             <a href="${i}wer-wir-sind.html">Wer wir sind</a>
             <a href="${i}wer-wir-sind.html#glaube">Glaubensbekenntnis</a>
             <a href="${i}wer-wir-sind.html#leitbild">Leitbild</a>
@@ -66,14 +66,14 @@ function getRelPath(e){return e===0?"./":"../".repeat(e)}const EFGA_ICON_SPRITE=
           </div>
 
           <div class="footer-col">
-            <h4>Angebote</h4>
+            <h2>Angebote</h2>
             <a href="${i}gruppen.html">Gruppen</a>
             <a href="${i}index.html#predigten">Predigten</a>
             <a href="${i}index.html#kalender">Kalender</a>
           </div>
 
           <div class="footer-col">
-            <h4>Kontakt</h4>
+            <h2>Kontakt</h2>
             <ul class="footer-kontakt">
               <li>${ico("ort")}<span>Heimlingstra\xDFe 3<br />35753 Greifenstein-Allendorf</span></li>
               <li>${ico("mail")}<a href="#" class="ob-email" data-em="aW5mb0BlZy1hbGxlbmRvcmYuZGU=" rel="nofollow"></a></li>

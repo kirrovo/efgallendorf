@@ -21,6 +21,11 @@ for file in site['pages']:
  p=ROOT/file;text=p.read_text();doc=Page(text)
  assert len(doc.ids)==len(set(doc.ids)),(file,'duplicate IDs')
  assert sum(t=='h1' for t,a in doc.tags)==1,(file,'h1')
+ last_heading=0
+ for tag,attrs in doc.tags:
+  if len(tag)==2 and tag[0]=='h' and tag[1] in '123456':
+   level=int(tag[1]);assert level<=last_heading+1,(file,'skipped heading level',last_heading,level)
+   last_heading=level
  for name in ['description','robots']:
   assert sum(t=='meta' and a.get('name')==name for t,a in doc.tags)==1,(file,name)
  expected=site['url']+('/' if file=='index.html' else '/'+file)
