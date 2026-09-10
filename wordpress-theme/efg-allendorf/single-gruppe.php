@@ -60,10 +60,22 @@ while ( have_posts() ) :
 					<?php endif; ?>
 					<h1><?php the_title(); ?></h1>
 					<?php if ( $subtitle ) : ?><p><?php echo esc_html( $subtitle ); ?></p><?php endif; ?>
+					<?php if ( $email ) : ?>
+					<a href="#" class="btn ob-email" data-em="<?php echo esc_attr( base64_encode( $email ) ); ?>" data-label-behalten rel="nofollow">
+						Kontakt aufnehmen
+						<?php efga_ico( 'pfeil-rechts', 'ico-sm' ); ?>
+					</a>
+					<?php elseif ( $phone ) : ?>
+					<a href="#" class="btn ob-tel" data-tel="<?php echo esc_attr( base64_encode( $phone ) ); ?>" data-label-behalten rel="nofollow">
+						Kontakt aufnehmen
+						<?php efga_ico( 'pfeil-rechts', 'ico-sm' ); ?>
+					</a>
+					<?php else : ?>
 					<a href="<?php echo esc_url( home_url( '/#kontakt' ) ); ?>" class="btn">
 						Kontakt aufnehmen
 						<?php efga_ico( 'pfeil-rechts', 'ico-sm' ); ?>
 					</a>
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>
@@ -134,6 +146,12 @@ while ( have_posts() ) :
 						?>
 						<?php endif; ?>
 					</div>
+					<?php endif; ?>
+
+					<?php if ( $email ) : ?>
+					<a href="#" class="btn btn-blau ob-email" data-em="<?php echo esc_attr( base64_encode( $email ) ); ?>" data-label-behalten rel="nofollow">Kontakt aufnehmen</a>
+					<?php elseif ( $phone ) : ?>
+					<a href="#" class="btn btn-blau ob-tel" data-tel="<?php echo esc_attr( base64_encode( $phone ) ); ?>" data-label-behalten rel="nofollow">Kontakt aufnehmen</a>
 					<?php endif; ?>
 
 					<a href="<?php echo esc_url( $kal ); ?>" class="btn btn-blau" style="text-align:center; justify-content:center;">

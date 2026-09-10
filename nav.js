@@ -123,6 +123,8 @@ function decodeContacts() {
       const addr = atob(el.dataset.em);
       if (el.tagName === 'A') {
         el.href = 'mailto:' + addr;
+        // Kontakt-Buttons behalten ihre Beschriftung und Icons.
+        if (el.hasAttribute('data-label-behalten')) return;
         // Nur-Icon-Links bekommen die Adresse als Beschriftung, nicht als Text
         if (el.hasAttribute('data-nur-icon')) {
           if (!el.getAttribute('aria-label')) el.setAttribute('aria-label', 'E-Mail an ' + addr);
@@ -146,6 +148,7 @@ function decodeContacts() {
       const num = atob(el.dataset.tel);
       if (el.tagName === 'A') {
         el.href = 'tel:' + num.replace(/[\s\/]/g, '');
+        if (el.hasAttribute('data-label-behalten')) return;
         if (el.childNodes.length > 0) {
           el.childNodes.forEach(n => { if (n.nodeType === 3) n.remove(); });
           el.appendChild(document.createTextNode(' ' + num));

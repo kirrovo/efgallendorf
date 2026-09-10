@@ -32,6 +32,13 @@ und Veranstaltungen sowie **Webcrawler-Schutz** für alle Kontaktdaten.
 
 ## Inhalte pflegen
 
+### Kontakt-Buttons (1.0.2)
+
+„Kontakt aufnehmen“ öffnet die hinterlegte E-Mail-Adresse der jeweiligen
+Gruppenleitung per `mailto:`. Fehlt eine E-Mail, wird die hinterlegte
+Telefonnummer per `tel:` geöffnet. Das Gerät verwendet die dafür
+eingerichtete Mail- beziehungsweise Telefon-App.
+
 ### Update auf 1.0.1
 
 Der Mitglieder-Login und seine Verweise wurden entfernt. Die Datei
@@ -112,4 +119,4 @@ efg-allendorf/
 
 ---
 
-Version 1.0.1 · benötigt WordPress ≥ 6.0 und PHP ≥ 7.4
+Version 1.0.2 · benötigt WordPress ≥ 6.0 und PHP ≥ 7.4
