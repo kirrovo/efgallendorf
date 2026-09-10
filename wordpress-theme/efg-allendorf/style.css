@@ -4,7 +4,7 @@ Theme URI: https://scaleyourvision1-lab.github.io/efgallendorf/
 Author: Evangelische Freie Gemeinde Allendorf
 Author URI: https://www.eg-allendorf.de
 Description: Klassisches WordPress-Theme der Evangelischen Freien Gemeinde Allendorf. Enthält Custom Post Types für Gruppen und Veranstaltungen, einen Webcrawler-Schutz für Kontaktdaten sowie alle Unterseiten (Wer wir sind, Gruppen, Gottesdienst Live, Kontakt, Impressum, Datenschutz).
-Version: 1.0.10
+Version: 1.0.11
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
@@ -895,7 +895,7 @@ a.karte:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
 
 .gruppe-card-header { display: flex; flex-direction: column; gap: 8px; }
 .gruppe-card-header .ico { color: var(--akzent); width: 1.6rem; height: 1.6rem; }
-.gruppe-card-header h3 { font-size: 1.12rem; font-weight: 650; line-height: 1.3; }
+.gruppe-card-header h3 { font-size: 1.12rem; font-weight: 800; line-height: 1.3; }
 .gruppe-card-header .tag {
   align-self: flex-start;
   background: var(--flaeche-3); color: var(--akzent);

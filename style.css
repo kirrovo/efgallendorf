@@ -880,7 +880,7 @@ a.karte:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
 
 .gruppe-card-header { display: flex; flex-direction: column; gap: 8px; }
 .gruppe-card-header .ico { color: var(--akzent); width: 1.6rem; height: 1.6rem; }
-.gruppe-card-header h3 { font-size: 1.12rem; font-weight: 650; line-height: 1.3; }
+.gruppe-card-header h3 { font-size: 1.12rem; font-weight: 800; line-height: 1.3; }
 .gruppe-card-header .tag {
   align-self: flex-start;
   background: var(--flaeche-3); color: var(--akzent);
