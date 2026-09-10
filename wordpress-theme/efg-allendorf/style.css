@@ -4,7 +4,7 @@ Theme URI: https://scaleyourvision1-lab.github.io/efgallendorf/
 Author: Evangelische Freie Gemeinde Allendorf
 Author URI: https://www.eg-allendorf.de
 Description: Klassisches WordPress-Theme der Evangelischen Freien Gemeinde Allendorf. Enthält Custom Post Types für Gruppen und Veranstaltungen, einen Webcrawler-Schutz für Kontaktdaten sowie alle Unterseiten (Wer wir sind, Gruppen, Gottesdienst Live, Kontakt, Impressum, Datenschutz).
-Version: 1.0.13
+Version: 1.0.14
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
@@ -1619,32 +1619,63 @@ a.predigt-row:hover .predigt-play { background: var(--blau); border-color: var(-
 }
 
 .wws-glauben {
-  background: var(--flaeche-3);
+  background: var(--flaeche);
   border: 1px solid var(--linie);
-  border-radius: var(--r-karte);
+  border-radius: 24px;
   padding: 40px;
   margin-bottom: 24px;
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(22, 64, 111, .045);
 }
-.wws-glauben h2 { margin-bottom: 22px; display: flex; align-items: center; gap: 12px; }
-.wws-glauben h2 .ico { color: var(--akzent); }
-.wws-glauben ul { list-style: none; columns: 2; column-gap: 40px; margin-bottom: 24px; }
-@media (max-width: 700px) { .wws-glauben { padding: 28px; } .wws-glauben ul { columns: 1; } }
+.wws-glauben h2 {
+  display: flex; align-items: center; gap: 18px;
+  margin-bottom: 22px;
+  font-size: clamp(1.8rem, 3.4vw, 2.65rem);
+  font-weight: 800; letter-spacing: -.035em;
+}
+.wws-glauben h2 .ico {
+  width: 56px; height: 56px; padding: 13px;
+  flex-shrink: 0; color: var(--akzent);
+  background: var(--flaeche-3); border-radius: 16px;
+}
+.wws-glauben ul {
+  list-style: none;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(6, auto); grid-auto-flow: column;
+  column-gap: 48px; margin-bottom: 36px;
+}
 .wws-glauben ul li {
-  break-inside: avoid;
-  display: flex; gap: 12px; align-items: flex-start;
-  padding: 7px 0;
-  color: var(--text); line-height: 1.6;
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--linie);
+  color: var(--text); line-height: 1.65;
 }
 .wws-glauben ul li::before {
-  content: '';
-  width: 6px; height: 6px; margin-top: .58em;
-  border-radius: 50%; background: var(--akzent); flex-shrink: 0;
+  content: ''; flex-shrink: 0;
+  width: 7px; height: 7px; margin: .62em 5px 0;
+  border-radius: 50%; background: var(--akzent);
+  box-shadow: 0 0 0 5px var(--flaeche-3);
 }
+.wws-glauben ul li:nth-child(6),
+.wws-glauben ul li:last-child { border-bottom: 0; }
 .wws-glauben .darum {
-  font-size: 1.05rem; font-weight: 650; color: #fff;
-  background: var(--blau);
-  border-radius: var(--r-feld);
-  padding: 16px 20px;
+  margin: 0 -40px -40px; padding: 30px 40px;
+  border-top: 1px solid var(--linie);
+  background: var(--flaeche-3); color: var(--blau-tief);
+  font-size: clamp(1.2rem, 2.2vw, 1.65rem);
+  font-weight: 750; letter-spacing: -.02em; line-height: 1.4;
+}
+@media (max-width: 700px) {
+  .wws-glauben { padding: 24px; border-radius: 20px; }
+  .wws-glauben h2 { gap: 14px; margin-bottom: 12px; }
+  .wws-glauben h2 .ico { width: 46px; height: 46px; padding: 10px; border-radius: 13px; }
+  .wws-glauben ul {
+    grid-template-columns: 1fr; grid-template-rows: none;
+    grid-auto-flow: row; margin-bottom: 24px;
+  }
+  .wws-glauben ul li { padding: 16px 0; gap: 14px; }
+  .wws-glauben ul li:nth-child(6) { border-bottom: 1px solid var(--linie); }
+  .wws-glauben .darum { margin: 0 -24px -24px; padding: 24px; }
 }
 
 .history-bar {
@@ -1656,6 +1687,9 @@ a.predigt-row:hover .predigt-play { background: var(--blau); border-color: var(-
 }
 .history-year { font-size: 2.2rem; font-weight: 700; color: var(--akzent); line-height: 1; flex-shrink: 0; }
 .history-bar p { color: var(--text-leise); }
+@media (max-width: 620px) {
+  .history-bar { flex-direction: column; align-items: flex-start; gap: 14px; padding: 24px; }
+}
 
 /* ─── Gottesdienst Live ──────────────────────────── */
 .livestream-wrap {
