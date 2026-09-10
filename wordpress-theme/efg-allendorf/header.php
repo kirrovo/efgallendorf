@@ -10,6 +10,12 @@
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<?php if ( ! has_site_icon() ) : ?>
+	<link rel="icon" type="image/png" sizes="16x16" href="<?php echo esc_url( get_template_directory_uri() . '/assets/favicon/transparent/favicon-16.png' ); ?>" />
+	<link rel="icon" type="image/png" sizes="32x32" href="<?php echo esc_url( get_template_directory_uri() . '/assets/favicon/transparent/favicon-32.png' ); ?>" />
+	<link rel="apple-touch-icon" sizes="180x180" href="<?php echo esc_url( get_template_directory_uri() . '/assets/favicon/white/favicon-180.png' ); ?>" />
+	<link rel="manifest" href="<?php echo esc_url( get_template_directory_uri() . '/assets/favicon/site.webmanifest' ); ?>" />
+	<?php endif; ?>
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>

@@ -1,0 +1,16 @@
+{
+  "name": "Evangelische Freie Gemeinde Allendorf",
+  "short_name": "EFG Allendorf",
+  "icons": [
+    {
+      "src": "white/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "white/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
