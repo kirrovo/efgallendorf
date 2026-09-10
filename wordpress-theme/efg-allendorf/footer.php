@@ -69,6 +69,7 @@ $gruppen_url = get_post_type_archive_link( 'gruppe' );
 					<a href="<?php echo esc_url( $impr_url ); ?>">Impressum</a>
 					<a href="<?php echo esc_url( $daten_url ); ?>">Datenschutzerklärung</a>
 				</div>
+				<a class="footer-credit" href="mailto:info@kirrovo.marketing?body=Hallo%2C%0D%0AIch%20habe%20die%20Website%20von%20EFG%20Allendorf%20gesehen%20und%20w%C3%A4re%20auch%20an%20einer%20Zusammenarbeit%20interessiert%21%0D%0AIch%20bitte%20um%20R%C3%BCckmeldung.">Erstellt von kirrovo</a>
 			</div>
 		</div>
 

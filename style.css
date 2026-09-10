@@ -1806,6 +1806,8 @@ footer#site-footer { padding: 0 24px 24px; }
 }
 .footer-bottom a { color: var(--text-leise); transition: color .2s; }
 .footer-bottom a:hover { color: var(--akzent); }
+.footer-credit { white-space: nowrap; text-underline-offset: 3px; }
+.footer-credit:hover { text-decoration: underline; }
 .footer-social { display: flex; align-items: center; gap: 18px; }
 .footer-social a { display: flex; color: var(--text-leise); }
 .footer-social a:hover { color: var(--akzent); }
