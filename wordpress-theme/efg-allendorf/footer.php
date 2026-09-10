@@ -41,7 +41,6 @@ $gruppen_url = get_post_type_archive_link( 'gruppe' );
 
 				<div class="footer-col">
 					<h4>Angebote</h4>
-					<a href="<?php echo esc_url( home_url( '/#veranstaltungen' ) ); ?>">Veranstaltungen</a>
 					<a href="<?php echo esc_url( $gruppen_url ); ?>">Gruppen</a>
 					<a href="<?php echo esc_url( home_url( '/#predigten' ) ); ?>">Predigten</a>
 					<a href="<?php echo esc_url( $kal_url ); ?>">Kalender</a>

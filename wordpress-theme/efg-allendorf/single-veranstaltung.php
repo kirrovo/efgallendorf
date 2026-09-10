@@ -28,7 +28,7 @@ while ( have_posts() ) :
 
 	<section class="section">
 		<div class="section-inner">
-			<a href="<?php echo esc_url( home_url( '/#veranstaltungen' ) ); ?>" class="back-btn">Zurück zur Startseite</a>
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="back-btn">Zurück zur Startseite</a>
 
 			<div class="detail-grid">
 				<div class="detail-content">

@@ -15,7 +15,7 @@ $kal_url     = ( $p = get_page_by_path( 'kalender' ) ) ? get_permalink( $p ) : '
 
 <!-- ══════════════════ HERO ══════════════════════════ -->
 <?php
-$gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_permalink( $p ) : '#veranstaltungen';
+$gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_permalink( $p ) : '#kalender';
 ?>
 <section class="hero">
 	<div class="hero-inner hero-auftritt">
@@ -35,7 +35,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 		<p class="lead">Eine christliche Gemeinschaft in Allendorf. Menschen verschiedener Generationen, verbunden durch den Glauben.</p>
 
 		<div class="hero-ctas">
-			<a href="#veranstaltungen" class="btn btn-blau">Nächste Veranstaltungen</a>
+			<a href="#kalender" class="btn btn-blau">Unsere Woche</a>
 			<a href="<?php echo esc_url( $wer_url ); ?>" class="btn btn-sekundaer">Wer wir sind</a>
 		</div>
 	</div>
@@ -76,64 +76,6 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 		</div>
 	</div>
 </div>
-
-<!-- ══════════════════ VERANSTALTUNGEN ═══════════════ -->
-<section class="section" id="veranstaltungen">
-	<div class="section-inner">
-		<div class="section-kopf-reihe">
-			<div>
-				<h2>Veranstaltungen</h2>
-				<p>Was bei uns gerade ansteht: Gottesdienste, Bibeltage und Gemeindeabende.</p>
-			</div>
-			<a href="<?php echo esc_url( $kal_url ); ?>" class="text-link">Alle Termine <?php efga_ico( 'pfeil-rechts', 'ico-sm' ); ?></a>
-		</div>
-
-		<div class="events-grid">
-			<?php
-			$events = new WP_Query( array(
-				'post_type'      => 'veranstaltung',
-				'posts_per_page' => 6,
-				'orderby'        => 'menu_order date',
-				'order'          => 'ASC',
-			) );
-			if ( $events->have_posts() ) :
-				while ( $events->have_posts() ) : $events->the_post();
-					$day   = efga_get( 'efga_date_day' );
-					$month = efga_get( 'efga_date_month' );
-					$time  = efga_get( 'efga_time' );
-					$tag   = efga_get( 'efga_tag' );
-					$link  = efga_get( 'efga_link' );
-					$link  = $link ? $link : get_permalink();
-					?>
-					<article class="event-card">
-						<span class="event-glanz" aria-hidden="true"></span>
-						<span class="event-koernung" aria-hidden="true"></span>
-						<div class="event-date-bar">
-							<div class="event-date-box">
-								<span class="day"><?php echo esc_html( $day ); ?></span>
-								<span class="month"><?php echo esc_html( $month ); ?></span>
-							</div>
-							<div class="event-title-bar">
-								<strong><?php the_title(); ?></strong>
-								<span><?php echo esc_html( $time ); ?></span>
-							</div>
-						</div>
-						<div class="event-body">
-							<?php if ( $tag ) : ?><span class="event-tag"><?php echo esc_html( $tag ); ?></span><?php endif; ?>
-							<p><?php echo wp_kses_post( get_the_content() ); ?></p>
-							<a href="<?php echo esc_url( $link ); ?>" class="event-link">Mehr erfahren <?php efga_ico( 'pfeil-rechts', 'ico-sm' ); ?></a>
-						</div>
-					</article>
-					<?php
-				endwhile;
-				wp_reset_postdata();
-			else :
-				echo '<p class="leise">Aktuell sind keine Veranstaltungen eingetragen. Lege im WordPress-Admin unter <strong>Veranstaltungen</strong> welche an.</p>';
-			endif;
-			?>
-		</div>
-	</div>
-</section>
 
 <!-- ══════════════════ WER WIR SIND ══════════════════ -->
 <section class="section section-alt" id="wer-wir-sind">

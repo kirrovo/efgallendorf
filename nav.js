@@ -188,7 +188,6 @@ function renderFooter(depth) {
 
           <div class="footer-col">
             <h4>Angebote</h4>
-            <a href="${r}index.html#veranstaltungen">Veranstaltungen</a>
             <a href="${r}gruppen.html">Gruppen</a>
             <a href="${r}index.html#predigten">Predigten</a>
             <a href="${r}index.html#kalender">Kalender</a>
