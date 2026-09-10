@@ -108,7 +108,6 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 					<article class="event-card">
 						<span class="event-glanz" aria-hidden="true"></span>
 						<span class="event-koernung" aria-hidden="true"></span>
-						<span class="event-saum" aria-hidden="true"></span>
 						<div class="event-date-bar">
 							<div class="event-date-box">
 								<span class="day"><?php echo esc_html( $day ); ?></span>
