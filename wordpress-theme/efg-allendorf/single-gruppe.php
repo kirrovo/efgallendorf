@@ -25,12 +25,12 @@ while ( have_posts() ) :
 
 	/*
 	 * Bildquelle: Beitragsbild der Gruppe hat Vorrang. Ist keins gesetzt,
-	 * greift das mitgelieferte Stockfoto aus assets/img/angebote/<slug>.jpg.
+	 * greift das mitgelieferte Stockfoto aus assets/img/angebote/<slug>.webp.
 	 * Die Bilder liegen lokal im Theme, es wird nichts von Pexels nachgeladen.
 	 */
 	$bild_alt     = efga_get( 'efga_bild_alt', get_the_title() );
-	$fallback     = get_template_directory() . '/assets/img/angebote/' . get_post_field( 'post_name' ) . '.jpg';
-	$fallback_url = get_template_directory_uri() . '/assets/img/angebote/' . get_post_field( 'post_name' ) . '.jpg';
+	$fallback     = get_template_directory() . '/assets/img/angebote/' . get_post_field( 'post_name' ) . '.webp';
+	$fallback_url = get_template_directory_uri() . '/assets/img/angebote/' . get_post_field( 'post_name' ) . '.webp';
 
 	/*
 	 * Angebots-Hero: Bildkarte mit Rasterstruktur. Ohne Bild bleibt der
@@ -50,7 +50,7 @@ while ( have_posts() ) :
 		</div>
 		<div class="angebot-hero">
 			<div class="angebot-hero-karte">
-				<img src="<?php echo esc_url( $hero_bild ); ?>" width="1400" height="790" fetchpriority="high" alt="<?php echo esc_attr( $bild_alt ); ?>" />
+				<img src="<?php echo esc_url( $hero_bild ); ?>"<?php efga_responsive_attrs( $hero_bild, '(max-width: 1240px) calc(100vw - 40px), 1160px' ); ?> width="1400" height="790" fetchpriority="high" alt="<?php echo esc_attr( $bild_alt ); ?>" decoding="async" />
 				<div class="angebot-hero-inhalt">
 					<?php if ( $badge ) : ?>
 					<span class="angebot-hero-pille">

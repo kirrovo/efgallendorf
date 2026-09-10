@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /wordpress-theme/
+Disallow: /scripts/
+Disallow: /tests/
+Disallow: /lib/
+Disallow: /data/
+
+Sitemap: https://efgallendorf.vercel.app/sitemap.xml

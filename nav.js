@@ -56,11 +56,14 @@ function ico(name, extra) {
 function renderNav(activePage, depth) {
   const r = getRelPath(depth);
   renderIcons();
+  if (document.getElementById('site-header').dataset.rendered === 'true') {
+    initNavToggle(); decodeContacts(); return;
+  }
 
   document.getElementById('site-header').innerHTML = `
     <div class="nav-inner">
       <a href="${r}index.html" class="logo">
-        <img src="${r}efga-logo_new-e1520008237499.png" alt="Evangelische Freie Gemeinde Allendorf, Startseite" />
+        <img src="${r}bilder/logo.webp" width="364" height="116" alt="Evangelische Freie Gemeinde Allendorf, Startseite" />
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hauptnavigation">
         ${ico('menue', 'ico-menue')}${ico('schliessen', 'ico-schliessen')}
@@ -165,6 +168,7 @@ function decodeContacts() {
 document.addEventListener('DOMContentLoaded', decodeContacts);
 
 function renderFooter(depth) {
+  if (document.getElementById('site-footer').dataset.rendered === 'true') return;
   const r = getRelPath(depth);
   document.getElementById('site-footer').innerHTML = `
     <div class="footer-karte">
@@ -225,3 +229,11 @@ function renderFooter(depth) {
   decodeContacts();
 }
 
+
+// Navigation und Kontakte stehen bereits im HTML; JavaScript ergänzt Bedienung.
+document.addEventListener('DOMContentLoaded', () => {
+  if (document.body.hasAttribute('data-nav-active')) {
+    renderNav(document.body.dataset.navActive, Number(document.body.dataset.navDepth));
+    renderFooter(Number(document.body.dataset.navDepth));
+  }
+});

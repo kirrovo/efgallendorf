@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Direktaufruf verhindern.
 }
 
-define( 'EFGA_VERSION', '1.0.30' );
+define( 'EFGA_VERSION', '1.0.31' );
 
 /* ════════════════════════════════════════════════════════
    1. THEME-SETUP
@@ -57,12 +57,12 @@ add_filter( 'wp_nav_menu_objects', 'efga_public_menu_items' );
    2. STYLES & SCRIPTS
    ════════════════════════════════════════════════════════ */
 function efga_assets() {
-	wp_enqueue_style( 'efga-style', get_stylesheet_uri(), array(), EFGA_VERSION );
-	wp_enqueue_script( 'efga-contacts', get_template_directory_uri() . '/assets/js/contacts.js', array(), EFGA_VERSION, true );
-	wp_enqueue_script( 'efga-nav', get_template_directory_uri() . '/assets/js/nav.js', array(), EFGA_VERSION, true );
-	wp_enqueue_script( 'efga-effekte', get_template_directory_uri() . '/assets/js/effekte.js', array(), EFGA_VERSION, true );
+	wp_enqueue_style( 'efga-style', get_template_directory_uri() . '/assets/css/site.min.css', array(), EFGA_VERSION );
+	wp_enqueue_script( 'efga-contacts', get_template_directory_uri() . '/assets/js/contacts.min.js', array(), EFGA_VERSION, true );
+	wp_enqueue_script( 'efga-nav', get_template_directory_uri() . '/assets/js/nav.min.js', array(), EFGA_VERSION, true );
+	wp_enqueue_script( 'efga-effekte', get_template_directory_uri() . '/assets/js/effekte.min.js', array(), EFGA_VERSION, true );
 	if ( is_front_page() ) {
-		wp_enqueue_script( 'efga-predigten', get_template_directory_uri() . '/assets/js/predigten.js', array(), EFGA_VERSION, true );
+		wp_enqueue_script( 'efga-predigten', get_template_directory_uri() . '/assets/js/predigten.min.js', array(), EFGA_VERSION, true );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'efga_assets' );
@@ -365,3 +365,5 @@ function efga_default_menu() {
    ════════════════════════════════════════════════════════ */
 require get_template_directory() . '/inc/seed-content.php';
 add_action( 'after_switch_theme', 'efga_seed_content' );
+
+require get_template_directory() . '/inc/seo.php';

@@ -196,3 +196,22 @@ Gemeindefoto und die unbenutzte Gemeindehausaufnahme unter `../Bildbearbeitung/`
 Die veraltete lokale Ruby-/Claude-Startkonfiguration wurde entfernt.
 Theme-Templates, Quellcode, YouTube-Tests, Deployment-Konfiguration und dieses
 installierbare Theme-Paket bleiben Bestandteil des Projekts.
+
+
+## Geschwindigkeit, SEO und Besucherantworten (1.0.31)
+
+- Gruppenbilder in WebP mit 480/960/1400-Pixel-Varianten; Gemeinde- und
+  Livestreammotiv mit 640/1024/1672-Pixel-Varianten. Native Beitragsbilder
+  können weiterhin im WordPress-Backend gepflegt werden.
+- Gebündelte minimierte CSS-/JS-Dateien, Bildabmessungen und priorisierte
+  Hero-Bilder. Menü und Footer werden in WordPress weiterhin serverseitig gerendert.
+- Metabeschreibungen, Social-Metadaten, Gemeinde-/Website-/Seiten- und
+  Breadcrumb-Strukturdaten über inc/seo.php. Canonical-URLs nutzen die tatsächliche
+  WordPress-Adresse. Bei Yoast, Rank Math oder AIOSEO überlässt das Theme die
+  SEO-Metadaten dem Plugin, um Duplikate zu vermeiden.
+- Fünf sichtbare Besucherfragen auf der Startseite, mit übereinstimmendem
+  FAQ-Markup. Das ist keine Garantie für Rich Results oder KI-Zitate.
+- Die WordPress-Core-Sitemap bleibt unter /wp-sitemap.xml zuständig.
+- Stammdaten/Fragen werden aus inc/site.json gelesen; die zentrale Quelle
+  für das gesamte Projekt ist data/site.json im Website-Ordner. Nach Änderungen
+  dort npm run build ausführen und das Theme-ZIP neu packen.

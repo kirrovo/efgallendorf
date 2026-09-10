@@ -21,7 +21,7 @@ get_template_part( 'template-parts/page-hero', null, array(
 		<a href="https://www.youtube.com/@efgallendorf/live" target="_blank" rel="noopener noreferrer"
 		   class="livestream-wrap" style="display:block;">
 			<div class="livestream-buehne">
-				<img class="livestream-standbild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/livestream-bibel.webp' ); ?>" width="1672" height="941" fetchpriority="high" alt="Offene Bibel auf einem Holztisch im warmen Morgenlicht" />
+				<img class="livestream-standbild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/livestream-bibel.webp' ); ?>"<?php efga_responsive_attrs( get_template_directory_uri() . '/assets/img/livestream-bibel.webp', '(max-width: 1240px) calc(100vw - 40px), 1160px' ); ?> width="1672" height="941" fetchpriority="high" alt="Offene Bibel auf einem Holztisch im warmen Morgenlicht" decoding="async" />
 				<span class="livestream-play"><?php efga_ico( 'play' ); ?></span>
 				<div>
 					<strong>Jetzt live auf YouTube ansehen</strong>

@@ -48,11 +48,10 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 				'alt'           => 'Menschen der Gemeinde Allendorf beim gemeinsamen Gruppenfoto',
 			) );
 		} else {
-			printf(
-				'<img src="%s" width="1672" height="941" fetchpriority="high" alt="%s" />',
-				esc_url( get_template_directory_uri() . '/assets/img/gemeinde-aktuell.webp' ),
-				esc_attr( 'Menschen der Gemeinde Allendorf beim gemeinsamen Gruppenfoto' )
-			);
+            $photo = get_template_directory_uri() . '/assets/img/gemeinde-aktuell.webp';
+            echo '<img src="' . esc_url($photo) . '" width="1672" height="941" fetchpriority="high" decoding="async" alt="Menschen der Gemeinde Allendorf beim gemeinsamen Gruppenfoto"';
+            efga_responsive_attrs($photo, '(max-width: 1040px) calc(100vw - 40px), 980px');
+            echo ' />';
 		}
 		?>
 	</div>
@@ -92,7 +91,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 						<?php efga_ico( 'buch' ); ?>
 						<span class="nummer" aria-hidden="true">01</span>
 					</div>
-					<h4>Glaubensbekenntnis</h4>
+					<h3>Glaubensbekenntnis</h3>
 					<p>Woran wir glauben und warum. Zwölf Sätze, die unsere Grundlage beschreiben.</p>
 					<span class="mehr">Ansehen <?php efga_ico( 'pfeil-rechts', 'ico-sm' ); ?></span>
 				</a>
@@ -101,7 +100,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 						<?php efga_ico( 'herz' ); ?>
 						<span class="nummer" aria-hidden="true">02</span>
 					</div>
-					<h4>Leitbild und Werte</h4>
+					<h3>Leitbild und Werte</h3>
 					<p>Was wir wollen und wofür wir uns treffen. Unsere Grundsätze im Alltag.</p>
 					<span class="mehr">Ansehen <?php efga_ico( 'pfeil-rechts', 'ico-sm' ); ?></span>
 				</a>
@@ -110,7 +109,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 						<?php efga_ico( 'chronik' ); ?>
 						<span class="nummer" aria-hidden="true">03</span>
 					</div>
-					<h4>Chronik</h4>
+					<h3>Chronik</h3>
 					<p>Seit 1884 in Allendorf. Aus der Gemeinschaftsbewegung wurde eine Ortsgemeinde.</p>
 					<span class="mehr">Ansehen <?php efga_ico( 'pfeil-rechts', 'ico-sm' ); ?></span>
 				</a>
@@ -119,7 +118,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 						<?php efga_ico( 'personen' ); ?>
 						<span class="nummer" aria-hidden="true">04</span>
 					</div>
-					<h4>Gemeindeleitung</h4>
+					<h3>Gemeindeleitung</h3>
 					<p>Die Menschen, die Verantwortung tragen, mit Namen und Kontakt.</p>
 					<span class="mehr">Ansehen <?php efga_ico( 'pfeil-rechts', 'ico-sm' ); ?></span>
 				</a>
@@ -165,8 +164,8 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 					'zeit'  => efga_get( 'efga_schedule', $badge ),
 					'bild'  => has_post_thumbnail()
 						? get_the_post_thumbnail_url( null, 'large' )
-						: ( file_exists( get_template_directory() . '/assets/img/angebote/' . get_post_field( 'post_name' ) . '.jpg' )
-							? get_template_directory_uri() . '/assets/img/angebote/' . get_post_field( 'post_name' ) . '.jpg'
+						: ( file_exists( get_template_directory() . '/assets/img/angebote/' . get_post_field( 'post_name' ) . '.webp' )
+							? get_template_directory_uri() . '/assets/img/angebote/' . get_post_field( 'post_name' ) . '.webp'
 							: '' ),
 				);
 			}
@@ -198,7 +197,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 				<a href="<?php echo esc_url( $gruppen_url . '#' . $anker ); ?>" class="bereich-karte">
 					<?php if ( $bild ) : ?>
 					<div class="bereich-karte-bild">
-						<img src="<?php echo esc_url( $bild ); ?>" width="1400" height="790" loading="lazy" alt="" />
+						<img src="<?php echo esc_url( $bild ); ?>"<?php efga_responsive_attrs( $bild, '(max-width: 1240px) calc(100vw - 40px), 1160px' ); ?> width="1400" height="790" loading="lazy" alt="" decoding="async" />
 					</div>
 					<?php endif; ?>
 					<div class="bereich-karte-inhalt">
@@ -256,7 +255,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 		  <article class="woche-karte" data-wochentag="0">
 		    <div class="woche-karte-kopf">
 		      <span class="tag">Sonntag</span>
-		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/gottesdienst.jpg' ); ?>" width="1400" height="790" alt="" loading="lazy" decoding="async" />
+		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/gottesdienst.webp' ); ?>"<?php efga_responsive_attrs( get_template_directory_uri() . '/assets/img/angebote/gottesdienst.webp', '(max-width: 620px) 180px, 280px' ); ?> width="1400" height="790" alt="" loading="lazy" decoding="async" />
 		    </div>
 		    <div class="woche-karte-koerper">
 		      <h3><a class="woche-hauptlink" href="<?php echo esc_url( $gruppen_url ); ?>/gottesdienst/">Gottesdienst</a> und <a class="woche-zweitlink" href="<?php echo esc_url( $gruppen_url ); ?>/kindergottesdienst/">Kindergottesdienst</a></h3>
@@ -274,7 +273,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 		  <article class="woche-karte" data-wochentag="1">
 		    <div class="woche-karte-kopf">
 		      <span class="tag">Montag</span>
-		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/frauengebetskreis.jpg' ); ?>" width="1400" height="790" alt="" loading="lazy" decoding="async" />
+		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/frauengebetskreis.webp' ); ?>"<?php efga_responsive_attrs( get_template_directory_uri() . '/assets/img/angebote/frauengebetskreis.webp', '(max-width: 620px) 180px, 280px' ); ?> width="1400" height="790" alt="" loading="lazy" decoding="async" />
 		    </div>
 		    <div class="woche-karte-koerper">
 		      <h3><a class="woche-hauptlink" href="<?php echo esc_url( $gruppen_url ); ?>/frauengebetskreis/">Frauengebetskreis</a></h3>
@@ -291,7 +290,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 		  <article class="woche-karte" data-wochentag="2">
 		    <div class="woche-karte-kopf">
 		      <span class="tag">Dienstag</span>
-		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/wilde-fuechse.jpg' ); ?>" width="1400" height="790" alt="" loading="lazy" decoding="async" />
+		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/wilde-fuechse.webp' ); ?>"<?php efga_responsive_attrs( get_template_directory_uri() . '/assets/img/angebote/wilde-fuechse.webp', '(max-width: 620px) 180px, 280px' ); ?> width="1400" height="790" alt="" loading="lazy" decoding="async" />
 		    </div>
 		    <div class="woche-karte-koerper">
 		      <h3><a class="woche-hauptlink" href="<?php echo esc_url( $gruppen_url ); ?>/wilde-fuechse/">Wilde Füchse</a></h3>
@@ -308,7 +307,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 		  <article class="woche-karte" data-wochentag="3">
 		    <div class="woche-karte-kopf">
 		      <span class="tag">Mittwoch</span>
-		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/bibelstunde.jpg' ); ?>" width="1400" height="790" alt="" loading="lazy" decoding="async" />
+		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/bibelstunde.webp' ); ?>"<?php efga_responsive_attrs( get_template_directory_uri() . '/assets/img/angebote/bibelstunde.webp', '(max-width: 620px) 180px, 280px' ); ?> width="1400" height="790" alt="" loading="lazy" decoding="async" />
 		    </div>
 		    <div class="woche-karte-koerper">
 		      <h3><a class="woche-hauptlink" href="<?php echo esc_url( $gruppen_url ); ?>/glv/">GLV</a> und <a class="woche-zweitlink" href="<?php echo esc_url( $gruppen_url ); ?>/bibelstunde/">Bibelstunde</a></h3>
@@ -326,7 +325,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 		  <article class="woche-karte" data-wochentag="4">
 		    <div class="woche-karte-kopf">
 		      <span class="tag">Donnerstag</span>
-		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/knallerbsen.jpg' ); ?>" width="1400" height="790" alt="" loading="lazy" decoding="async" />
+		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/knallerbsen.webp' ); ?>"<?php efga_responsive_attrs( get_template_directory_uri() . '/assets/img/angebote/knallerbsen.webp', '(max-width: 620px) 180px, 280px' ); ?> width="1400" height="790" alt="" loading="lazy" decoding="async" />
 		    </div>
 		    <div class="woche-karte-koerper">
 		      <h3><a class="woche-hauptlink" href="<?php echo esc_url( $gruppen_url ); ?>/knallerbsen/">Knallerbsen</a></h3>
@@ -343,7 +342,7 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 		  <article class="woche-karte" data-wochentag="5">
 		    <div class="woche-karte-kopf">
 		      <span class="tag">Freitag</span>
-		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/crossroad.jpg' ); ?>" width="1400" height="790" alt="" loading="lazy" decoding="async" />
+		      <img class="woche-karte-bild" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/angebote/crossroad.webp' ); ?>"<?php efga_responsive_attrs( get_template_directory_uri() . '/assets/img/angebote/crossroad.webp', '(max-width: 620px) 180px, 280px' ); ?> width="1400" height="790" alt="" loading="lazy" decoding="async" />
 		    </div>
 		    <div class="woche-karte-koerper">
 		      <h3><a class="woche-hauptlink" href="<?php echo esc_url( $gruppen_url ); ?>/crossroad/">Crossroad</a> und <a class="woche-zweitlink" href="<?php echo esc_url( $gruppen_url ); ?>/biblischer-unterricht/">Biblischer Unterricht</a></h3>
@@ -363,6 +362,8 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 	</div>
 </section>
 
+
+<?php efga_visitor_questions(); ?>
 
 <!-- ══════════════════ KONTAKT ═══════════════════════ -->
 <section class="section section-alt" id="kontakt">

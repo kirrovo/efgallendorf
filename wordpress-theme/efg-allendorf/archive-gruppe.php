@@ -37,11 +37,11 @@ $kontakt_url = ( $p = get_page_by_path( 'kontakt' ) ) ? get_permalink( $p ) : ho
 			while ( $fan->have_posts() ) {
 				$fan->the_post();
 				$slug = get_post_field( 'post_name' );
-				$datei = get_template_directory() . '/assets/img/angebote/' . $slug . '.jpg';
+				$datei = get_template_directory() . '/assets/img/angebote/' . $slug . '.webp';
 				if ( has_post_thumbnail() ) {
 					$bild = get_the_post_thumbnail_url( null, 'medium_large' );
 				} elseif ( file_exists( $datei ) ) {
-					$bild = get_template_directory_uri() . '/assets/img/angebote/' . $slug . '.jpg';
+					$bild = get_template_directory_uri() . '/assets/img/angebote/' . $slug . '.webp';
 				} else {
 					continue; // ohne Bild keine Fächerkarte
 				}
@@ -55,7 +55,7 @@ $kontakt_url = ( $p = get_page_by_path( 'kontakt' ) ) ? get_permalink( $p ) : ho
 			<div class="faecher-buehne">
 				<?php foreach ( $fan_karten as $k ) : ?>
 					<a class="faecher-karte" href="<?php echo esc_url( $k['url'] ); ?>">
-						<img src="<?php echo esc_url( $k['bild'] ); ?>" width="400" height="533" loading="lazy" alt="" />
+						<img src="<?php echo esc_url( $k['bild'] ); ?>"<?php efga_responsive_attrs( $k['bild'], '320px' ); ?> width="400" height="533" loading="lazy" alt="" decoding="async" />
 						<span class="faecher-titel"><?php echo esc_html( $k['titel'] ); ?></span>
 					</a>
 				<?php endforeach; ?>

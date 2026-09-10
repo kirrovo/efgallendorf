@@ -1,0 +1,39 @@
+{
+  "url": "https://efgallendorf.vercel.app",
+  "name": "Evangelische Freie Gemeinde Allendorf",
+  "shortName": "EFG Allendorf",
+  "email": "info@eg-allendorf.de",
+  "street": "Heimlingstraße 3",
+  "postalCode": "35753",
+  "locality": "Greifenstein-Allendorf",
+  "youtube": "https://www.youtube.com/@efgallendorf",
+  "faq": [
+    {"question":"Wann findet der Gottesdienst statt?","answer":"Der Gottesdienst der EFG Allendorf beginnt jeden Sonntag um 10:00 Uhr im Gemeindehaus in der Heimlingstraße 3 in 35753 Greifenstein-Allendorf. Jeder ist willkommen.","link":"gruppen/gottesdienst.html","label":"Mehr zum Gottesdienst"},
+    {"question":"Gibt es einen Kindergottesdienst?","answer":"Ja. Der Kindergottesdienst ist für Kinder von 3 bis 12 Jahren und findet sonntags von 10:30 bis 11:30 Uhr statt. Die Kinder erleben Lieder, Geschichten aus der Bibel, Basteln und Spiele.","link":"gruppen/kindergottesdienst.html","label":"Zum Kindergottesdienst"},
+    {"question":"Kann ich den Gottesdienst online ansehen?","answer":"Ja. Der Sonntagsgottesdienst wird auf dem YouTube-Kanal der EFG Allendorf übertragen. Auf der Startseite findest du außerdem die drei neuesten Videos des Kanals.","link":"gottesdienst-live.html","label":"Zum Livestream"},
+    {"question":"Welche Gruppen gibt es in der Gemeinde?","answer":"Die EFG Allendorf bietet Gruppen für Kinder, Jugendliche, junge Erwachsene, Frauen, Männer und Senioren. Dazu kommen Hauskreise, Bibelstunde, GLV und Gebetskreise. Treffzeiten und Ansprechpartner stehen auf den jeweiligen Gruppenseiten.","link":"gruppen.html","label":"Alle Gruppen ansehen"},
+    {"question":"Wie kann ich Kontakt aufnehmen?","answer":"Du erreichst die Gemeinde per E-Mail unter info@eg-allendorf.de. Für Fragen zu einem bestimmten Angebot findest du den direkten Kontakt zur Gruppenleitung auf der jeweiligen Gruppenseite.","link":"mailto:info@eg-allendorf.de","label":"E-Mail schreiben"}
+  ],
+  "pages": {
+    "index.html":{"title":"EFG Allendorf – Gemeinde in Greifenstein | Gottesdienst","description":"Evangelische Freie Gemeinde in Greifenstein-Allendorf: Gottesdienst sonntags um 10 Uhr, Kindergottesdienst, Gruppen und Livestream. Lerne uns kennen."},
+    "wer-wir-sind.html":{"title":"Wer wir sind | EFG Allendorf in Greifenstein","description":"Die EFG Allendorf in Greifenstein: eine christliche Gemeinde seit 1884. Erfahre mehr über unseren Glauben, unser Leitbild und die Gemeindeleitung."},
+    "gruppen.html":{"title":"Gruppen und Kreise in Greifenstein | EFG Allendorf","description":"Entdecke 14 Gruppen der EFG Allendorf für Kinder, Jugendliche und Erwachsene. Alle Angebote mit Treffzeiten, Ort und direktem Kontakt zur Gruppenleitung."},
+    "gottesdienst-live.html":{"title":"Gottesdienst live auf YouTube | EFG Allendorf","description":"Feiere den Gottesdienst der EFG Allendorf online mit: sonntags ab 10 Uhr auf YouTube. Hier geht es zum Livestream aus Greifenstein-Allendorf."},
+    "impressum.html":{"title":"Impressum | EFG Allendorf","description":"Impressum der Evangelischen Freien Gemeinde Allendorf: Verantwortliche, Anschrift und Kontaktdaten der Gemeinde in Greifenstein-Allendorf."},
+    "datenschutz.html":{"title":"Datenschutzerklärung | EFG Allendorf","description":"Informationen zum Datenschutz auf der Website der Evangelischen Freien Gemeinde Allendorf und zu deinen Rechten bei der Verarbeitung personenbezogener Daten."},
+    "gruppen/gottesdienst.html":{"description":"Gottesdienst in Greifenstein-Allendorf: jeden Sonntag um 10 Uhr in der Heimlingstraße 3. Lieder, Gebet und Predigt – jeder ist willkommen."},
+    "gruppen/kindergottesdienst.html":{"description":"Kindergottesdienst der EFG Allendorf für Kinder von 3 bis 12 Jahren: sonntags 10:30–11:30 Uhr. Mit Liedern, Bibelgeschichten, Basteln und Spielen."},
+    "gruppen/glv.html":{"description":"GLV – Glauben, Leben, Verstehen bei der EFG Allendorf: alle 14 Tage mittwochs gemeinsam über Glaubensfragen nachdenken. Treffzeiten und Kontakt."},
+    "gruppen/bibelstunde.html":{"description":"Bibelstunde der EFG Allendorf in Greifenstein: gemeinsam singen, Bibel lesen und Glauben im Alltag leben. Alle 14 Tage mittwochs. Infos und Kontakt."},
+    "gruppen/hauskreise.html":{"description":"Hauskreise der EFG Allendorf: in kleinen Gruppen Leben und Glauben teilen. Treffen alle 14 Tage nach Absprache. Hier findest du den Kontakt."},
+    "gruppen/kaffee-und-muesli.html":{"description":"Kaffee und Müsli: Frauenfrühstück der EFG Allendorf mit Austausch, Lobpreis und biblischem Impuls. Monatlich samstags um 9 Uhr. Infos und Kontakt."},
+    "gruppen/frauengebetskreis.html":{"description":"Frauengebetskreis der EFG Allendorf: gemeinsam beten, singen und in der Bibel lesen. Alle 14 Tage montags im Gemeindehaus. Treffzeiten und Kontakt."},
+    "gruppen/maennertreffen.html":{"description":"Männertreffen der EFG Allendorf: Gemeinschaft, gutes Essen, Sport und Gespräche. Vierteljährlich nach Absprache. Informationen und direkter Kontakt."},
+    "gruppen/seniorenarbeit.html":{"description":"Seniorenarbeit der EFG Allendorf: Seniorenkaffee, Andacht, Gemeinschaft und Besuchsdienst. Erfahre mehr über Angebote und Ansprechpartner."},
+    "gruppen/knallerbsen.html":{"description":"Knallerbsen – Jungschar der EFG Allendorf: donnerstags von 16:15 bis 17:45 Uhr. Hier findest du Informationen zur Gruppe und den direkten Kontakt."},
+    "gruppen/wilde-fuechse.html":{"description":"Wilde Füchse – Jungschar der EFG Allendorf: dienstags von 17:00 bis 18:30 Uhr. Entdecke die Gruppe und nimm Kontakt zur Gruppenleitung auf."},
+    "gruppen/biblischer-unterricht.html":{"description":"Biblischer Unterricht bei der EFG Allendorf: gemeinsam den Glauben entdecken. Der nächste Kurs startet im Frühjahr 2028. Informationen und Kontakt."},
+    "gruppen/crossroad.html":{"description":"Crossroad, die Jugendgruppe der EFG Allendorf: freitags ab 19 Uhr Glauben entdecken, Alltag teilen und Freundschaften leben. Infos und Kontakt."},
+    "gruppen/kreisjugend.html":{"title":"Kreisjugend für junge Erwachsene | EFG Allendorf","description":"Kreisjugend der EFG Allendorf für junge Erwachsene von 18 bis 35 Jahren: alle 14 Tage Gemeinschaft und Glauben erleben. Informationen und Kontakt."}
+  }
+}

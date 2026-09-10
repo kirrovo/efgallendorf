@@ -15,12 +15,12 @@ $card_slug = get_post_field( 'post_name' );
 if ( in_array( $card_slug, array( 'gottesdienst', 'glv', 'bibelstunde', 'hauskreise' ), true ) ) {
 	$card_bild = has_post_thumbnail()
 		? get_the_post_thumbnail_url( null, 'medium_large' )
-		: get_template_directory_uri() . '/assets/img/angebote/' . $card_slug . '.jpg';
+		: get_template_directory_uri() . '/assets/img/angebote/' . $card_slug . '.webp';
 }
 ?>
 <a href="<?php the_permalink(); ?>" class="gruppe-card<?php echo $card_bild ? ' gruppe-card--mit-bild' : ''; ?>">
 	<?php if ( $card_bild ) : ?>
-	<img class="gruppe-card-fadebild" src="<?php echo esc_url( $card_bild ); ?>" width="1400" height="790" alt="" loading="lazy" decoding="async" />
+	<img class="gruppe-card-fadebild" src="<?php echo esc_url( $card_bild ); ?>"<?php efga_responsive_attrs( $card_bild, '(max-width: 620px) 180px, 280px' ); ?> width="1400" height="790" alt="" loading="lazy" decoding="async" />
 	<?php endif; ?>
 	<div class="gruppe-card-header">
 		<?php efga_ico( $icon ); ?>

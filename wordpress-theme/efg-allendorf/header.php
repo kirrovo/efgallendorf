@@ -33,8 +33,8 @@
 				the_custom_logo();
 			} else {
 				printf(
-					'<img src="%s" alt="%s" />',
-					esc_url( get_template_directory_uri() . '/assets/img/logo.png' ),
+					'<img src="%s" width="364" height="116" alt="%s" />',
+					esc_url( get_template_directory_uri() . '/assets/img/logo.webp' ),
 					esc_attr( get_bloginfo( 'name' ) . ', Startseite' )
 				);
 			}

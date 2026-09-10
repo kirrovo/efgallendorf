@@ -533,7 +533,7 @@ nav a:focus-visible .nav-gleit span { transform: translateY(-1.25em); }
   box-shadow: var(--schatten-hoch);
 }
 .hero-rahmen img {
-  width: 100%;
+  width: 100%; height: auto;
   aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 14px;
@@ -715,7 +715,7 @@ a.karte:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
 .wer-card-kopf { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
 .wer-card .ico { color: var(--akzent); width: 1.6rem; height: 1.6rem; }
 .wer-card .nummer { font-size: 1.5rem; font-weight: 700; color: var(--flaeche-3); line-height: 1; }
-.wer-card h4 { font-size: 1.2rem; font-weight: 650; margin-bottom: 8px; }
+.wer-card h3 { font-size: 1.2rem; font-weight: 650; margin-bottom: 8px; }
 .wer-card p { font-size: 1rem; color: var(--text-leise); max-width: 40ch; }
 .wer-card .mehr {
   display: inline-flex; align-items: center; gap: 6px;
@@ -1777,3 +1777,12 @@ footer#site-footer { padding: 0 24px 24px; }
   header#site-header, footer#site-footer, .nav-toggle, .breadcrumb { display: none; }
   body { background: #fff; color: #000; }
 }
+
+/* Klare Besucherantworten, ohne zusätzliches JavaScript. */
+.besucher-fragen { max-width: 800px; margin-inline: auto; }
+.besucher-fragen details { border-bottom: 1px solid var(--linie); padding: 18px 0; }
+.besucher-fragen summary { cursor: pointer; font-weight: 650; color: var(--text); }
+.besucher-fragen details p { margin: 12px 0 8px; color: var(--text-leise); }
+.besucher-fragen details a { color: var(--blau); text-decoration: underline; text-underline-offset: 3px; }
+.wer-card .nummer { color: #657c9a; }
+.hero-auftritt > h1, .hero-rahmen { animation: none; }
