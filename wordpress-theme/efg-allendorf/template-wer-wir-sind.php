@@ -23,7 +23,6 @@ $photo = get_template_directory_uri() . '/assets/img/gemeinde.jpg';
 		<div class="wws-intro">
 			<figure class="wws-intro-bild">
 				<img src="<?php echo esc_url( $photo ); ?>" width="1572" height="1001" alt="Gemeinde EFG Allendorf" />
-				<figcaption>Seit 1884</figcaption>
 			</figure>
 			<div class="wws-intro-text">
 				<p>Die Evangelische Freie Gemeinde Allendorf ist eine freie christliche Gemeinde, die ihre Wurzeln in der Gemeinschaftsbewegung hat und seit <strong>1884</strong> besteht.</p>

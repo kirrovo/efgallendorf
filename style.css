@@ -1470,19 +1470,11 @@ a.predigt-row:hover .predigt-play { background: var(--blau); border-color: var(-
 .wws-intro { display: grid; gap: 32px; margin-bottom: 64px; }
 .wws-intro-bild { position: relative; margin: 0; border-radius: var(--r-karte); overflow: hidden; }
 .wws-intro-bild img { display: block; width: 100%; height: auto; }
-.wws-intro-bild figcaption {
-  position: absolute; top: 24px; left: 24px;
-  padding: 10px 20px; border-radius: var(--r-pille);
-  background: rgba(255, 255, 255, .95); color: var(--blau);
-  font-size: clamp(1rem, 2vw, 1.5rem); font-weight: 800; line-height: 1.3;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, .1);
-}
 .wws-intro-text { max-width: 76ch; }
 .wws-intro-text p { color: var(--text-leise); margin-bottom: 16px; }
 .wws-intro-text p:last-child { margin-bottom: 0; }
 @media (max-width: 620px) {
   .wws-intro { gap: 24px; }
-  .wws-intro-bild figcaption { top: 8px; left: 8px; padding: 5px 9px; font-size: .75rem; }
 }
 
 .wws-sections { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 48px; }
