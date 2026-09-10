@@ -913,6 +913,12 @@ a.karte:hover { border-color: var(--linie-stark); box-shadow: var(--schatten); }
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
 }
+.gruppen-overview-grid--kreise {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (max-width: 620px) {
+  .gruppen-overview-grid--kreise { grid-template-columns: minmax(0, 1fr); }
+}
 .gruppe-card {
   background: var(--flaeche);
   border: 1px solid var(--linie);

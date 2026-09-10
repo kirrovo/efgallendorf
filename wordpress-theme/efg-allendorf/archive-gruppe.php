@@ -87,7 +87,7 @@ $kontakt_url = ( $p = get_page_by_path( 'kontakt' ) ) ? get_permalink( $p ) : ho
 			if ( empty( $ids ) ) { continue; }
 			?>
 			<h2 class="bereich-titel" id="bereich-<?php echo esc_attr( sanitize_title( $bereich ) ); ?>"><?php echo esc_html( $bereich ); ?></h2>
-			<div class="gruppen-overview-grid">
+			<div class="gruppen-overview-grid<?php echo 'Frauen, Männer, Senioren' === $bereich ? ' gruppen-overview-grid--kreise' : ''; ?>">
 				<?php
 				foreach ( $ids as $id ) {
 					$post = get_post( $id );
