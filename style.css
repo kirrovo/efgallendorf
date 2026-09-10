@@ -1750,6 +1750,7 @@ footer#site-footer { padding: 0 24px 24px; }
 }
 .footer-bottom a { color: var(--text-leise); transition: color .2s; }
 .footer-bottom a:hover { color: var(--akzent); }
+.footer-credit-row { flex-basis: 100%; text-align: center; margin-top: 8px; }
 .footer-credit { white-space: nowrap; text-underline-offset: 3px; }
 .footer-credit:hover { text-decoration: underline; }
 .footer-social { display: flex; align-items: center; gap: 18px; }
