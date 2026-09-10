@@ -7,13 +7,6 @@
   "postalCode": "35753",
   "locality": "Greifenstein-Allendorf",
   "youtube": "https://www.youtube.com/@efgallendorf",
-  "faq": [
-    {"question":"Wann findet der Gottesdienst statt?","answer":"Der Gottesdienst der EFG Allendorf beginnt jeden Sonntag um 10:00 Uhr im Gemeindehaus in der Heimlingstraße 3 in 35753 Greifenstein-Allendorf. Jeder ist willkommen.","link":"gruppen/gottesdienst.html","label":"Mehr zum Gottesdienst"},
-    {"question":"Gibt es einen Kindergottesdienst?","answer":"Ja. Der Kindergottesdienst ist für Kinder von 3 bis 12 Jahren und findet sonntags von 10:30 bis 11:30 Uhr statt. Die Kinder erleben Lieder, Geschichten aus der Bibel, Basteln und Spiele.","link":"gruppen/kindergottesdienst.html","label":"Zum Kindergottesdienst"},
-    {"question":"Kann ich den Gottesdienst online ansehen?","answer":"Ja. Der Sonntagsgottesdienst wird auf dem YouTube-Kanal der EFG Allendorf übertragen. Auf der Startseite findest du außerdem die drei neuesten Videos des Kanals.","link":"gottesdienst-live.html","label":"Zum Livestream"},
-    {"question":"Welche Gruppen gibt es in der Gemeinde?","answer":"Die EFG Allendorf bietet Gruppen für Kinder, Jugendliche, junge Erwachsene, Frauen, Männer und Senioren. Dazu kommen Hauskreise, Bibelstunde, GLV und Gebetskreise. Treffzeiten und Ansprechpartner stehen auf den jeweiligen Gruppenseiten.","link":"gruppen.html","label":"Alle Gruppen ansehen"},
-    {"question":"Wie kann ich Kontakt aufnehmen?","answer":"Du erreichst die Gemeinde per E-Mail unter info@eg-allendorf.de. Für Fragen zu einem bestimmten Angebot findest du den direkten Kontakt zur Gruppenleitung auf der jeweiligen Gruppenseite.","link":"mailto:info@eg-allendorf.de","label":"E-Mail schreiben"}
-  ],
   "pages": {
     "index.html":{"title":"EFG Allendorf – Gemeinde in Greifenstein | Gottesdienst","description":"Evangelische Freie Gemeinde in Greifenstein-Allendorf: Gottesdienst sonntags um 10 Uhr, Kindergottesdienst, Gruppen und Livestream. Lerne uns kennen."},
     "wer-wir-sind.html":{"title":"Wer wir sind | EFG Allendorf in Greifenstein","description":"Die EFG Allendorf in Greifenstein: eine christliche Gemeinde seit 1884. Erfahre mehr über unseren Glauben, unser Leitbild und die Gemeindeleitung."},

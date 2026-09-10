@@ -363,7 +363,6 @@ $gd_url = ( $p = get_page_by_path( 'gottesdienst', OBJECT, 'gruppe' ) ) ? get_pe
 </section>
 
 
-<?php efga_visitor_questions(); ?>
 
 <!-- ══════════════════ KONTAKT ═══════════════════════ -->
 <section class="section section-alt" id="kontakt">

@@ -40,7 +40,6 @@ function contacts(s) {
    return `<${tag}${attrs}>${inner.trim()}</${tag}>`;
  });
 }
-const faq='<section class="section" id="fragen"><div class="section-inner besucher-fragen"><h2>Gut zu wissen</h2>'+site.faq.map(f=>`<details><summary>${escape(f.question)}</summary><p>${escape(f.answer)}</p><a href="${escape(f.link)}">${escape(f.label)}</a></details>`).join('')+'</div></section>';
 for(const file of files){
  let html=fs.readFileSync(file,'utf8');
  const depth=file.includes('/')?1:0,r=depth?'../':'';
@@ -55,8 +54,6 @@ for(const file of files){
  html=html.replace(/(<body[^>]*>)/,`$1\n<!-- ICONS START -->${sprite}<!-- ICONS END -->`);
  html=contacts(html);
  if(file==='index.html'){
-  html=html.replace(/<section class="section" id="fragen">[\s\S]*?<\/section>\s*/,'');
-  html=html.replace(/(<section class="section section-alt" id="kontakt">)/,faq+'\n$1');
   html=html.replace('Heimlingstraße 3, Greifenstein','Heimlingstraße 3, 35753 Greifenstein-Allendorf');
  }
  html=html.replace(/<img\b[^>]*>/g,tag=>{
@@ -87,7 +84,6 @@ for(const file of files){
  if(crumbs.length>1)graph.push({'@type':'BreadcrumbList','@id':url+'#breadcrumb',itemListElement:crumbs.map((c,i)=>({'@type':'ListItem',position:i+1,...c}))});
  if(file==='index.html'){
   graph.push({'@type':'Church','@id':site.url+'/#gemeindehaus',name:'Gemeindehaus der EFG Allendorf',address,url:site.url+'/gruppen/gottesdienst.html'});
-  graph.push({'@type':'FAQPage','@id':url+'#fragen',mainEntity:site.faq.map(f=>({'@type':'Question',name:f.question,acceptedAnswer:{'@type':'Answer',text:f.answer}}))});
  }
  const seo=`<!-- SEO START -->\n<meta name="description" content="${escape(description)}" />\n<link rel="canonical" href="${url}" />\n<meta name="robots" content="index, follow, max-image-preview:large" />\n<meta property="og:locale" content="de_DE" />\n<meta property="og:type" content="website" />\n<meta property="og:site_name" content="${escape(site.name)}" />\n<meta property="og:title" content="${escape(title)}" />\n<meta property="og:description" content="${escape(description)}" />\n<meta property="og:url" content="${url}" />\n<meta property="og:image" content="${site.url}/${image}" />\n<meta property="og:image:alt" content="${file==='gottesdienst-live.html'?'Offene Bibel im Morgenlicht':file.startsWith('gruppen/')?'Symbolbild zum Gruppenangebot':'Gruppenfoto der EFG Allendorf'}" />\n<meta name="twitter:card" content="summary_large_image" />\n<script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@graph':graph}).replaceAll('<','\\u003c')}</script>\n<!-- SEO END -->`;
  html=html.replace('</head>',seo+'\n</head>');

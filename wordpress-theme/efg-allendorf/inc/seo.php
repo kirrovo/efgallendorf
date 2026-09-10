@@ -40,7 +40,6 @@ function efga_seo_head() {
  $graph = array( $org, array( '@type'=>'WebSite', '@id'=>$home.'#website', 'url'=>$home, 'name'=>$config['name'], 'inLanguage'=>'de-DE', 'publisher'=>array('@id'=>$org['@id']) ), array( '@type'=>'WebPage', '@id'=>$url.'#webpage', 'url'=>$url, 'name'=>$data['title'], 'description'=>$data['description'], 'inLanguage'=>'de-DE', 'isPartOf'=>array('@id'=>$home.'#website'), 'about'=>array('@id'=>$org['@id']) ) );
  if ( is_front_page() ) {
   $graph[] = array( '@type'=>'Church', '@id'=>$home.'#gemeindehaus', 'name'=>'Gemeindehaus der EFG Allendorf', 'address'=>$address );
-  $graph[] = array( '@type'=>'FAQPage', '@id'=>$home.'#fragen', 'mainEntity'=>array_map( function($f){ return array('@type'=>'Question','name'=>$f['question'],'acceptedAnswer'=>array('@type'=>'Answer','text'=>$f['answer'])); }, $config['faq'] ) );
  } else {
   $items = array( array('@type'=>'ListItem','position'=>1,'name'=>'Startseite','item'=>$home) );
   if ( is_singular('gruppe') ) { $items[] = array('@type'=>'ListItem','position'=>2,'name'=>'Gruppen und Kreise','item'=>get_post_type_archive_link('gruppe')); }
@@ -56,20 +55,6 @@ function efga_seo_head() {
  echo '<script type="application/ld+json">'.wp_json_encode(array('@context'=>'https://schema.org','@graph'=>$graph),JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT|JSON_UNESCAPED_UNICODE).'</script>'."\n";
 }
 add_action( 'wp_head', 'efga_seo_head', 5 );
-function efga_faq_link( $link ) {
- if ( 0 === strpos($link,'mailto:') ) { return $link; }
- $slug = basename($link,'.html');
- if ( 'gruppen' === $slug ) { return get_post_type_archive_link('gruppe'); }
- $post = get_page_by_path($slug,OBJECT,0===strpos($link,'gruppen/')?'gruppe':'page');
- return $post ? get_permalink($post) : home_url('/');
-}
-function efga_visitor_questions() {
- echo '<section class="section" id="fragen"><div class="section-inner besucher-fragen"><h2>Gut zu wissen</h2>';
- foreach(efga_site_config()['faq'] as $faq) {
-  echo '<details><summary>'.esc_html($faq['question']).'</summary><p>'.esc_html($faq['answer']).'</p><a href="'.esc_url(efga_faq_link($faq['link'])).'">'.esc_html($faq['label']).'</a></details>';
- }
- echo '</div></section>';
-}
 function efga_responsive_attrs( $url, $sizes = '(max-width: 1240px) calc(100vw - 40px), 1160px' ) {
  $prefix = get_template_directory_uri().'/assets/img/';
  if ( 0 !== strpos($url,$prefix) || '.webp' !== substr($url,-5) ) { return; }

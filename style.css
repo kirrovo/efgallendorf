@@ -1769,12 +1769,6 @@ footer#site-footer { padding: 0 24px 24px; }
   body { background: #fff; color: #000; }
 }
 
-/* Klare Besucherantworten, ohne zusätzliches JavaScript. */
-.besucher-fragen { max-width: 800px; margin-inline: auto; }
-.besucher-fragen details { border-bottom: 1px solid var(--linie); padding: 18px 0; }
-.besucher-fragen summary { cursor: pointer; font-weight: 650; color: var(--text); }
-.besucher-fragen details p { margin: 12px 0 8px; color: var(--text-leise); }
-.besucher-fragen details a { color: var(--blau); text-decoration: underline; text-underline-offset: 3px; }
 .wer-card .nummer { color: #657c9a; }
 .hero-auftritt > *, .hero-rahmen { animation: none; }
 

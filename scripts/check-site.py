@@ -1,4 +1,4 @@
-"""Check published HTML, local resources, canonical/schema consistency and FAQ parity."""
+"""Check published HTML, local resources, canonical/schema consistency."""
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit,unquote
@@ -45,13 +45,9 @@ for file in site['pages']:
    local=ROOT/u.path.lstrip('/') if u.path.startswith('/') else p.parent/unquote(u.path)
    assert local.exists(),(file,target)
    count+=1
- if file=='index.html':
-  faq=next(n for n in graph if n['@type']=='FAQPage')['mainEntity']
-  assert len(faq)==len(site['faq'])
-  for question in faq:assert question['name'] in text and question['acceptedAnswer']['text'] in text
 urls={node.text for node in ET.parse(ROOT/'sitemap.xml').iter('{http://www.sitemaps.org/schemas/sitemap/0.9}loc')}
 assert urls=={site['url']+('/' if p=='index.html' else '/'+p) for p in site['pages']}
 for p in ROOT.rglob('*.webmanifest'):
  if 'node_modules' in p.parts:continue
  for icon in json.loads(p.read_text())['icons']:assert (p.parent/icon['src']).is_file()
-print(f'20 pages, {count} local references, responsive images, canonical/schema, sitemap and visible FAQ checked.')
+print(f'20 pages, {count} local references, responsive images, canonical/schema, sitemap checked.')

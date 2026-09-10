@@ -4,7 +4,7 @@
 
 - Inhalte weiterhin in den jeweiligen HTML-Seiten pflegen.
 - Navigation und Footer zentral in `nav.js` ändern; CSS in `style.css`.
-- Domain, Beschreibungen und Besucherfragen zentral in `data/site.json` ändern.
+- Domain und Beschreibungen zentral in `data/site.json` ändern.
 - Danach `npm ci`, `npm run build` und `npm run check` ausführen. Vercel baut beim Deployment ebenfalls automatisch.
 - `public/` enthält ausschließlich die fertigen öffentlichen Dateien für Vercel und wird beim Build erstellt; Quellcode und WordPress-Paket bleiben außerhalb.
 - `assets/` enthält minimierte Dateien mit Inhalts-Hash. Sie werden beim Build aktualisiert; diese Dateien nicht von Hand bearbeiten.
@@ -16,7 +16,7 @@
 
 Die 20 öffentlichen Seiten besitzen individuelle Beschreibungen, Canonical-URLs,
 Social-Metadaten sowie strukturierte Gemeinde-, Website-, Seiten- und Breadcrumb-Daten.
-Die Startseite enthält fünf sichtbare Besucherfragen mit passendem FAQ-Markup.
+Der Abschnitt „Gut zu wissen“ samt FAQ-Markup wurde auf Nutzerwunsch entfernt.
 Sitemap: `/sitemap.xml`. Crawler-Regeln: `/robots.txt`.
 
 Aktuelle kanonische Domain: `https://efgallendorf.vercel.app`.
